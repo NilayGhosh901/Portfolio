@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nilay Ghosh - Home</title>
+    <title>Contact - Nilay Ghosh</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     
     <script>
@@ -32,11 +25,6 @@
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
                         'heading': ['Outfit', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'gradient-primary': 'linear-gradient(135deg, #2b5876 0%, #4e7297 50%, #00b4db 100%)',
-                        'gradient-secondary': 'linear-gradient(135deg, #6a11cb 0%, #d946ef 50%, #f59e0b 100%)',
-                        'gradient-vibrant': 'linear-gradient(135deg, #00b4db 0%, #6a11cb 25%, #d946ef 50%, #f59e0b 75%, #ef4444 100%)',
                     }
                 }
             }
@@ -44,51 +32,25 @@
     </script>
     
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Outfit', sans-serif;
-        }
-        
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; }
         .gradient-text {
             background: linear-gradient(135deg, #00b4db 0%, #6a11cb 50%, #d946ef 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #00b4db, #6a11cb);
-            border-radius: 4px;
-        }
     </style>
 </head>
 <body class="bg-gray-900 text-white overflow-x-hidden">
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-gray-900/90 backdrop-blur-lg border-b border-white/10">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-8">
                     <a href="index.html" class="text-2xl font-heading font-bold gradient-text">Nilay Ghosh</a>
                     <ul class="hidden md:flex space-x-6">
-                        <li><a href="index.html" class="nav-link text-white hover:text-brand-cyan transition">Home</a></li>
+                        <li><a href="index.html" class="nav-link hover:text-brand-cyan transition">Home</a></li>
                         <li><a href="about.html" class="nav-link hover:text-brand-cyan transition">About</a></li>
                         <li><a href="education.html" class="nav-link hover:text-brand-cyan transition">Education</a></li>
                         <li><a href="featured.html" class="nav-link hover:text-brand-cyan transition">Featured</a></li>
@@ -97,7 +59,7 @@
                         <li><a href="projects.html" class="nav-link hover:text-brand-cyan transition">Projects</a></li>
                         <li><a href="certifications.html" class="nav-link hover:text-brand-cyan transition">Certifications</a></li>
                         <li><a href="recommendations.html" class="nav-link hover:text-brand-cyan transition">Recommendations</a></li>
-                        <li><a href="contact.html" class="nav-link hover:text-brand-cyan transition">Contact</a></li>
+                        <li><a href="contact.html" class="nav-link text-brand-cyan font-semibold">Contact</a></li>
                     </ul>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -110,7 +72,6 @@
                 </div>
             </div>
             
-            <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
                 <ul class="space-y-3">
                     <li><a href="index.html" class="block py-2 hover:text-brand-cyan transition">Home</a></li>
@@ -122,50 +83,94 @@
                     <li><a href="projects.html" class="block py-2 hover:text-brand-cyan transition">Projects</a></li>
                     <li><a href="certifications.html" class="block py-2 hover:text-brand-cyan transition">Certifications</a></li>
                     <li><a href="recommendations.html" class="block py-2 hover:text-brand-cyan transition">Recommendations</a></li>
-                    <li><a href="contact.html" class="block py-2 hover:text-brand-cyan transition">Contact</a></li>
+                    <li><a href="contact.html" class="block py-2 text-brand-cyan font-semibold">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
-        <!-- Animated Background Gradient -->
-        <div class="absolute inset-0 bg-gradient-to-br from-brand-blue via-brand-purple to-brand-pink opacity-20"></div>
-        <div class="absolute inset-0 bg-gradient-to-tr from-brand-cyan via-brand-purple to-brand-orange opacity-10"></div>
-        
-        <div class="container mx-auto relative z-10">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Text Content -->
-                <div data-aos="fade-right" data-aos-duration="1000">
-                    <p class="text-brand-cyan text-lg mb-4 font-semibold">Hello, I'm</p>
-                    <h1 class="text-5xl md:text-7xl font-heading font-bold mb-6 gradient-text">Nilay Ghosh</h1>
-                    <h2 class="text-2xl md:text-3xl text-gray-300 mb-6">
-                        <span id="typed-text"></span>
-                    </h2>
-                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
-                        I build intelligent solutions that bridge the gap between innovation and accessibility. 
-                        Passionate about Machine Learning, Data Science, and creating stunning web experiences.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="projects.html" class="px-8 py-3 bg-gradient-to-r from-brand-cyan to-brand-purple rounded-full font-semibold hover:shadow-lg hover:shadow-brand-cyan/50 transition-all hover:-translate-y-1">
-                            View My Work
-                        </a>
-                        <a href="contact.html" class="px-8 py-3 border-2 border-brand-cyan text-brand-cyan rounded-full font-semibold hover:bg-brand-cyan hover:text-white transition-all hover:-translate-y-1">
-                            Contact Me
-                        </a>
-                        <a href="Nilay_Ghosh_Resume.pdf" download class="px-8 py-3 border-2 border-brand-purple text-brand-purple rounded-full font-semibold hover:bg-brand-purple hover:text-white transition-all hover:-translate-y-1">
-                            Download Resume
-                        </a>
+    <!-- Contact Section -->
+    <section class="pt-32 pb-20 px-6">
+        <div class="container mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-heading font-bold mb-4 gradient-text">Get In Touch</h2>
+                <p class="text-xl text-gray-400">Let's connect and collaborate</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Contact Info -->
+                <div data-aos="fade-right">
+                    <h3 class="text-3xl font-heading font-bold mb-8 text-brand-cyan">Contact Information</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4 group cursor-pointer">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-brand-cyan to-brand-blue flex items-center justify-center group-hover:scale-110 transition">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Email</h4>
+                                <a href="mailto:nilayghosh901@gmail.com" class="text-gray-400 hover:text-brand-cyan transition">nilayghosh901@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 group cursor-pointer">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-brand-purple to-brand-pink flex items-center justify-center group-hover:scale-110 transition">
+                                <i class="fas fa-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Phone</h4>
+                                <a href="tel:+919366449167" class="text-gray-400 hover:text-brand-cyan transition">+91 9366449167</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 group cursor-pointer">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-brand-pink to-brand-orange flex items-center justify-center group-hover:scale-110 transition">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="text-gray-400 hover:text-brand-cyan transition">Connect on LinkedIn</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 group cursor-pointer">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-r from-brand-orange to-brand-red flex items-center justify-center group-hover:scale-110 transition">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-1">Location</h4>
+                                <p class="text-gray-400">Agartala, Tripura, India</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Profile Image -->
-                <div data-aos="fade-left" data-aos-duration="1000" class="flex justify-center">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink rounded-full blur-3xl opacity-50 animate-pulse"></div>
-                        <img src="My.jpeg" alt="Nilay Ghosh" class="relative w-80 h-80 rounded-full object-cover border-4 border-transparent bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink p-1">
-                    </div>
+                <!-- Contact Form -->
+                <div data-aos="fade-left">
+                    <h3 class="text-3xl font-heading font-bold mb-8 text-brand-purple">Send Message</h3>
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Your Name" required
+                                   class="w-full px-6 py-4 bg-gray-800/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/50 transition">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" required
+                                   class="w-full px-6 py-4 bg-gray-800/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/50 transition">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Subject" required
+                                   class="w-full px-6 py-4 bg-gray-800/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/50 transition">
+                        </div>
+                        <div>
+                            <textarea rows="5" placeholder="Your Message" required
+                                      class="w-full px-6 py-4 bg-gray-800/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/50 transition resize-none"></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="w-full px-8 py-4 bg-gradient-to-r from-brand-cyan to-brand-purple rounded-xl font-semibold hover:shadow-lg hover:shadow-brand-cyan/50 transition-all hover:-translate-y-1">
+                            Send Message
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -194,13 +199,7 @@
         </div>
     </footer>
 
-    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Typed.js -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    
-    <!-- Custom JS -->
     <script src="script.js"></script>
 </body>
 </html>

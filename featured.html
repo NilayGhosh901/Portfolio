@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured - Nilay Ghosh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#2b5876',
+                        'brand-cyan': '#00b4db',
+                        'brand-purple': '#6a11cb',
+                        'brand-pink': '#d946ef',
+                        'brand-orange': '#f59e0b',
+                        'brand-red': '#ef4444',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'heading': ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #00b4db 0%, #6a11cb 50%, #d946ef 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-gray-900/90 backdrop-blur-lg border-b border-white/10">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="text-2xl font-heading font-bold gradient-text">Nilay Ghosh</a>
+                    <ul class="hidden md:flex space-x-6">
+                        <li><a href="index.html" class="nav-link hover:text-brand-cyan transition">Home</a></li>
+                        <li><a href="about.html" class="nav-link hover:text-brand-cyan transition">About</a></li>
+                        <li><a href="education.html" class="nav-link hover:text-brand-cyan transition">Education</a></li>
+                        <li><a href="featured.html" class="nav-link text-brand-cyan font-semibold">Featured</a></li>
+                        <li><a href="experience.html" class="nav-link hover:text-brand-cyan transition">Experience</a></li>
+                        <li><a href="skills.html" class="nav-link hover:text-brand-cyan transition">Skills</a></li>
+                        <li><a href="projects.html" class="nav-link hover:text-brand-cyan transition">Projects</a></li>
+                        <li><a href="certifications.html" class="nav-link hover:text-brand-cyan transition">Certifications</a></li>
+                        <li><a href="recommendations.html" class="nav-link hover:text-brand-cyan transition">Recommendations</a></li>
+                        <li><a href="contact.html" class="nav-link hover:text-brand-cyan transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="md:hidden p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <ul class="space-y-3">
+                    <li><a href="index.html" class="block py-2 hover:text-brand-cyan transition">Home</a></li>
+                    <li><a href="about.html" class="block py-2 hover:text-brand-cyan transition">About</a></li>
+                    <li><a href="education.html" class="block py-2 hover:text-brand-cyan transition">Education</a></li>
+                    <li><a href="featured.html" class="block py-2 text-brand-cyan font-semibold">Featured</a></li>
+                    <li><a href="experience.html" class="block py-2 hover:text-brand-cyan transition">Experience</a></li>
+                    <li><a href="skills.html" class="block py-2 hover:text-brand-cyan transition">Skills</a></li>
+                    <li><a href="projects.html" class="block py-2 hover:text-brand-cyan transition">Projects</a></li>
+                    <li><a href="certifications.html" class="block py-2 hover:text-brand-cyan transition">Certifications</a></li>
+                    <li><a href="recommendations.html" class="block py-2 hover:text-brand-cyan transition">Recommendations</a></li>
+                    <li><a href="contact.html" class="block py-2 hover:text-brand-cyan transition">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Featured Section -->
+    <section class="pt-32 pb-20 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-heading font-bold mb-4 gradient-text">Featured Work</h2>
+                <p class="text-xl text-gray-400">Highlights of my best projects and achievements</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-2 md:order-1" data-aos="fade-right">
+                    <h3 class="text-3xl font-heading font-bold mb-4 text-brand-cyan">ExamAI Portal</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        A comprehensive web portal designed to revolutionize how students prepare for exams. 
+                        Featuring AI-driven study plans, resource management, and progress tracking.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-brand-cyan"></i>
+                            <span class="text-gray-400">AI-powered study recommendations</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-brand-cyan"></i>
+                            <span class="text-gray-400">Interactive dashboard with analytics</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-brand-cyan"></i>
+                            <span class="text-gray-400">Responsive design for all devices</span>
+                        </li>
+                    </ul>
+                    <a href="projects.html" class="inline-block px-8 py-3 bg-gradient-to-r from-brand-cyan to-brand-blue rounded-full font-semibold hover:shadow-lg hover:shadow-brand-cyan/30 transition">
+                        View Details
+                    </a>
+                </div>
+                <div class="order-1 md:order-2" data-aos="fade-left">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop" alt="ExamAI Portal" class="w-full h-auto transform group-hover:scale-105 transition duration-700">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&h=600&fit=crop" alt="Disease Prediction" class="w-full h-auto transform group-hover:scale-105 transition duration-700">
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <h3 class="text-3xl font-heading font-bold mb-4 text-brand-purple">Disease Prediction ML Model</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Leveraging machine learning algorithms to predict potential health issues based on symptoms. 
+                        Achieved high accuracy using Random Forest and Decision Tree classifiers.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-brand-purple"></i>
+                            <span class="text-gray-400">95% prediction accuracy</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-brand-purple"></i>
+                            <span class="text-gray-400">User-friendly web interface</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-brand-purple"></i>
+                            <span class="text-gray-400">Real-time processing</span>
+                        </li>
+                    </ul>
+                    <a href="projects.html" class="inline-block px-8 py-3 bg-gradient-to-r from-brand-purple to-brand-pink rounded-full font-semibold hover:shadow-lg hover:shadow-brand-purple/30 transition">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800/50 border-t border-white/10 py-8">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <p class="text-gray-400 mb-4">&copy; 2025 Nilay Ghosh. All rights reserved.</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://github.com/NilayGhosh901" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:nilayghosh901@gmail.com" class="text-gray-400 hover:text-brand-cyan transition text-xl"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/nilayghosh__?igsh=N3Y5ZTBpa3M4OXlq&utm_source=qr" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
