@@ -70,6 +70,9 @@
             box-shadow: 0 20px 40px rgba(0, 180, 219, 0.1);
         }
     </style>
+    
+    <!-- Enhanced Styles -->
+    <link rel="stylesheet" href="enhanced-styles.css">
 </head>
 <body class="bg-gray-900 text-white overflow-x-hidden">
     <!-- Navigation (same as index.html) -->
@@ -125,134 +128,313 @@
             <!-- Header -->
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-5xl font-heading font-bold mb-4 gradient-text">All Projects</h2>
-                <p class="text-xl text-gray-400">A collection of my development work</p>
+                <p class="text-xl text-gray-400">A collection of my development work from GitHub</p>
             </div>
             
-            <!-- Projects Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project Card 1 -->
-                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop" alt="ExamAI Portal" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading font-bold mb-3 text-brand-cyan">ExamAI Portal</h3>
-                        <p class="text-gray-400 mb-4">Built a responsive web portal with smooth navigation, dark/light theme toggle, and interactive study plans. Implemented AI-powered study assistant demo.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">HTML</span>
-                            <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">CSS</span>
-                            <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">JavaScript</span>
+            <!-- Featured Projects -->
+            <div class="mb-12">
+                <h3 class="text-3xl font-heading font-bold mb-8 text-brand-cyan" data-aos="fade-right">Featured Projects</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Portfolio -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 bg-gradient-to-br from-brand-cyan to-brand-purple flex items-center justify-center">
+                            <i class="fas fa-user text-8xl text-white/20"></i>
                         </div>
-                        <div class="flex gap-3">
-                            <a href="https://examaiportal.netlify.app/" target="_blank" class="flex-1 px-4 py-2 bg-gradient-to-r from-brand-cyan to-brand-purple rounded-lg text-center hover:shadow-lg hover:shadow-brand-cyan/30 transition">
-                                Live Demo
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-cyan">Portfolio Website</h3>
+                            <p class="text-gray-400 mb-4">Modern, responsive portfolio website with dark theme, glassmorphism effects, and smooth animations.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">HTML</span>
+                                <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">CSS</span>
+                                <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">JavaScript</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://nilayghosh901.github.io/Portfolio/" target="_blank" class="flex-1 px-4 py-2 bg-gradient-to-r from-brand-cyan to-brand-purple rounded-lg text-center hover:shadow-lg hover:shadow-brand-cyan/30 transition">
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/NilayGhosh901/Portfolio" target="_blank" class="flex-1 px-4 py-2 border border-brand-cyan text-brand-cyan rounded-lg text-center hover:bg-brand-cyan hover:text-white transition">
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MGNREGA Bharat -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 bg-gradient-to-br from-brand-purple to-brand-pink flex items-center justify-center">
+                            <i class="fas fa-building text-8xl text-white/20"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-purple">MGNREGA Bharat</h3>
+                            <p class="text-gray-400 mb-4">Government scheme management system for MGNREGA with interactive features and data visualization.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">JavaScript</span>
+                                <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">HTML/CSS</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://nilayghosh901.github.io/MGNREGA-Bharat/" target="_blank" class="flex-1 px-4 py-2 bg-gradient-to-r from-brand-purple to-brand-pink rounded-lg text-center hover:shadow-lg hover:shadow-brand-purple/30 transition">
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/NilayGhosh901/MGNREGA-Bharat" target="_blank" class="flex-1 px-4 py-2 border border-brand-purple text-brand-purple rounded-lg text-center hover:bg-brand-purple hover:text-white transition">
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chatbot AI -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="h-48 bg-gradient-to-br from-brand-pink to-brand-orange flex items-center justify-center">
+                            <i class="fas fa-robot text-8xl text-white/20"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-pink">Chatbot AI</h3>
+                            <p class="text-gray-400 mb-4">Web-based chatbot using Google Gemini API for intelligent responses with clean, responsive interface.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-pink/20 text-brand-pink rounded-full text-sm">JavaScript</span>
+                                <span class="px-3 py-1 bg-brand-pink/20 text-brand-pink rounded-full text-sm">Gemini AI</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://chatbot-ai-grsg.onrender.com/" target="_blank" class="flex-1 px-4 py-2 bg-gradient-to-r from-brand-pink to-brand-orange rounded-lg text-center hover:shadow-lg hover:shadow-brand-pink/30 transition">
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/NilayGhosh901/Chatbot-AI" target="_blank" class="flex-1 px-4 py-2 border border-brand-pink text-brand-pink rounded-lg text-center hover:bg-brand-pink hover:text-white transition">
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Machine Learning Projects -->
+            <div class="mb-12">
+                <h3 class="text-3xl font-heading font-bold mb-8 text-brand-purple" data-aos="fade-right">Machine Learning & Data Science</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Disease Prediction -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up">
+                        <div class="h-48 bg-gradient-to-br from-brand-cyan to-brand-blue flex items-center justify-center">
+                            <i class="fas fa-heartbeat text-8xl text-white/20"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-cyan">Disease Prediction Using ML</h3>
+                            <p class="text-gray-400 mb-4">ML models (Decision Tree, Random Forest, Naïve Bayes) for disease prediction with data preprocessing.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">Scikit-learn</span>
+                            </div>
+                            <a href="https://github.com/NilayGhosh901/Disease-Prediction" target="_blank" class="block px-4 py-2 border border-brand-cyan text-brand-cyan rounded-lg text-center hover:bg-brand-cyan hover:text-white transition">
+                                GitHub
                             </a>
-                            <a href="https://github.com/NilayGhosh901" target="_blank" class="flex-1 px-4 py-2 border border-brand-cyan text-brand-cyan rounded-lg text-center hover:bg-brand-cyan hover:text-white transition">
+                        </div>
+                    </div>
+
+                    <!-- Amazon Sales Analysis -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 bg-gradient-to-br from-brand-orange to-brand-red flex items-center justify-center">
+                            <i class="fas fa-chart-line text-8xl text-white/20"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-orange">Amazon Sales Data Analysis</h3>
+                            <p class="text-gray-400 mb-4">Comprehensive analysis using Python with EDA, data cleaning, and visualization for business insights.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-orange/20 text-brand-orange rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-brand-orange/20 text-brand-orange rounded-full text-sm">Pandas</span>
+                                <span class="px-3 py-1 bg-brand-orange/20 text-brand-orange rounded-full text-sm">Jupyter</span>
+                            </div>
+                            <a href="https://github.com/NilayGhosh901/Analyzing-Amazon-Sales-data" target="_blank" class="block px-4 py-2 border border-brand-orange text-brand-orange rounded-lg text-center hover:bg-brand-orange hover:text-white transition">
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Supply Chain Dashboard -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 bg-gradient-to-br from-brand-purple to-brand-pink flex items-center justify-center">
+                            <i class="fas fa-truck text-8xl text-white/20"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-purple">Supply Chain Dashboard</h3>
+                            <p class="text-gray-400 mb-4">Interactive dashboard for supply chain management with data visualization and analytics.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">Data Viz</span>
+                            </div>
+                            <a href="https://github.com/NilayGhosh901/-Supply-Chain-Management-Dashboard" target="_blank" class="block px-4 py-2 border border-brand-purple text-brand-purple rounded-lg text-center hover:bg-brand-purple hover:text-white transition">
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Data Visualization -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="h-48 bg-gradient-to-br from-brand-cyan to-brand-purple flex items-center justify-center">
+                            <i class="fas fa-chart-bar text-8xl text-white/20"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-cyan">Data Visualization Tool</h3>
+                            <p class="text-gray-400 mb-4">Interactive tool for data visualization with multiple chart types and customization options.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">Plotly</span>
+                            </div>
+                            <a href="https://github.com/NilayGhosh901/Interactive-Data-Visualization-Tool" target="_blank" class="block px-4 py-2 border border-brand-cyan text-brand-cyan rounded-lg text-center hover:bg-brand-cyan hover:text-white transition">
                                 GitHub
                             </a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Project Card 2 -->
-                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop" alt="Disease Prediction" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading font-bold mb-3 text-brand-purple">Disease Prediction Using ML</h3>
-                        <p class="text-gray-400 mb-4">Developed ML models (Decision Tree, Random Forest, Naïve Bayes) for disease prediction. Performed data preprocessing and deployed a simple web interface.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">Python</span>
-                            <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">Scikit-learn</span>
+            <!-- Web Development Projects -->
+            <div class="mb-12">
+                <h3 class="text-3xl font-heading font-bold mb-8 text-brand-orange" data-aos="fade-right">Web Development</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- YouTube Playlist Player -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up">
+                        <div class="h-48 bg-gradient-to-br from-brand-red to-brand-orange flex items-center justify-center">
+                            <i class="fab fa-youtube text-8xl text-white/20"></i>
                         </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/NilayGhosh901" target="_blank" class="flex-1 px-4 py-2 border border-brand-purple text-brand-purple rounded-lg text-center hover:bg-brand-purple hover:text-white transition">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-red">YouTube Playlist Player</h3>
+                            <p class="text-gray-400 mb-4">Custom YouTube playlist player with enhanced controls and playlist management features.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-red/20 text-brand-red rounded-full text-sm">JavaScript</span>
+                                <span class="px-3 py-1 bg-brand-red/20 text-brand-red rounded-full text-sm">YouTube API</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://nilayghosh901.github.io/YouTube-Playlist-Player/" target="_blank" class="flex-1 px-4 py-2 bg-gradient-to-r from-brand-red to-brand-orange rounded-lg text-center hover:shadow-lg hover:shadow-brand-red/30 transition">
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/NilayGhosh901/YouTube-Playlist-Player" target="_blank" class="flex-1 px-4 py-2 border border-brand-red text-brand-red rounded-lg text-center hover:bg-brand-red hover:text-white transition">
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investment Calculator -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 bg-gradient-to-br from-brand-orange to-brand-red flex items-center justify-center">
+                            <i class="fas fa-calculator text-8xl text-white/20"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-orange">Advanced Investment Calculator</h3>
+                            <p class="text-gray-400 mb-4">Investment calculator with compound interest, inflation adjustments, tax calculations, and risk analysis.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-orange/20 text-brand-orange rounded-full text-sm">HTML/CSS/JS</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://NilayGhosh901.github.io/Advanced-Investment-Calculator" target="_blank" class="flex-1 px-4 py-2 bg-gradient-to-r from-brand-orange to-brand-red rounded-lg text-center hover:shadow-lg hover:shadow-brand-orange/30 transition">
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/NilayGhosh901/Advanced-Investment-Calculator" target="_blank" class="flex-1 px-4 py-2 border border-brand-orange text-brand-orange rounded-lg text-center hover:bg-brand-orange hover:text-white transition">
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Diwali Wish -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 bg-gradient-to-br from-brand-pink to-brand-purple flex items-center justify-center">
+                            <i class="fas fa-fire text-8xl text-white/20"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-pink">Diwali Wish</h3>
+                            <p class="text-gray-400 mb-4">Interactive Diwali greeting website with animations and festive effects.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-pink/20 text-brand-pink rounded-full text-sm">JavaScript</span>
+                                <span class="px-3 py-1 bg-brand-pink/20 text-brand-pink rounded-full text-sm">CSS</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://nilayghosh901.github.io/Diwali-Wish/" target="_blank" class="flex-1 px-4 py-2 bg-gradient-to-r from-brand-pink to-brand-purple rounded-lg text-center hover:shadow-lg hover:shadow-brand-pink/30 transition">
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/NilayGhosh901/Diwali-Wish" target="_blank" class="flex-1 px-4 py-2 border border-brand-pink text-brand-pink rounded-lg text-center hover:bg-brand-pink hover:text-white transition">
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Python Applications -->
+            <div>
+                <h3 class="text-3xl font-heading font-bold mb-8 text-brand-pink" data-aos="fade-right">Python Applications</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Voice Assistant -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up">
+                        <div class="h-48 bg-gradient-to-br from-brand-purple to-brand-pink flex items-center justify-center">
+                            <i class="fas fa-microphone text-8xl text-white/20"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-purple">Voice Assistant</h3>
+                            <p class="text-gray-400 mb-4">Desktop voice assistant using Python with speech recognition and automation capabilities.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">Speech Recognition</span>
+                            </div>
+                            <a href="https://github.com/NilayGhosh901/Voice-Assistant" target="_blank" class="block px-4 py-2 border border-brand-purple text-brand-purple rounded-lg text-center hover:bg-brand-purple hover:text-white transition">
                                 GitHub
                             </a>
                         </div>
                     </div>
-                </div>
 
-                <!-- Project Card 3 -->
-                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop" alt="Chatbot" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading font-bold mb-3 text-brand-pink">ChatBot Application</h3>
-                        <p class="text-gray-400 mb-4">WhatsApp-like chatbot using Google Gemini API for intelligent responses. Designed a clean, responsive interface with real-time conversation tracking.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-brand-pink/20 text-brand-pink rounded-full text-sm">JavaScript</span>
-                            <span class="px-3 py-1 bg-brand-pink/20 text-brand-pink rounded-full text-sm">Gemini AI</span>
+                    <!-- Weather App -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 bg-gradient-to-br from-brand-cyan to-brand-blue flex items-center justify-center">
+                            <i class="fas fa-cloud-sun text-8xl text-white/20"></i>
                         </div>
-                        <div class="flex gap-3">
-                            <a href="https://chatbot-ai-grsg.onrender.com/" target="_blank" class="flex-1 px-4 py-2 bg-gradient-to-r from-brand-pink to-brand-orange rounded-lg text-center hover:shadow-lg hover:shadow-brand-pink/30 transition">
-                                Live Demo
-                            </a>
-                            <a href="https://github.com/NilayGhosh901/Chatbot-AI" target="_blank" class="flex-1 px-4 py-2 border border-brand-pink text-brand-pink rounded-lg text-center hover:bg-brand-pink hover:text-white transition">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-cyan">Weather App</h3>
+                            <p class="text-gray-400 mb-4">Python weather application with real-time weather data and forecasts.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">API</span>
+                            </div>
+                            <a href="https://github.com/NilayGhosh901/Weather-App" target="_blank" class="block px-4 py-2 border border-brand-cyan text-brand-cyan rounded-lg text-center hover:bg-brand-cyan hover:text-white transition">
                                 GitHub
                             </a>
                         </div>
                     </div>
-                </div>
 
-                <!-- Project Card 4 -->
-                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="400">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Investment Calculator" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading font-bold mb-3 text-brand-orange">Advanced Investment Calculator</h3>
-                        <p class="text-gray-400 mb-4">Built an investment calculator with compound interest, inflation adjustments, tax calculations, and risk sliders.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-brand-orange/20 text-brand-orange rounded-full text-sm">HTML/CSS/JS</span>
+                    <!-- Typing Speed Test -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 bg-gradient-to-br from-brand-orange to-brand-red flex items-center justify-center">
+                            <i class="fas fa-keyboard text-8xl text-white/20"></i>
                         </div>
-                        <div class="flex gap-3">
-                            <a href="https://NilayGhosh901.github.io/Advanced-Investment-Calculator" target="_blank" class="flex-1 px-4 py-2 bg-gradient-to-r from-brand-orange to-brand-red rounded-lg text-center hover:shadow-lg hover:shadow-brand-orange/30 transition">
-                                Live Demo
-                            </a>
-                            <a href="https://github.com/NilayGhosh901/Advanced-Investment-Calculator" target="_blank" class="flex-1 px-4 py-2 border border-brand-orange text-brand-orange rounded-lg text-center hover:bg-brand-orange hover:text-white transition">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-orange">Typing Speed Test</h3>
+                            <p class="text-gray-400 mb-4">Python application to test and improve typing speed with accuracy metrics.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-orange/20 text-brand-orange rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-brand-orange/20 text-brand-orange rounded-full text-sm">Tkinter</span>
+                            </div>
+                            <a href="https://github.com/NilayGhosh901/Typing-Speed-Test-using-python" target="_blank" class="block px-4 py-2 border border-brand-orange text-brand-orange rounded-lg text-center hover:bg-brand-orange hover:text-white transition">
                                 GitHub
                             </a>
                         </div>
                     </div>
-                </div>
 
-                <!-- Project Card 5 -->
-                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="500">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Amazon Sales" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading font-bold mb-3 text-brand-cyan">Analyzing Amazon Sales Data</h3>
-                        <p class="text-gray-400 mb-4">Comprehensive analysis of Amazon sales data using Python. Performed EDA, data cleaning, and visualization to derive actionable business insights.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">Python</span>
-                            <span class="px-3 py-1 bg-brand-blue/20 text-brand-cyan rounded-full text-sm">Pandas</span>
+                    <!-- GUI Calculator -->
+                    <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="h-48 bg-gradient-to-br from-brand-pink to-brand-purple flex items-center justify-center">
+                            <i class="fas fa-calculator text-8xl text-white/20"></i>
                         </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/NilayGhosh901/Analyzing-Amazon-Sales-data" target="_blank" class="flex-1 px-4 py-2 border border-brand-cyan text-brand-cyan rounded-lg text-center hover:bg-brand-cyan hover:text-white transition">
-                                GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 6 -->
-                <div class="glass-card rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="600">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop" alt="Voice Assistant" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-heading font-bold mb-3 text-brand-purple">Voice Assistant</h3>
-                        <p class="text-gray-400 mb-4">Desktop voice assistant using Python, speech recognition, and automation tools. Can perform various tasks through voice commands.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">Python</span>
-                            <span class="px-3 py-1 bg-brand-purple/20 text-brand-pink rounded-full text-sm">SpeechRecognition</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/NilayGhosh901" target="_blank" class="flex-1 px-4 py-2 border border-brand-purple text-brand-purple rounded-lg text-center hover:bg-brand-purple hover:text-white transition">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-heading font-bold mb-3 text-brand-pink">GUI Calculator</h3>
+                            <p class="text-gray-400 mb-4">Python calculator with graphical user interface and advanced operations.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-brand-pink/20 text-brand-pink rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-brand-pink/20 text-brand-pink rounded-full text-sm">Tkinter</span>
+                            </div>
+                            <a href="https://github.com/NilayGhosh901/GUI-Calculator" target="_blank" class="block px-4 py-2 border border-brand-pink text-brand-pink rounded-lg text-center hover:bg-brand-pink hover:text-white transition">
                                 GitHub
                             </a>
                         </div>
@@ -263,28 +445,6 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800/50 border-t border-white/10 py-8">
-        <div class="container mx-auto px-6">
-            <div class="text-center">
-                <p class="text-gray-400 mb-4">&copy; 2025 Nilay Ghosh. All rights reserved.</p>
-                <div class="flex justify-center space-x-6">
-                    <a href="https://github.com/NilayGhosh901" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:nilayghosh901@gmail.com" class="text-gray-400 hover:text-brand-cyan transition text-xl">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://www.instagram.com/nilayghosh__?igsh=N3Y5ZTBpa3M4OXlq&utm_source=qr" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
@@ -293,5 +453,8 @@
     
     <!-- Custom JS -->
     <script src="script.js"></script>
+    
+    <!-- Enhanced Animations -->
+    <script src="enhanced-animations.js"></script>
 </body>
 </html>
