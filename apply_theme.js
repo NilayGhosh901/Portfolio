@@ -10,7 +10,7 @@ function applyTheme() {
     const indexHtml = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
 
     // Extract the new Head section (up to </head>)
-    const headSection = indexHtml.split('</head>')[0] + '</head>';
+    let headSection = indexHtml.split('</head>')[0] + '</head>';
     
     // Extract the new Body signature (for no scroll: <body class="... overflow-hidden ...">)
     const bodyMatch = indexHtml.match(/<body[^>]*>/);
@@ -25,7 +25,7 @@ function applyTheme() {
     const ambientBg = ambientBgMatch[0].replace(/\s*<!-- Main Content wrapper/, '');
 
     // Extract the new Navbar (the <nav> element)
-    const navMatch = indexHtml.match(/<nav class="w-full flex items-center justify-between px-8 py-6 relative z-30">[\s\S]*?<\/nav>/);
+    const navMatch = indexHtml.match(/<nav class="w-full flex items-center justify-between px-4 sm:px-8 py-6 relative z-30">[\s\S]*?<\/nav>/);
     const mobileNavMatch = indexHtml.match(/<!-- Mobile Menu dropdown -->[\s\S]*?<\/div>\s*<!-- Hero Design Content/);
     
     if (!navMatch || !mobileNavMatch) {
@@ -52,8 +52,8 @@ function applyTheme() {
 
         // 2. Replace BODY Tag
         // Remove old body and replace with standard scrollable body for identical theme (but scrolling enabled)
-        // We only want index.html to be locked h-screen overflow-hidden, other pages need to scroll
-        const scrollableBodyTag = '<body class="relative min-h-screen w-full font-sans bg-slate-50">';
+        // We only want index.html to be locked h-screen overflow-hidden on desktop, other pages need to scroll
+        const scrollableBodyTag = '<body class="relative min-h-screen w-full font-sans bg-slate-50 overflow-x-hidden">';
         content = content.replace(/<body[^>]*>/, scrollableBodyTag);
         
         // 3. Replace Ambient Background
