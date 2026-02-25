@@ -15,28 +15,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'brand-blue': '#2b5876',
-                        'brand-cyan': '#00b4db',
-                        'brand-purple': '#6a11cb',
-                        'brand-pink': '#d946ef',
-                        'brand-orange': '#f59e0b',
-                        'brand-red': '#ef4444',
+                        'brand-blue': '#1e40af',    /* Deeper blue for buttons */
+                        'brand-lightblue': '#dbeafe', 
+                        'brand-orange': '#f97316',  /* Orange for buttons */
+                        'brand-dark': '#1e293b',    /* Text color */
                     },
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
                         'heading': ['Outfit', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'gradient-primary': 'linear-gradient(135deg, #2b5876 0%, #4e7297 50%, #00b4db 100%)',
-                        'gradient-secondary': 'linear-gradient(135deg, #6a11cb 0%, #d946ef 50%, #f59e0b 100%)',
-                        'gradient-vibrant': 'linear-gradient(135deg, #00b4db 0%, #6a11cb 25%, #d946ef 50%, #f59e0b 75%, #ef4444 100%)',
                     }
                 }
             }
@@ -46,171 +39,332 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Outfit', sans-serif;
         }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #00b4db 0%, #6a11cb 50%, #d946ef 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        /* Ambient Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
         
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .ambient-shape-1 {
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .ambient-shape-2 {
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(255,237,213,0.6) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        /* SVG waves to match the design */
+        .bg-waves {
+            position: absolute;
+            bottom: -15%;
+            left: -10%;
+            width: 120%;
+            height: 60%;
+            z-index: -1;
+            opacity: 0.6;
+            transform: rotate(-5deg);
         }
         
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .nav-link {
+            color: #475569;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .nav-link:hover {
+            color: #1e40af;
+        }
+        .nav-link.active {
+            color: #1e40af;
+            font-weight: 700;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #1e40af;
+        }
+
+        .glass-hero {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(255,255,255,0.8);
+        }
+
+        .btn-orange {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(234,88,12,0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-orange:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 25px -5px rgba(234,88,12,0.5);
+        }
+
+        .btn-blue {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(37,99,235,0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-blue:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 25px -5px rgba(37,99,235,0.5);
         }
         
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: white;
+            color: #1e293b;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: all 0.2s;
         }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #00b4db, #6a11cb);
-            border-radius: 4px;
+        .social-btn:hover {
+            transform: translateY(-3px);
+            color: white;
+        }
+        .social-btn.gh:hover { background: #333; }
+        .social-btn.li:hover { background: #0077b5; }
+        .social-btn.go:hover { background: #db4437; }
+        .social-btn.ig:hover { background: #e1306c; }
+        .social-btn.fb:hover { background: #1877f2; }
+
+        .floating-icon {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
     </style>
-    
-    <!-- Enhanced Styles -->
-    <link rel="stylesheet" href="enhanced-styles.css">
 </head>
-<body class="bg-gray-900 text-white overflow-x-hidden">
-    <!-- Navigation Bar -->
-    <nav class="fixed w-full z-50 bg-gray-900/90 backdrop-blur-lg border-b border-white/10">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-8">
-                    <a href="index.html" class="text-2xl font-heading font-bold gradient-text">Nilay Ghosh</a>
-                    <ul class="hidden md:flex space-x-6">
-                        <li><a href="index.html" class="nav-link text-white hover:text-brand-cyan transition">Home</a></li>
-                        <li><a href="about.html" class="nav-link hover:text-brand-cyan transition">About</a></li>
-                        <li><a href="education.html" class="nav-link hover:text-brand-cyan transition">Education</a></li>
-                        <li><a href="featured.html" class="nav-link hover:text-brand-cyan transition">Featured</a></li>
-                        <li><a href="experience.html" class="nav-link hover:text-brand-cyan transition">Experience</a></li>
-                        <li><a href="skills.html" class="nav-link hover:text-brand-cyan transition">Skills</a></li>
-                        <li><a href="projects.html" class="nav-link hover:text-brand-cyan transition">Projects</a></li>
-                        <li><a href="certifications.html" class="nav-link hover:text-brand-cyan transition">Certifications</a></li>
-                        <li><a href="recommendations.html" class="nav-link hover:text-brand-cyan transition">Recommendations</a></li>
-                        <li><a href="contact.html" class="nav-link hover:text-brand-cyan transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <button id="mobile-menu-btn" class="md:hidden p-2">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
+<body class="relative h-screen w-full overflow-hidden font-sans bg-slate-50">
+
+    <!-- Ambient Background matching the new design -->
+    <div class="ambient-bg">
+        <div class="ambient-shape-1"></div>
+        <div class="ambient-shape-2"></div>
+        
+        <!-- Elegant Bottom Wave -->
+        <svg class="absolute bottom-0 left-0 w-full h-[50vh] opacity-60 z-0 drop-shadow-2xl" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="url(#grad-wave)" d="M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,218.7C672,203,768,149,864,138.7C960,128,1056,160,1152,181.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            <defs>
+                <linearGradient id="grad-wave" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#334155;stop-opacity:0.95" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <!-- Main Content wrapper locked to exactly one screen -->
+    <main class="h-screen w-full flex flex-col overflow-hidden relative z-10 p-4 md:p-8">
+        <!-- THE GLASS CARD - Optimized for single screen -->
+        <div class="w-full max-w-7xl mx-auto glass-hero relative flex flex-col h-full rounded-3xl" data-aos="zoom-in" data-aos-duration="1000">
             
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <ul class="space-y-3">
-                    <li><a href="index.html" class="block py-2 hover:text-brand-cyan transition">Home</a></li>
-                    <li><a href="about.html" class="block py-2 hover:text-brand-cyan transition">About</a></li>
-                    <li><a href="education.html" class="block py-2 hover:text-brand-cyan transition">Education</a></li>
-                    <li><a href="featured.html" class="block py-2 hover:text-brand-cyan transition">Featured</a></li>
-                    <li><a href="experience.html" class="block py-2 hover:text-brand-cyan transition">Experience</a></li>
-                    <li><a href="skills.html" class="block py-2 hover:text-brand-cyan transition">Skills</a></li>
-                    <li><a href="projects.html" class="block py-2 hover:text-brand-cyan transition">Projects</a></li>
-                    <li><a href="certifications.html" class="block py-2 hover:text-brand-cyan transition">Certifications</a></li>
-                    <li><a href="recommendations.html" class="block py-2 hover:text-brand-cyan transition">Recommendations</a></li>
-                    <li><a href="contact.html" class="block py-2 hover:text-brand-cyan transition">Contact</a></li>
+            <!-- Navbar inside the Card -->
+            <nav class="w-full flex items-center justify-between px-8 py-6 relative z-30">
+                <div class="flex items-center space-x-6 sm:space-x-8 md:space-x-12">
+                    <a href="index.html" class="nav-link active text-lg md:text-xl">Home</a>
+                    <a href="about.html" class="nav-link text-lg md:text-xl hidden sm:inline-block">About</a>
+                    <a href="projects.html" class="nav-link text-lg md:text-xl hidden sm:inline-block">Projects</a>
+                    <!-- More Dropdown -->
+                    <div class="relative group hidden lg:inline-block">
+                        <button class="nav-link text-lg md:text-xl flex items-center focus:outline-none py-2">
+                            More <i class="fas fa-chevron-down ml-2 text-sm pt-1"></i>
+                        </button>
+                        <div class="absolute left-0 top-full mt-1 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden border border-gray-100 py-2 text-base">
+                            <a href="experience.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Experience</a>
+                            <a href="education.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Education</a>
+                            <a href="skills.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Skills</a>
+                            <a href="certifications.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Certifications</a>
+                            <a href="featured.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Featured</a>
+                            <a href="volunteering.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Volunteering</a>
+                            <a href="honors.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Honors & Awards</a>
+                            <a href="volunteering.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Volunteering</a>
+                            <a href="honors.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Honors & Awards</a>
+                            <a href="recommendations.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Recommendations</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-link text-lg md:text-xl hidden sm:inline-block">Contact</a>
+                </div>
+                
+                <div class="sm:hidden">
+                    <button id="mobile-menu-btn" class="p-2 text-slate-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu dropdown -->
+            <div id="mobile-menu" class="hidden absolute top-20 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl z-40 sm:hidden border border-gray-100 overflow-hidden transition-all">
+                <ul class="flex flex-col text-center text-lg font-medium p-4 space-y-2">
+                    <li><a href="index.html" class="block py-3 text-brand-blue font-bold rounded hover:bg-gray-50">Home</a></li>
+                    <li><a href="about.html" class="block py-3 text-slate-700 rounded hover:bg-gray-50 hover:text-brand-blue">About</a></li>
+                    <li><a href="projects.html" class="block py-3 text-slate-700 rounded hover:bg-gray-50 hover:text-brand-blue">Projects</a></li>
+                    <li><a href="contact.html" class="block py-3 text-slate-700 rounded hover:bg-gray-50 hover:text-brand-blue">Contact</a></li>
+                    <li><button id="mobile-more-btn" class="w-full block py-3 text-slate-700 rounded hover:bg-gray-50 hover:text-brand-blue">More <i class="fas fa-chevron-down ml-1 text-sm"></i></button></li>
+                </ul>
+                <ul id="mobile-more-menu" class="hidden flex-col bg-slate-50 border-t border-gray-100 text-base py-2">
+                    <li><a href="experience.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Experience</a></li>
+                    <li><a href="education.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Education</a></li>
+                    <li><a href="skills.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Skills</a></li>
+                    <li><a href="certifications.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Certifications</a></li>
+                    <li><a href="featured.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Featured</a></li>
+                    <li><a href="volunteering.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Volunteering</a></li>
+                    <li><a href="honors.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Honors & Awards</a></li>
+                    <li><a href="volunteering.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Volunteering</a></li>
+                    <li><a href="honors.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Honors & Awards</a></li>
+                    <li><a href="recommendations.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Recommendations</a></li>
                 </ul>
             </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
-        <!-- Animated Background Gradient -->
-        <!-- Animated Background Gradient (Removed to show enhanced background) -->
-        <!-- <div class="absolute inset-0 bg-gradient-to-br from-brand-blue via-brand-purple to-brand-pink opacity-20"></div> -->
-        <!-- <div class="absolute inset-0 bg-gradient-to-tr from-brand-cyan via-brand-purple to-brand-orange opacity-10"></div> -->
-        
-        <div class="container mx-auto relative z-10">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Text Content -->
-                <div data-aos="fade-right" data-aos-duration="1000">
-                    <p class="text-brand-cyan text-lg mb-4 font-semibold">Hello, I'm</p>
-                    <h1 class="text-5xl md:text-7xl font-heading font-bold mb-6 gradient-text">Nilay Ghosh</h1>
-                    <h2 class="text-2xl md:text-3xl text-gray-300 mb-6">
-                        <span id="typed-text"></span>
-                    </h2>
-                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
-                        I build intelligent solutions that bridge the gap between innovation and accessibility. 
-                        Passionate about Machine Learning, Data Science, and creating stunning web experiences.
+            <!-- Hero Design Content - Using flex-grow to fill remaining space -->
+            <div class="flex-grow grid md:grid-cols-2 gap-8 lg:gap-12 items-center px-8 md:px-16 pb-8">
+                
+                <!-- Left Text Block -->
+                <div class="flex flex-col justify-center h-full">
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-slate-700 mb-2">Hello, I'm</h2>
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-black text-slate-900 mb-4 tracking-tight drop-shadow-sm">
+                        Nilay Ghosh.
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-600 mb-2 max-w-md font-medium leading-relaxed">
+                        Content Developer | Directorate of IT, Govt. of Tripura
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="projects.html" class="px-8 py-3 bg-gradient-to-r from-brand-cyan to-brand-purple rounded-full font-semibold hover:shadow-lg hover:shadow-brand-cyan/50 transition-all hover:-translate-y-1">
+                    <p class="text-md sm:text-lg text-slate-500 mb-8 font-semibold tracking-wide">
+                        Node.js &bull; React.js &bull; Express.js &bull; PostgreSQL &bull; Python
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <a href="projects.html" class="px-6 py-3 sm:px-8 sm:py-3.5 btn-orange rounded-full font-bold text-base sm:text-lg">
                             View My Work
                         </a>
-                        <a href="contact.html" class="px-8 py-3 border-2 border-brand-cyan text-brand-cyan rounded-full font-semibold hover:bg-brand-cyan hover:text-white transition-all hover:-translate-y-1">
+                        <a href="contact.html" class="px-6 py-3 sm:px-8 sm:py-3.5 btn-blue rounded-full font-bold text-base sm:text-lg">
                             Contact Me
                         </a>
-                        <a href="Nilay_Ghosh_Resume.pdf" download class="px-8 py-3 border-2 border-brand-purple text-brand-purple rounded-full font-semibold hover:bg-brand-purple hover:text-white transition-all hover:-translate-y-1">
-                            Download Resume
+                        <a href="Nilay_Ghosh_Resume.pdf" download="Nilay_Ghosh_Resume.pdf" class="px-6 py-3 sm:px-8 sm:py-3.5 bg-white border border-gray-200 text-slate-700 hover:text-brand-blue hover:border-brand-blue hover:shadow-lg rounded-full font-bold text-base sm:text-lg transition-all flex items-center gap-2 group">
+                            <i class="fas fa-download group-hover:-translate-y-1 transition-transform"></i> Download CV
+                        </a>
+                    </div>
+                    
+                    <!-- Social icons row (Restored and Improved) -->
+                    <div class="flex items-center space-x-3 mt-auto pt-4">
+                        <a href="https://github.com/NilayGhosh901" target="_blank" class="social-btn gh hover:scale-110">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="social-btn li hover:scale-110">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://developers.google.com/profile/u/105527380161672944105" target="_blank" class="social-btn go hover:scale-110">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="https://www.instagram.com/nilayghosh__?igsh=N3Y5ZTBpa3M4OXlq&utm_source=qr" target="_blank" class="social-btn ig hover:scale-110">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/18AU5FYB4i/?mibextid=wwXIfr" target="_blank" class="social-btn fb hover:scale-110">
+                            <i class="fab fa-facebook-f"></i>
                         </a>
                     </div>
                 </div>
                 
-                <!-- Profile Image -->
-                <div data-aos="fade-left" data-aos-duration="1000" class="flex justify-center">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink rounded-full blur-3xl opacity-50 animate-pulse"></div>
-                        <img src="My.jpeg" alt="Nilay Ghosh" class="relative w-80 h-80 rounded-full object-cover border-4 border-transparent bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink p-1">
+                <!-- Right Image / Illustration Block -->
+                <div class="relative flex justify-center items-center h-full" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                    
+                    <!-- Decorative floating badges (Premium white circles with colored icons) -->
+                    <div class="absolute -top-4 left-0 bg-white p-4 rounded-xl shadow-xl floating-icon z-20 border border-gray-100" style="animation-delay: 0s;">
+                        <i class="fas fa-brain text-2xl text-brand-blue"></i>
                     </div>
+                    
+                    <div class="absolute top-1/4 -right-4 bg-white p-4 rounded-full shadow-xl floating-icon z-20 border border-gray-100" style="animation-delay: 1.5s;">
+                        <i class="fas fa-chart-pie text-2xl text-brand-orange"></i>
+                    </div>
+
+                    <div class="absolute bottom-1/4 -left-4 bg-white p-5 rounded-full shadow-xl floating-icon z-20 border border-gray-100" style="animation-delay: 0.7s;">
+                        <i class="fas fa-code text-3xl text-emerald-500"></i>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 right-8 bg-white p-5 rounded-full shadow-xl floating-icon z-20 border border-gray-100" style="animation-delay: 2.1s;">
+                        <i class="fas fa-globe text-3xl text-indigo-500"></i>
+                    </div>
+                    
+                    <!-- Profile Image with premium backdrop -->
+                    <div class="relative z-10 w-64 h-64 sm:w-72 sm:h-72 lg:w-[400px] lg:h-[400px] rounded-full p-2 bg-white shadow-2xl transition-transform duration-500 hover:scale-[1.03] group border border-gray-100">
+                        <img src="My.jpeg" alt="Nilay Ghosh" class="w-full h-full object-cover rounded-full shadow-inner">
+                        <!-- Soft premium glow behind the image -->
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-brand-blue/20 to-brand-orange/20 blur-2xl -z-10 scale-110"></div>
+                    </div>
+                    
                 </div>
+
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800/50 border-t border-white/10 py-8">
-        <div class="container mx-auto px-6">
-            <div class="text-center">
-                <p class="text-gray-400 mb-4">&copy; 2025 Nilay Ghosh. All rights reserved.</p>
-                <div class="flex justify-center space-x-6">
-                    <a href="https://github.com/NilayGhosh901" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://developers.google.com/profile/u/105527380161672944105" target="_blank" class="text-gray-400 hover:text-brand-orange transition text-xl" title="Google Developer">
-                        <i class="fab fa-google"></i>
-                    </a>
-                    <a href="mailto:nilayghosh901@gmail.com" class="text-gray-400 hover:text-brand-cyan transition text-xl" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://www.instagram.com/nilayghosh__?igsh=N3Y5ZTBpa3M4OXlq&utm_source=qr" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- AOS JS -->
+    <!-- Original Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Typed.js -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    
-    <!-- Custom JS -->
     <script src="script.js"></script>
-    
-    <!-- Enhanced Animations -->
     <script src="enhanced-animations.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50 });
+        
+        // Mobile Menu Toggles
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        document.getElementById('mobile-more-btn').addEventListener('click', () => {
+            document.getElementById('mobile-more-menu').classList.toggle('hidden');
+            document.getElementById('mobile-more-menu').classList.toggle('flex');
+            let icon = document.querySelector('#mobile-more-btn i');
+            if (icon.classList.contains('fa-chevron-down')) {
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        });
+    </script>
 </body>
 </html>

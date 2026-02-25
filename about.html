@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Nilay Ghosh</title>
+    <title>Nilay Ghosh - Home</title>
     
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'brand-blue': '#2b5876',
-                        'brand-cyan': '#00b4db',
-                        'brand-purple': '#6a11cb',
-                        'brand-pink': '#d946ef',
-                        'brand-orange': '#f59e0b',
-                        'brand-red': '#ef4444',
+                        'brand-blue': '#1e40af',    /* Deeper blue for buttons */
+                        'brand-lightblue': '#dbeafe', 
+                        'brand-orange': '#f97316',  /* Orange for buttons */
+                        'brand-dark': '#1e293b',    /* Text color */
                     },
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
@@ -32,111 +37,291 @@
     </script>
     
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; }
-        .gradient-text {
-            background: linear-gradient(135deg, #00b4db 0%, #6a11cb 50%, #d946ef 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Ambient Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .ambient-shape-1 {
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .ambient-shape-2 {
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(255,237,213,0.6) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        /* SVG waves to match the design */
+        .bg-waves {
+            position: absolute;
+            bottom: -15%;
+            left: -10%;
+            width: 120%;
+            height: 60%;
+            z-index: -1;
+            opacity: 0.6;
+            transform: rotate(-5deg);
+        }
+        
+        .nav-link {
+            color: #475569;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .nav-link:hover {
+            color: #1e40af;
+        }
+        .nav-link.active {
+            color: #1e40af;
+            font-weight: 700;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #1e40af;
+        }
+
+        .glass-hero {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(255,255,255,0.8);
+        }
+
+        .btn-orange {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(234,88,12,0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-orange:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 25px -5px rgba(234,88,12,0.5);
+        }
+
+        .btn-blue {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            box-shadow: 0 10px 20px -5px rgba(37,99,235,0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-blue:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 25px -5px rgba(37,99,235,0.5);
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: white;
+            color: #1e293b;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        .social-btn:hover {
+            transform: translateY(-3px);
+            color: white;
+        }
+        .social-btn.gh:hover { background: #333; }
+        .social-btn.li:hover { background: #0077b5; }
+        .social-btn.go:hover { background: #db4437; }
+        .social-btn.ig:hover { background: #e1306c; }
+        .social-btn.fb:hover { background: #1877f2; }
+
+        .floating-icon {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
     </style>
-    
-    <!-- Enhanced Styles -->
-    <link rel="stylesheet" href="enhanced-styles.css">
 </head>
-<body class="bg-gray-900 text-white overflow-x-hidden">
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-gray-900/90 backdrop-blur-lg border-b border-white/10">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-8">
-                    <a href="index.html" class="text-2xl font-heading font-bold gradient-text">Nilay Ghosh</a>
-                    <ul class="hidden md:flex space-x-6">
-                        <li><a href="index.html" class="nav-link hover:text-brand-cyan transition">Home</a></li>
-                        <li><a href="about.html" class="nav-link text-brand-cyan font-semibold">About</a></li>
-                        <li><a href="education.html" class="nav-link hover:text-brand-cyan transition">Education</a></li>
-                        <li><a href="featured.html" class="nav-link hover:text-brand-cyan transition">Featured</a></li>
-                        <li><a href="experience.html" class="nav-link hover:text-brand-cyan transition">Experience</a></li>
-                        <li><a href="skills.html" class="nav-link hover:text-brand-cyan transition">Skills</a></li>
-                        <li><a href="projects.html" class="nav-link hover:text-brand-cyan transition">Projects</a></li>
-                        <li><a href="certifications.html" class="nav-link hover:text-brand-cyan transition">Certifications</a></li>
-                        <li><a href="recommendations.html" class="nav-link hover:text-brand-cyan transition">Recommendations</a></li>
-                        <li><a href="contact.html" class="nav-link hover:text-brand-cyan transition">Contact</a></li>
-                    </ul>
+<body class="relative min-h-screen w-full font-sans bg-slate-50">
+
+    <!-- Ambient Background matching the new design -->
+    <div class="ambient-bg">
+        <div class="ambient-shape-1"></div>
+        <div class="ambient-shape-2"></div>
+        
+        <!-- Elegant Bottom Wave -->
+        <svg class="absolute bottom-0 left-0 w-full h-[50vh] opacity-60 z-0 drop-shadow-2xl" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="url(#grad-wave)" d="M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,218.7C672,203,768,149,864,138.7C960,128,1056,160,1152,181.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            <defs>
+                <linearGradient id="grad-wave" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#334155;stop-opacity:0.95" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+        <div class="ambient-shape-2"></div>
+        
+        <!-- Elegant Bottom Wave -->
+        <svg class="absolute bottom-0 left-0 w-full h-[50vh] opacity-60 z-0 drop-shadow-2xl" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="url(#grad-wave)" d="M0,256L48,245.3C96,235,192,213,288,213.3C384,213,480,235,576,218.7C672,203,768,149,864,138.7C960,128,1056,160,1152,181.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            <defs>
+                <linearGradient id="grad-wave" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#334155;stop-opacity:0.95" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    
+    <!-- Main Content wrapper -->
+    <!-- Main Content wrapper -->
+    <main class="min-h-screen w-full flex flex-col relative z-10 p-4 md:p-8">
+        <div class="w-full max-w-7xl mx-auto glass-hero relative flex flex-col min-h-[90vh] rounded-3xl" data-aos="zoom-in" data-aos-duration="1000">
+            <nav class="w-full flex items-center justify-between px-8 py-6 relative z-30">
+                <div class="flex items-center space-x-6 sm:space-x-8 md:space-x-12">
+                    <a href="index.html" class="nav-link text-lg md:text-xl">Home</a>
+                    <a href="about.html" class="nav-link text-lg md:text-xl hidden sm:inline-block active">About</a>
+                    <a href="projects.html" class="nav-link text-lg md:text-xl hidden sm:inline-block">Projects</a>
+                    <!-- More Dropdown -->
+                    <div class="relative group hidden lg:inline-block">
+                        <button class="nav-link text-lg md:text-xl flex items-center focus:outline-none py-2">
+                            More <i class="fas fa-chevron-down ml-2 text-sm pt-1"></i>
+                        </button>
+                        <div class="absolute left-0 top-full mt-1 w-48 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden border border-gray-100 py-2 text-base">
+                            <a href="experience.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Experience</a>
+                            <a href="education.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Education</a>
+                            <a href="skills.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Skills</a>
+                            <a href="certifications.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Certifications</a>
+                            <a href="featured.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Featured</a>
+                            <a href="volunteering.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Volunteering</a>
+                            <a href="honors.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Honors & Awards</a>
+                            <a href="volunteering.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Volunteering</a>
+                            <a href="honors.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Honors & Awards</a>
+                            <a href="recommendations.html" class="block px-4 py-2.5 text-slate-700 hover:bg-slate-50 hover:text-brand-blue transition">Recommendations</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-link text-lg md:text-xl hidden sm:inline-block">Contact</a>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <button id="mobile-menu-btn" class="md:hidden p-2">
-                        <i class="fas fa-bars text-xl"></i>
+                
+                <div class="sm:hidden">
+                    <button id="mobile-menu-btn" class="p-2 text-slate-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
-            </div>
-            
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <ul class="space-y-3">
-                    <li><a href="index.html" class="block py-2 hover:text-brand-cyan transition">Home</a></li>
-                    <li><a href="about.html" class="block py-2 text-brand-cyan font-semibold">About</a></li>
-                    <li><a href="education.html" class="block py-2 hover:text-brand-cyan transition">Education</a></li>
-                    <li><a href="featured.html" class="block py-2 hover:text-brand-cyan transition">Featured</a></li>
-                    <li><a href="experience.html" class="block py-2 hover:text-brand-cyan transition">Experience</a></li>
-                    <li><a href="skills.html" class="block py-2 hover:text-brand-cyan transition">Skills</a></li>
-                    <li><a href="projects.html" class="block py-2 hover:text-brand-cyan transition">Projects</a></li>
-                    <li><a href="certifications.html" class="block py-2 hover:text-brand-cyan transition">Certifications</a></li>
-                    <li><a href="recommendations.html" class="block py-2 hover:text-brand-cyan transition">Recommendations</a></li>
-                    <li><a href="contact.html" class="block py-2 hover:text-brand-cyan transition">Contact</a></li>
+            </nav>
+
+            <!-- Mobile Menu dropdown -->
+            <div id="mobile-menu" class="hidden absolute top-20 left-4 right-4 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl z-40 sm:hidden border border-gray-100 overflow-hidden transition-all">
+                <ul class="flex flex-col text-center text-lg font-medium p-4 space-y-2">
+                    <li><a href="index.html" class="block py-3 text-brand-blue font-bold rounded hover:bg-gray-50">Home</a></li>
+                    <li><a href="about.html" class="block py-3 text-slate-700 rounded hover:bg-gray-50 hover:text-brand-blue">About</a></li>
+                    <li><a href="projects.html" class="block py-3 text-slate-700 rounded hover:bg-gray-50 hover:text-brand-blue">Projects</a></li>
+                    <li><a href="contact.html" class="block py-3 text-slate-700 rounded hover:bg-gray-50 hover:text-brand-blue">Contact</a></li>
+                    <li><button id="mobile-more-btn" class="w-full block py-3 text-slate-700 rounded hover:bg-gray-50 hover:text-brand-blue">More <i class="fas fa-chevron-down ml-1 text-sm"></i></button></li>
+                </ul>
+                <ul id="mobile-more-menu" class="hidden flex-col bg-slate-50 border-t border-gray-100 text-base py-2">
+                    <li><a href="experience.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Experience</a></li>
+                    <li><a href="education.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Education</a></li>
+                    <li><a href="skills.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Skills</a></li>
+                    <li><a href="certifications.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Certifications</a></li>
+                    <li><a href="featured.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Featured</a></li>
+                    <li><a href="volunteering.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Volunteering</a></li>
+                    <li><a href="honors.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Honors & Awards</a></li>
+                    <li><a href="volunteering.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Volunteering</a></li>
+                    <li><a href="honors.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Honors & Awards</a></li>
+                    <li><a href="recommendations.html" class="block py-2 text-slate-600 hover:text-brand-blue w-full text-center">Recommendations</a></li>
                 </ul>
             </div>
-        </div>
-    </nav>
 
-    <!-- About Section -->
-    <section class="pt-32 pb-20 px-6">
-        <div class="container mx-auto max-w-4xl">
+            
+            
+            <div class="mt-8 w-full">
+                <div class="container mx-auto max-w-4xl">
             <!-- Header -->
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-5xl font-heading font-bold mb-4 gradient-text">About Me</h2>
-                <p class="text-xl text-gray-400">My journey and passion for technology</p>
+                <p class="text-xl text-slate-600">My journey and passion for technology</p>
             </div>
             
             <!-- Content -->
-            <div class="bg-gray-800/30 backdrop-blur-lg border border-white/10 rounded-2xl p-8 md:p-12" data-aos="fade-up" data-aos-delay="200">
-                <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                    🔍 I'm a passionate Computer Science and Engineering (AI & ML) graduate from Brainware University, with a Diploma in Electrical Engineering from Gomati District Polytechnic, Tripura. I blend my roots from Tripura with a modern tech-driven mindset—aiming to bridge the gap between innovation and accessibility.
+            <div class="bg-white/60 backdrop-blur-lg border border-gray-200/50 rounded-2xl p-8 md:p-12" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-lg text-slate-700 mb-6 leading-relaxed">
+                    🔍 I am currently working as a Content Developer at the Directorate of Information Technology, Government of Tripura, where I contribute to the development and management of dynamic e-governance web platforms. My work goes beyond traditional content management—I design and maintain a full-stack Content Management System (CMS) built using React, Node.js, and PostgreSQL.
                 </p>
                 
-                <p class="text-lg text-gray-300 mb-6 leading-relaxed">
-                    🌱 Continuously building my expertise in machine learning, data science, and full-stack web development. 
-                    Hands-on with Python, SQL, JavaScript, TensorFlow, Scikit-learn, and more. I've worked on practical 
-                    AI/ML projects including disease prediction systems, AI chatbots, and voice assistants.
+                <p class="text-lg text-slate-700 mb-6 leading-relaxed">
+                    🌱 I focus on building scalable, modular, and maintainable systems that support real-world administrative workflows, including content publishing, document management, and structured data handling. This enables administrators to manage government portals efficiently without direct code modifications.
                 </p>
                 
-                <p class="text-lg text-gray-300 mb-8 leading-relaxed">
-                    🚀 Currently growing my GitHub portfolio with practical AI/ML projects and seeking internship/mentorship 
-                    opportunities. I'm actively looking to collaborate on meaningful tech projects or research in AI/ML, 
-                    contributing to impactful, real-world open-source projects, and building accessible AI tools for 
-                    education, healthcare, and local communities.
+                <p class="text-lg text-slate-700 mb-8 leading-relaxed">
+                    🚀 I specialize in Full Stack JavaScript Development, REST API Design, Backend Logic, PostgreSQL Database Modeling, and Role-Based Access.
+                    I am particularly interested in system design, modular CMS frameworks, and platform-level development within the JavaScript ecosystem.
                 </p>
+
+                <div class="mb-8">
+                    <a href="Nilay_Ghosh_Resume.pdf" download="Nilay_Ghosh_Resume.pdf" class="inline-flex items-center px-6 py-3 border-2 border-slate-300 text-slate-700 hover:text-brand-blue hover:border-brand-blue hover:bg-white/50 rounded-full font-semibold text-base transition-all gap-2">
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
+                </div>
                 
-                <div class="border-t border-white/10 pt-8">
-                    <h3 class="text-2xl font-heading font-bold mb-6 text-brand-cyan">Top Skills</h3>
+                <div class="border-t border-gray-200/50 pt-8">
+                    <h3 class="text-2xl font-heading font-bold mb-6 text-brand-blue">Top Skills</h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="px-6 py-3 bg-gradient-to-r from-brand-blue to-brand-cyan text-white rounded-full font-semibold hover:shadow-lg hover:shadow-brand-cyan/30 transition">
+                        <span class="px-6 py-3 bg-gradient-to-r from-emerald-400 to-emerald-600 text-white shadow-md rounded-full font-semibold hover:shadow-lg hover:shadow-emerald-500/30 transition">
+                            Node.js
+                        </span>
+                        <span class="px-6 py-3 bg-gradient-to-r from-brand-blue to-cyan-500 text-white shadow-md rounded-full font-semibold hover:shadow-lg hover:shadow-cyan-500/30 transition">
+                            React.js
+                        </span>
+                        <span class="px-6 py-3 bg-gradient-to-r from-slate-700 to-slate-900 text-white shadow-md rounded-full font-semibold hover:shadow-lg hover:shadow-slate-500/30 transition">
+                            Express.js
+                        </span>
+                        <span class="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition">
+                            PostgreSQL
+                        </span>
+                        <span class="px-6 py-3 bg-gradient-to-r from-yellow-400 to-brand-orange text-white shadow-md rounded-full font-semibold hover:shadow-lg hover:shadow-brand-orange/30 transition">
                             Python
-                        </span>
-                        <span class="px-6 py-3 bg-gradient-to-r from-brand-purple to-brand-pink text-white rounded-full font-semibold hover:shadow-lg hover:shadow-brand-purple/30 transition">
-                            Machine Learning
-                        </span>
-                        <span class="px-6 py-3 bg-gradient-to-r from-brand-cyan to-brand-purple text-white rounded-full font-semibold hover:shadow-lg hover:shadow-brand-cyan/30 transition">
-                            JavaScript
-                        </span>
-                        <span class="px-6 py-3 bg-gradient-to-r from-brand-pink to-brand-orange text-white rounded-full font-semibold hover:shadow-lg hover:shadow-brand-pink/30 transition">
-                            Web Development
-                        </span>
-                        <span class="px-6 py-3 bg-gradient-to-r from-brand-orange to-brand-red text-white rounded-full font-semibold hover:shadow-lg hover:shadow-brand-orange/30 transition">
-                            Data Science
                         </span>
                     </div>
                 </div>
@@ -146,91 +331,91 @@
             <div class="mt-16" data-aos="fade-up">
                 <h3 class="text-4xl font-heading font-bold mb-8 text-center gradient-text">Google Developer Achievements</h3>
                 
-                <div class="bg-gray-800/30 backdrop-blur-lg border border-white/10 rounded-2xl p-8 md:p-12">
+                <div class="bg-white/60 backdrop-blur-lg border border-gray-200/50 rounded-2xl p-8 md:p-12">
                     <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-6">
                         <div class="flex items-center space-x-4">
                             <div class="w-20 h-20 rounded-full bg-gradient-to-r from-brand-red to-brand-orange flex items-center justify-center">
-                                <i class="fab fa-google text-4xl text-white"></i>
+                                <i class="fab fa-google text-4xl text-slate-900"></i>
                             </div>
                             <div>
                                 <h4 class="text-2xl font-heading font-bold">Google Developer Program</h4>
-                                <p class="text-gray-400">Member since December 2022</p>
+                                <p class="text-slate-600">Member since December 2022</p>
                             </div>
                         </div>
                         <div class="text-center md:text-right">
                             <div class="text-5xl font-bold text-brand-orange">14+</div>
-                            <div class="text-gray-400">Badges Earned</div>
+                            <div class="text-slate-600">Badges Earned</div>
                         </div>
                     </div>
                     
                     <!-- Stats Grid -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                        <div class="text-center p-6 bg-white/5 rounded-xl hover:bg-white/10 transition">
-                            <i class="fas fa-users text-4xl text-brand-cyan mb-3"></i>
-                            <div class="text-sm text-gray-400 mb-1">Community</div>
+                        <div class="text-center p-6 bg-white shadow-sm border border-gray-100 rounded-xl hover:bg-slate-50 transition">
+                            <i class="fas fa-users text-4xl text-brand-blue mb-3"></i>
+                            <div class="text-sm text-slate-600 mb-1">Community</div>
                             <div class="text-2xl font-bold">6</div>
                         </div>
-                        <div class="text-center p-6 bg-white/5 rounded-xl hover:bg-white/10 transition">
+                        <div class="text-center p-6 bg-white shadow-sm border border-gray-100 rounded-xl hover:bg-slate-50 transition">
                             <i class="fas fa-graduation-cap text-4xl text-brand-purple mb-3"></i>
-                            <div class="text-sm text-gray-400 mb-1">Learning</div>
+                            <div class="text-sm text-slate-600 mb-1">Learning</div>
                             <div class="text-2xl font-bold">4</div>
                         </div>
-                        <div class="text-center p-6 bg-white/5 rounded-xl hover:bg-white/10 transition">
+                        <div class="text-center p-6 bg-white shadow-sm border border-gray-100 rounded-xl hover:bg-slate-50 transition">
                             <i class="fas fa-code text-4xl text-brand-pink mb-3"></i>
-                            <div class="text-sm text-gray-400 mb-1">Tech Skills</div>
+                            <div class="text-sm text-slate-600 mb-1">Tech Skills</div>
                             <div class="text-2xl font-bold">3</div>
                         </div>
-                        <div class="text-center p-6 bg-white/5 rounded-xl hover:bg-white/10 transition">
+                        <div class="text-center p-6 bg-white shadow-sm border border-gray-100 rounded-xl hover:bg-slate-50 transition">
                             <i class="fas fa-calendar text-4xl text-brand-orange mb-3"></i>
-                            <div class="text-sm text-gray-400 mb-1">Events</div>
+                            <div class="text-sm text-slate-600 mb-1">Events</div>
                             <div class="text-2xl font-bold">2</div>
                         </div>
                     </div>
 
                     <!-- Featured Badges -->
-                    <h5 class="text-xl font-heading font-bold mb-4 text-brand-cyan">Featured Badges</h5>
+                    <h5 class="text-xl font-heading font-bold mb-4 text-brand-blue">Featured Badges</h5>
                     <div class="grid md:grid-cols-3 gap-4 mb-6">
-                        <div class="bg-white/5 p-4 rounded-xl hover:bg-white/10 transition">
+                        <div class="bg-white shadow-sm border border-gray-100 p-4 rounded-xl hover:bg-slate-50 border border-gray-100 transition">
                             <div class="flex items-center space-x-3 mb-2">
-                                <i class="fas fa-trophy text-brand-cyan text-xl"></i>
+                                <i class="fas fa-trophy text-brand-blue text-xl"></i>
                                 <h6 class="font-bold text-sm">Google I/O 2025</h6>
                             </div>
-                            <p class="text-xs text-gray-400">NVIDIA Community Member</p>
+                            <p class="text-xs text-slate-600">NVIDIA Community Member</p>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-xl hover:bg-white/10 transition">
+                        <div class="bg-white shadow-sm border border-gray-100 p-4 rounded-xl hover:bg-slate-50 border border-gray-100 transition">
                             <div class="flex items-center space-x-3 mb-2">
                                 <i class="fas fa-medal text-brand-purple text-xl"></i>
                                 <h6 class="font-bold text-sm">Google Skills</h6>
                             </div>
-                            <p class="text-xs text-gray-400">Silver League Member</p>
+                            <p class="text-xs text-slate-600">Silver League Member</p>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-xl hover:bg-white/10 transition">
+                        <div class="bg-white shadow-sm border border-gray-100 p-4 rounded-xl hover:bg-slate-50 border border-gray-100 transition">
                             <div class="flex items-center space-x-3 mb-2">
                                 <i class="fas fa-chart-line text-brand-pink text-xl"></i>
                                 <h6 class="font-bold text-sm">Kaggle Innovators</h6>
                             </div>
-                            <p class="text-xs text-gray-400">Data Science & ML</p>
+                            <p class="text-xs text-slate-600">Data Science & ML</p>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-xl hover:bg-white/10 transition">
+                        <div class="bg-white shadow-sm border border-gray-100 p-4 rounded-xl hover:bg-slate-50 border border-gray-100 transition">
                             <div class="flex items-center space-x-3 mb-2">
                                 <i class="fas fa-cloud text-brand-orange text-xl"></i>
                                 <h6 class="font-bold text-sm">Cloud Innovators</h6>
                             </div>
-                            <p class="text-xs text-gray-400">Google Cloud Platform</p>
+                            <p class="text-xs text-slate-600">Google Cloud Platform</p>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-xl hover:bg-white/10 transition">
+                        <div class="bg-white shadow-sm border border-gray-100 p-4 rounded-xl hover:bg-slate-50 border border-gray-100 transition">
                             <div class="flex items-center space-x-3 mb-2">
                                 <i class="fas fa-users text-brand-red text-xl"></i>
                                 <h6 class="font-bold text-sm">GDG Member</h6>
                             </div>
-                            <p class="text-xs text-gray-400">Developer Community</p>
+                            <p class="text-xs text-slate-600">Developer Community</p>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-xl hover:bg-white/10 transition">
+                        <div class="bg-white shadow-sm border border-gray-100 p-4 rounded-xl hover:bg-slate-50 border border-gray-100 transition">
                             <div class="flex items-center space-x-3 mb-2">
-                                <i class="fas fa-chalkboard-teacher text-brand-cyan text-xl"></i>
+                                <i class="fas fa-chalkboard-teacher text-brand-blue text-xl"></i>
                                 <h6 class="font-bold text-sm">Arcade Facilitator</h6>
                             </div>
-                            <p class="text-xs text-gray-400">Agartala, India</p>
+                            <p class="text-xs text-slate-600">Agartala, India</p>
                         </div>
                     </div>
                     
@@ -243,38 +428,31 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800/50 border-t border-white/10 py-8">
-        <div class="container mx-auto px-6">
-            <div class="text-center">
-                <p class="text-gray-400 mb-4">&copy; 2025 Nilay Ghosh. All rights reserved.</p>
-                <div class="flex justify-center space-x-6">
-                    <a href="https://github.com/NilayGhosh901" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://developers.google.com/profile/u/105527380161672944105" target="_blank" class="text-gray-400 hover:text-brand-orange transition text-xl" title="Google Developer">
-                        <i class="fab fa-google"></i>
-                    </a>
-                    <a href="mailto:nilayghosh901@gmail.com" class="text-gray-400 hover:text-brand-cyan transition text-xl" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://www.instagram.com/nilayghosh__?igsh=N3Y5ZTBpa3M4OXlq&utm_source=qr" target="_blank" class="text-gray-400 hover:text-brand-cyan transition text-xl" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
         </div>
-    </footer>
+    </main>
 
+    <!-- Original Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
-    
-    <!-- Enhanced Animations -->
     <script src="enhanced-animations.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50 });
+        
+        // Mobile Menu Toggles
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        document.getElementById('mobile-more-btn').addEventListener('click', () => {
+            document.getElementById('mobile-more-menu').classList.toggle('hidden');
+            document.getElementById('mobile-more-menu').classList.toggle('flex');
+            let icon = document.querySelector('#mobile-more-btn i');
+            if (icon.classList.contains('fa-chevron-down')) {
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        });
+    </script>
 </body>
 </html>
