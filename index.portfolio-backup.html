@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilay Ghosh | Full Stack Developer</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#06b6d4',
+                            purple: '#a855f7',
+                            dark: '#050505',
+                            glass: 'rgba(255, 255, 255, 0.03)',
+                            glassBorder: 'rgba(255, 255, 255, 0.08)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body { background-color: #050505; color: #f8fafc; overflow-x: hidden; }
+        #canvas-3d { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
+        .bento-card {
+            background: var(--tw-colors-brand-glass, rgba(255, 255, 255, 0.03));
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--tw-colors-brand-glassBorder, rgba(255, 255, 255, 0.08));
+            border-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(6, 182, 212, 0.3);
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.1);
+        }
+        .text-glow { text-shadow: 0 0 20px rgba(6, 182, 212, 0.5); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee { animation: marquee 20s linear infinite; display: flex; }
+        .pause { animation-play-state: paused; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-cyan selection:text-black relative">
+
+    <div id="canvas-3d"></div>
+    <div class="fixed inset-0 bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505] z-0 pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 sm:px-12 pt-12 pb-24">
+
+        <nav class="flex justify-between items-center mb-16 sm:mb-20" data-aos="fade-down">
+            <div class="text-2xl font-heading font-bold tracking-widest text-white">NG<span class="text-brand-cyan">.</span></div>
+            <div class="flex items-center gap-4 sm:gap-6">
+                <a href="Nilay_Ghosh_Resume.pdf" download class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 hover:border-brand-cyan hover:text-brand-cyan transition-all text-sm font-semibold bg-white/5 backdrop-blur-md">
+                    <i class="fas fa-download"></i> Resume
+                </a>
+                <a href="#contact" class="px-5 py-2 rounded-full bg-gradient-to-r from-brand-cyan to-brand-purple text-white font-bold hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all hover:scale-105 text-sm">
+                    Let's Talk
+                </a>
+            </div>
+        </nav>
+
+        <header class="mb-16 sm:mb-20 text-center sm:text-left flex flex-col sm:flex-row items-center gap-8 sm:gap-12" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="flex-1">
+                <p class="text-brand-cyan font-bold tracking-widest uppercase mb-4 text-xs sm:text-sm"><i class="fas fa-map-marker-alt mr-2"></i>Agartala, Tripura, India</p>
+                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-heading font-black mb-4 sm:mb-6 leading-tight text-glow text-white">
+                    Nilay<br>Ghosh.
+                </h1>
+                <p class="text-lg sm:text-xl md:text-2xl text-slate-300 font-light mb-8 max-w-2xl leading-relaxed h-16 sm:h-20">
+                    Content Developer @ <span class="text-white font-medium">Govt. of Tripura</span>. <br>
+                    <span id="typewriter" class="text-brand-cyan font-semibold"></span><span class="animate-pulse text-brand-cyan">|</span>
+                </p>
+                <div class="flex flex-wrap justify-center sm:justify-start gap-4">
+                    <a href="https://github.com/NilayGhosh901" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bento-card flex items-center justify-center hover:text-brand-cyan text-lg sm:text-xl"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bento-card flex items-center justify-center hover:text-brand-cyan text-lg sm:text-xl"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://x.com/nilayghosh901?s=21" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bento-card flex items-center justify-center hover:text-brand-cyan text-lg sm:text-xl"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 relative shrink-0">
+                <div class="absolute inset-0 bg-brand-cyan/20 blur-[50px] rounded-full"></div>
+                <img src="NILAY GHOSH.PNG" alt="Nilay Ghosh" class="w-full h-full object-cover rounded-full border-2 border-white/10 relative z-10 shadow-2xl">
+            </div>
+        </header>
+
+        <button id="backToTop" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-12 h-12 bg-brand-cyan/10 border border-brand-cyan/50 text-brand-cyan rounded-full flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-brand-cyan hover:text-white shadow-[0_0_15px_rgba(6,182,212,0.3)] z-50">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <!-- Floating Chatbot Widget -->
+        <button id="chatbotToggleBtn" class="fixed bottom-[85px] right-6 sm:bottom-[100px] sm:right-8 w-14 h-14 bg-gradient-to-r from-brand-purple to-brand-cyan text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-[0_0_20px_rgba(168,85,247,0.4)] z-[60] group cursor-pointer">
+            <i class="fas fa-comment-dots text-2xl group-hover:hidden"></i>
+            <i class="fas fa-robot text-2xl hidden group-hover:block"></i>
+        </button>
+        <div id="chatbotWindow" class="fixed bottom-[150px] right-6 sm:bottom-[170px] sm:right-8 w-[90vw] sm:w-[400px] h-[550px] max-h-[70vh] bento-card p-0 flex flex-col z-[60] transition-all duration-300 transform translate-y-10 opacity-0 pointer-events-none shadow-[0_0_40px_rgba(0,0,0,0.8)] border-brand-purple/40">
+            <div class="bg-[#050505] border-b border-white/10 p-4 flex justify-between items-center rounded-t-2xl z-10">
+                <h3 class="text-white font-bold flex items-center gap-2"><i class="fas fa-robot text-brand-purple"></i> Nilay's AI</h3>
+                <button id="chatbotCloseBtn" class="text-slate-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="flex-1 w-full bg-[#050505] relative -mt-4 pt-4 rounded-b-2xl overflow-hidden">
+                <iframe src="https://chatbot-ai-grsg.onrender.com/" class="w-full h-full border-none" title="Nilay's AI Chatbot"></iframe>
+            </div>
+        </div>
+
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <div class="bento-card p-8 md:col-span-2" data-aos="fade-up">
+                <h3 class="text-2xl font-heading font-bold mb-4 text-white flex items-center gap-3">
+                    <i class="fas fa-terminal text-brand-purple"></i> About Me
+                </h3>
+                <p class="text-slate-400 leading-relaxed text-lg">
+                    I am a Full Stack Web Developer specializing in modern JavaScript frameworks (React.js, Node.js) and Python. I thrive on building scalable, maintainable systems and integrating powerful APIs to solve real-world problems. Currently managing content and digital solutions at the Directorate of Information Technology.
+                </p>
+            </div>
+
+            <div class="bento-card p-8 bg-gradient-to-br from-brand-glass to-brand-cyan/5 md:row-span-2" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-2xl font-heading font-bold mb-6 text-white flex items-center gap-3">
+                    <i class="fas fa-briefcase text-brand-cyan"></i> Experience
+                </h3>
+                <div class="border-l-2 border-brand-cyan/30 pl-5 space-y-8 relative">
+                    <div class="relative">
+                        <div class="absolute -left-[27px] top-1 w-4 h-4 bg-brand-cyan rounded-full shadow-[0_0_10px_#06b6d4]"></div>
+                        <h4 class="font-bold text-white text-lg">Content Developer</h4>
+                        <p class="text-sm text-brand-cyan font-semibold">Govt. of Tripura</p>
+                        <p class="text-xs text-slate-400 mt-1 mb-2">Jan 2026 - Present</p>
+                        <ul class="text-sm text-slate-400 list-disc pl-4 space-y-1">
+                            <li>Developed a full-stack web application using React.js, Node.js, and PostgreSQL.</li>
+                            <li>Created REST APIs for data handling and document generation.</li>
+                        </ul>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -left-[27px] top-1 w-4 h-4 bg-brand-purple rounded-full shadow-[0_0_10px_#a855f7]"></div>
+                        <h4 class="font-bold text-white text-lg">Intern</h4>
+                        <p class="text-sm text-brand-purple font-semibold">Webguru Infosystems</p>
+                        <p class="text-xs text-slate-400 mt-1 mb-2">Aug 2024 - Oct 2024</p>
+                        <ul class="text-sm text-slate-400 list-disc pl-4 space-y-1">
+                            <li>Built backend services using Node.js and Express.js to process requests.</li>
+                            <li>Integrated GPT-based APIs to generate context-aware responses.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card p-8 md:col-span-2" data-aos="fade-up">
+                <h3 class="text-2xl font-heading font-bold mb-6 text-white flex items-center gap-3">
+                    <i class="fas fa-graduation-cap text-yellow-500"></i> Education
+                </h3>
+                <div class="space-y-6">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-white/5 pb-4">
+                        <div>
+                            <h4 class="font-bold text-white text-lg">B.Tech in CSE (AIML)</h4>
+                            <p class="text-sm text-slate-400">Brainware University, Kolkata</p>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <span class="inline-block px-3 py-1 bg-white/5 rounded-md text-brand-cyan text-sm font-semibold border border-white/10">CGPA: 8.28</span>
+                            <p class="text-xs text-slate-500 mt-1">2022 - 2025</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                        <div>
+                            <h4 class="font-bold text-white text-lg">Diploma in Electrical Engineering</h4>
+                            <p class="text-sm text-slate-400">Gomati District Polytechnic, Tripura</p>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <span class="inline-block px-3 py-1 bg-white/5 rounded-md text-slate-300 text-sm font-semibold border border-white/10">CGPA: 7.06</span>
+                            <p class="text-xs text-slate-500 mt-1">2019 - 2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-card p-6 flex flex-col justify-center items-center text-center group" data-aos="fade-up">
+                <div class="relative mb-4 flex items-center justify-center">
+                    <div class="w-5 h-5 bg-brand-cyan rounded-full animate-ping absolute opacity-75"></div>
+                    <div class="w-5 h-5 bg-brand-cyan rounded-full relative shadow-[0_0_15px_#06b6d4]"></div>
+                </div>
+                <h4 class="text-white font-bold tracking-wide">Status</h4>
+                <p class="text-sm text-brand-cyan mt-1 font-semibold">Innovating Daily</p>
+            </div>
+
+            <div class="bento-card p-6 flex flex-col justify-center items-center text-center group" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-globe-asia text-4xl text-brand-cyan mb-3 group-hover:rotate-[360deg] transition-transform duration-1000 shadow-brand-cyan"></i>
+                <h4 class="text-white font-bold tracking-wide">Location</h4>
+                <p class="text-sm text-slate-400 mt-1 leading-tight" id="local-time">Agartala, India</p>
+            </div>
+
+            <a href="https://github.com/NilayGhosh901" target="_blank" class="magnetic bento-card p-6 flex flex-col justify-center items-center text-center group hover:bg-white/5" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-code-branch text-4xl text-brand-purple mb-3 group-hover:-translate-y-2 transition-transform duration-300"></i>
+                <h4 class="text-white font-bold tracking-wide">GitHub</h4>
+                <p class="text-sm text-brand-purple mt-1 font-semibold">Active Contributor</p>
+            </a>
+
+            <!-- Core Competencies (Replaced GitHub Graph) -->
+            <div class="bento-card p-6 md:col-span-2 flex flex-col justify-center group" data-aos="fade-up">
+                <div class="flex justify-between items-center mb-5">
+                    <h4 class="text-white font-bold tracking-wide flex items-center gap-2"><i class="fas fa-bolt text-yellow-500"></i> Core Competencies</h4>
+                    <span class="text-xs text-yellow-500 px-2 py-1 bg-yellow-500/10 rounded border border-yellow-500/20 font-semibold tracking-wider uppercase">Proficiency</span>
+                </div>
+                
+                <div class="space-y-5">
+                    <div class="group/bar cursor-pointer">
+                        <div class="flex justify-between text-xs mb-1.5 px-1">
+                            <span class="text-slate-300 font-semibold group-hover/bar:text-white transition-colors">Full Stack Architecture</span>
+                            <span class="text-brand-cyan font-bold">95%</span>
+                        </div>
+                        <div class="w-full bg-[#050505] rounded-full h-2.5 border border-white/5">
+                            <div class="bg-gradient-to-r from-brand-purple to-brand-cyan h-2.5 rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)] group-hover/bar:brightness-125 transition-all" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="group/bar cursor-pointer">
+                        <div class="flex justify-between text-xs mb-1.5 px-1">
+                            <span class="text-slate-300 font-semibold group-hover/bar:text-white transition-colors">API & AI Integrations</span>
+                            <span class="text-brand-purple font-bold">88%</span>
+                        </div>
+                        <div class="w-full bg-[#050505] rounded-full h-2.5 border border-white/5">
+                            <div class="bg-gradient-to-r from-brand-cyan to-brand-purple h-2.5 rounded-full shadow-[0_0_10px_rgba(168,85,247,0.5)] group-hover/bar:brightness-125 transition-all" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="group/bar cursor-pointer">
+                        <div class="flex justify-between text-xs mb-1.5 px-1">
+                            <span class="text-slate-300 font-semibold group-hover/bar:text-white transition-colors">Database Management (SQL)</span>
+                            <span class="text-green-400 font-bold">85%</span>
+                        </div>
+                        <div class="w-full bg-[#050505] rounded-full h-2.5 border border-white/5">
+                            <div class="bg-gradient-to-r from-brand-cyan to-green-400 h-2.5 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)] group-hover/bar:brightness-125 transition-all" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spotify Player -->
+            <div class="bento-card p-0 md:col-span-1 flex flex-col justify-center overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-[#050505] p-3 border-b border-white/10 flex items-center gap-2 z-10 relative">
+                    <i class="fab fa-spotify text-[#1DB954] text-xl animate-pulse"></i>
+                    <span class="text-white font-bold text-sm tracking-wide">Vibes: Resonance</span>
+                </div>
+                <iframe style="border-radius:0; margin-top:-10px;" src="https://open.spotify.com/embed/track/1TuopWDIuDi1553081zvuU?theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="w-full h-full bg-[#050505] relative z-0"></iframe>
+            </div>
+
+            <!-- Services Section -->
+            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up">
+                <h2 class="text-4xl font-heading font-bold text-white flex items-center gap-3">
+                    <i class="fas fa-layer-group text-brand-purple"></i> What I Do
+                </h2>
+            </div>
+            <div class="bento-card p-8 group" data-aos="fade-up">
+                <i class="fas fa-server text-4xl text-brand-cyan mb-6 group-hover:scale-110 transition-transform"></i>
+                <h3 class="text-xl font-bold text-white mb-3">Backend Architecture</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Designing robust, scalable backend systems using Node.js, Express, and PostgreSQL. Focusing on secure data handling and high-performance APIs for enterprise applications.</p>
+            </div>
+            <div class="bento-card p-8 group" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-laptop-code text-4xl text-brand-purple mb-6 group-hover:scale-110 transition-transform"></i>
+                <h3 class="text-xl font-bold text-white mb-3">Frontend Engineering</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Crafting beautiful, responsive, and highly interactive user interfaces using React.js and Tailwind CSS. Obsessed with pixel-perfect designs and smooth animations.</p>
+            </div>
+            <div class="bento-card p-8 group" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-robot text-4xl text-yellow-500 mb-6 group-hover:scale-110 transition-transform"></i>
+                <h3 class="text-xl font-bold text-white mb-3">AI & API Integration</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Leveraging the power of modern LLMs like Google Gemini and OpenAI to build smart features, context-aware chatbots, and automated workflows.</p>
+            </div>
+
+            <!-- Terminal Section -->
+            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up">
+                <h2 class="text-4xl font-heading font-bold text-white flex items-center gap-3">
+                    <i class="fas fa-terminal text-green-400"></i> Terminal
+                </h2>
+                <p class="text-slate-400 mt-2">Type <code class="text-brand-cyan bg-white/10 px-2 py-1 rounded">help</code> to interact with my virtual environment.</p>
+            </div>
+            <div class="bento-card md:col-span-3 p-0 overflow-hidden font-mono text-sm border-white/20 shadow-[0_0_30px_rgba(0,0,0,0.5)]" data-aos="fade-up">
+                <div class="bg-[#1a1b26] p-4 flex gap-2 border-b border-white/10 items-center">
+                    <div class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.5)]"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.5)]"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.5)]"></div>
+                    <div class="text-slate-400 text-xs ml-4 font-semibold tracking-widest">nilay@portfolio ~ zsh</div>
+                </div>
+                <div class="p-6 h-80 overflow-y-auto bg-[#0f111a]" id="terminal-body">
+                    <div class="text-green-400 mb-4">
+                        [ SYSTEM READY ] <br>
+                        Welcome to Nilay Ghosh's Interactive Terminal v2.0.<br>
+                        Type 'help' to see available commands.
+                    </div>
+                    <div id="terminal-history"></div>
+                    <div class="flex items-center mt-2">
+                        <span class="text-brand-cyan mr-2 font-bold">➜</span>
+                        <span class="text-brand-purple mr-2 font-bold">~</span>
+                        <input type="text" id="terminal-input" class="bg-transparent border-none outline-none text-white flex-1 font-mono text-sm caret-brand-cyan" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Marquee -->
+            <div class="bento-card py-8 px-0 md:col-span-3 mt-12 overflow-hidden" data-aos="fade-up">
+                <h3 class="text-2xl font-heading font-bold mb-8 text-white text-center flex justify-center items-center gap-3">
+                    <i class="fas fa-layer-group text-brand-cyan"></i> Technical Arsenal
+                </h3>
+                <div class="relative flex overflow-x-hidden group max-w-full">
+                    <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none"></div>
+                    <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none"></div>
+                    
+                    <div class="animate-marquee group-hover:pause gap-12 items-center w-max px-6 flex-nowrap">
+                        <div class="flex items-center gap-3 text-brand-purple text-xl font-bold"><i class="fab fa-python"></i> Python</div>
+                        <div class="flex items-center gap-3 text-yellow-500 text-xl font-bold"><i class="fab fa-js"></i> JavaScript</div>
+                        <div class="flex items-center gap-3 text-orange-500 text-xl font-bold"><i class="fab fa-html5"></i> HTML/CSS</div>
+                        <div class="flex items-center gap-3 text-brand-cyan text-xl font-bold"><i class="fab fa-react"></i> React.js</div>
+                        <div class="flex items-center gap-3 text-green-400 text-xl font-bold"><i class="fab fa-node-js"></i> Node.js</div>
+                        <div class="flex items-center gap-3 text-blue-400 text-xl font-bold"><i class="fas fa-database"></i> PostgreSQL</div>
+                        <div class="flex items-center gap-3 text-[#0a66c2] text-xl font-bold"><i class="fab fa-drupal"></i> Drupal</div>
+                        
+                        <div class="flex items-center gap-3 text-brand-purple text-xl font-bold ml-12"><i class="fab fa-python"></i> Python</div>
+                        <div class="flex items-center gap-3 text-yellow-500 text-xl font-bold"><i class="fab fa-js"></i> JavaScript</div>
+                        <div class="flex items-center gap-3 text-orange-500 text-xl font-bold"><i class="fab fa-html5"></i> HTML/CSS</div>
+                        <div class="flex items-center gap-3 text-brand-cyan text-xl font-bold"><i class="fab fa-react"></i> React.js</div>
+                        <div class="flex items-center gap-3 text-green-400 text-xl font-bold"><i class="fab fa-node-js"></i> Node.js</div>
+                        <div class="flex items-center gap-3 text-blue-400 text-xl font-bold"><i class="fas fa-database"></i> PostgreSQL</div>
+                        <div class="flex items-center gap-3 text-[#0a66c2] text-xl font-bold"><i class="fab fa-drupal"></i> Drupal</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up">
+                <h2 class="text-4xl font-heading font-bold text-white flex items-center gap-3">
+                    <i class="fas fa-rocket text-brand-cyan"></i> Featured Projects
+                </h2>
+            </div>
+            <div class="bento-card p-8 md:col-span-2 group" data-aos="fade-up">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-2xl font-bold text-white group-hover:text-brand-cyan transition-colors">GenFolio</h3>
+                    <a href="#" class="text-slate-400 hover:text-white text-xl"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="text-brand-purple text-sm font-semibold mb-4">React, Node.js, Tailwind CSS</p>
+                <ul class="text-slate-400 text-sm list-disc pl-4 space-y-2">
+                    <li>Developed an AI-powered tool that generates complete portfolio websites using user inputs.</li>
+                    <li>Built backend logic to dynamically generate HTML, CSS, and deliver downloadable ZIPs.</li>
+                </ul>
+            </div>
+            <div class="bento-card p-8 group" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-white group-hover:text-brand-cyan transition-colors">Disease Prediction</h3>
+                    <a href="#" class="text-slate-400 hover:text-white"><i class="fab fa-github"></i></a>
+                </div>
+                <p class="text-brand-cyan text-sm font-semibold mb-4">ML | Python, Scikit-learn</p>
+                <ul class="text-slate-400 text-sm list-disc pl-4 space-y-2">
+                    <li>Implemented Decision Tree, Random Forest, & Naïve Bayes to predict diseases.</li>
+                    <li>Performed data preprocessing and built an interactive UI.</li>
+                </ul>
+            </div>
+            <div class="bento-card p-8 group" data-aos="fade-up">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-white group-hover:text-brand-cyan transition-colors">Chatbot App</h3>
+                    <a href="https://chatbot-ai-grsg.onrender.com/" target="_blank" class="text-slate-400 hover:text-brand-cyan text-xl"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <p class="text-brand-cyan text-sm font-semibold mb-4">JavaScript, Gemini AI</p>
+                <ul class="text-slate-400 text-sm list-disc pl-4 space-y-2">
+                    <li>Created a conversational AI chatbot integrating Google Gemini for intelligent responses.</li>
+                    <li>Designed minimal UI with real-time tracking.</li>
+                </ul>
+            </div>
+            <div class="bento-card p-8 md:col-span-2 group" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-2xl font-bold text-white group-hover:text-brand-cyan transition-colors">ExamAI Portal</h3>
+                    <a href="https://examaiportal.netlify.app/" target="_blank" class="text-slate-400 hover:text-brand-cyan text-xl"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <p class="text-brand-purple text-sm font-semibold mb-4">HTML, CSS, JavaScript</p>
+                <ul class="text-slate-400 text-sm list-disc pl-4 space-y-2">
+                    <li>Built a study assistance portal offering dynamic daily learning plans for competitive exam aspirants.</li>
+                    <li>Integrated an AI-based study helper to give quick guidance and personalized suggestions.</li>
+                </ul>
+            </div>
+
+
+
+            <!-- Certifications -->
+            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up">
+                <h2 class="text-3xl font-heading font-bold text-white flex items-center gap-3">
+                    <i class="fas fa-certificate text-yellow-500"></i> Certifications
+                </h2>
+            </div>
+            <div class="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up">
+                <a href="https://www.kaggle.com/learn/certification/nilayghosh901/machine-learning-explainability" target="_blank" class="bento-card p-6 text-center hover:bg-white/5 transition-colors group">
+                    <i class="fas fa-brain text-3xl text-brand-purple mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-white text-sm">ML Explainability</h4>
+                    <p class="text-xs text-brand-cyan mt-1">Kaggle</p>
+                </a>
+                <a href="https://skillshop.credential.net/c45a387f-a6c2-4b3d-b643-66fac814025f" target="_blank" class="bento-card p-6 text-center hover:bg-white/5 transition-colors group">
+                    <i class="fas fa-chart-line text-3xl text-blue-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-white text-sm">Google Analytics</h4>
+                    <p class="text-xs text-brand-cyan mt-1">Google Skillshop</p>
+                </a>
+                <a href="https://drive.google.com/file/d/10td5rHHnwXB4dEKjn8fJzhPpDks-UhT3/view" target="_blank" class="bento-card p-6 text-center hover:bg-white/5 transition-colors group">
+                    <i class="fas fa-database text-3xl text-green-400 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-white text-sm">Data Science & ML</h4>
+                    <p class="text-xs text-brand-cyan mt-1">Geeks for Geeks</p>
+                </a>
+                <a href="https://www.hackerrank.com/certificates/1aa85c9ae7e1" target="_blank" class="bento-card p-6 text-center hover:bg-white/5 transition-colors group">
+                    <i class="fab fa-python text-3xl text-yellow-500 mb-3 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="font-bold text-white text-sm">Python</h4>
+                    <p class="text-xs text-brand-cyan mt-1">HackerRank</p>
+                </a>
+            </div>
+
+            <!-- Custom LinkedIn Profile Card Section -->
+            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up">
+                <h2 class="text-3xl font-heading font-bold text-white flex items-center gap-3">
+                    <i class="fab fa-linkedin text-[#0a66c2] bg-white rounded-sm"></i> Professional Network
+                </h2>
+            </div>
+            <div class="bento-card p-8 md:col-span-3 hover:border-[#0a66c2]/50 transition-colors group" data-aos="fade-up">
+                <div class="flex flex-col sm:flex-row items-center gap-8">
+                    <div class="w-28 h-28 sm:w-36 sm:h-36 shrink-0 relative">
+                        <div class="absolute inset-0 bg-[#0a66c2]/30 rounded-full blur-xl group-hover:bg-[#0a66c2]/50 transition-all duration-500"></div>
+                        <img src="NILAY GHOSH.PNG" alt="Nilay Ghosh" class="w-full h-full object-cover rounded-full border-4 border-[#0a66c2] relative z-10 shadow-[0_0_20px_rgba(10,102,194,0.3)]">
+                        <div class="absolute bottom-2 right-0 bg-[#0a66c2] w-10 h-10 rounded-full flex items-center justify-center border-4 border-[#050505] z-20">
+                            <i class="fab fa-linkedin-in text-white text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1 text-center sm:text-left">
+                        <h3 class="text-3xl font-bold text-white flex items-center justify-center sm:justify-start gap-3">
+                            Nilay Ghosh <i class="fas fa-certificate text-[#0a66c2] text-lg" title="Verified Profile"></i>
+                        </h3>
+                        <p class="text-brand-cyan font-semibold text-base mt-2">Content Developer @ Directorate of IT, Govt. of Tripura | Full Stack CMS | React • Node.js • PostgreSQL</p>
+                        <p class="text-slate-400 text-sm mt-3 max-w-2xl leading-relaxed">Passionate about building scalable systems, integrating powerful APIs, and crafting intuitive user interfaces. Always eager to connect and collaborate!</p>
+                        
+                        <div class="mt-6 flex flex-wrap justify-center sm:justify-start gap-4">
+                            <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="px-8 py-3 bg-[#0a66c2] hover:bg-[#004182] text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(10,102,194,0.4)] flex items-center gap-2 hover:scale-105">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </a>
+                            <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="px-8 py-3 border border-white/20 hover:border-white/50 hover:bg-white/5 text-white font-semibold rounded-full transition-all flex items-center gap-2">
+                                <i class="fas fa-paper-plane"></i> Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Get In Touch Form -->
+            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up" id="contact">
+                <h2 class="text-4xl font-heading font-bold text-white flex items-center gap-3">
+                    <i class="fas fa-paper-plane text-brand-cyan"></i> Get In Touch
+                </h2>
+            </div>
+            <div class="bento-card p-8 md:col-span-3" data-aos="fade-up">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="event.preventDefault(); alert('This is a demo form! Please email me directly at nilayghosh901@gmail.com');">
+                    <div class="space-y-2">
+                        <label class="text-slate-300 text-sm font-semibold">Your Name</label>
+                        <input type="text" placeholder="John Doe" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-slate-300 text-sm font-semibold">Email Address</label>
+                        <input type="email" placeholder="john@example.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-all" required>
+                    </div>
+                    <div class="space-y-2 md:col-span-2">
+                        <label class="text-slate-300 text-sm font-semibold">Message</label>
+                        <textarea placeholder="How can we collaborate?" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all resize-none" required></textarea>
+                    </div>
+                    <div class="md:col-span-2">
+                        <button type="submit" class="w-full bg-gradient-to-r from-brand-cyan to-brand-purple text-white font-bold text-lg py-4 rounded-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all hover:scale-[1.02]">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </main>
+        
+        <footer class="mt-24 border-t border-white/10 pt-16 text-center pb-8" data-aos="fade-in">
+            <h2 class="text-4xl font-heading font-bold mb-8 text-white">Let's Connect.</h2>
+            <div class="flex flex-col sm:flex-row justify-center items-center flex-wrap gap-6 mb-8">
+                <a href="mailto:nilayghosh901@gmail.com" class="magnetic bento-card px-8 py-4 flex items-center gap-3 hover:text-brand-cyan hover:border-brand-cyan transition-colors">
+                    <i class="fas fa-envelope text-xl"></i> nilayghosh901@gmail.com
+                </a>
+                <a href="tel:9366449167" class="magnetic bento-card px-8 py-4 flex items-center gap-3 hover:text-brand-purple hover:border-brand-purple transition-colors">
+                    <i class="fas fa-phone-alt text-xl"></i> +91 9366449167
+                </a>
+                <a href="#" onclick="alert('Please link your actual PDF resume here later!'); event.preventDefault();" class="magnetic bento-card px-8 py-4 flex items-center gap-3 hover:text-green-400 hover:border-green-400 transition-colors">
+                    <i class="fas fa-file-pdf text-xl"></i> Download CV
+                </a>
+            </div>
+            
+
+
+            <p class="text-slate-600 text-sm">© 2026 Nilay Ghosh. Powered by Code & Coffee.</p>
+        </footer>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        AOS.init({ once: true, offset: 50 });
+
+        function initThreeJSBackground() {
+            const container = document.getElementById('canvas-3d');
+            if (!container || typeof THREE === 'undefined') return;
+            const scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x050505, 0.002);
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 200;
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+            const mainGroup = new THREE.Group();
+            scene.add(mainGroup);
+            const colors = [new THREE.Color(0x06b6d4), new THREE.Color(0xa855f7), new THREE.Color(0xffffff)];
+            const particlesCount = 400;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particlesCount * 3);
+            const velocities = new Float32Array(particlesCount);
+            const particleColors = new Float32Array(particlesCount * 3);
+            for (let i = 0; i < particlesCount; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * 800;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 800;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 1200;
+                velocities[i] = 1.5 + Math.random() * 3; 
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particleColors[i * 3] = color.r;
+                particleColors[i * 3 + 1] = color.g;
+                particleColors[i * 3 + 2] = color.b;
+            }
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
+            function createCircleTexture() {
+                const matCanvas = document.createElement('canvas');
+                matCanvas.width = 32; matCanvas.height = 32;
+                const matContext = matCanvas.getContext('2d');
+                const gradient = matContext.createRadialGradient(16, 16, 0, 16, 16, 16);
+                gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+                gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
+                gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.2)');
+                gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                matContext.fillStyle = gradient; matContext.fillRect(0, 0, 32, 32);
+                const texture = new THREE.Texture(matCanvas);
+                texture.needsUpdate = true; return texture;
+            }
+            const material = new THREE.PointsMaterial({
+                size: 2.0, vertexColors: true, transparent: true, opacity: 0.8,
+                map: createCircleTexture(), blending: THREE.AdditiveBlending, depthWrite: false
+            });
+            const starField = new THREE.Points(geometry, material);
+            mainGroup.add(starField);
+            const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+            window.addEventListener('mousemove', (e) => {
+                mouse.targetX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
+            });
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            function animate() {
+                requestAnimationFrame(animate);
+                mouse.x += (mouse.targetX - mouse.x) * 0.05;
+                mouse.y += (mouse.targetY - mouse.y) * 0.05;
+                camera.rotation.x = mouse.y * 0.15;
+                camera.rotation.y = -mouse.x * 0.15;
+                const positionAttr = geometry.attributes.position;
+                const posArray = positionAttr.array;
+                const mouseSpeedFactor = 1 + (Math.abs(mouse.x) + Math.abs(mouse.y)) * 2;
+                for (let i = 0; i < particlesCount; i++) {
+                    posArray[i * 3 + 2] += velocities[i] * mouseSpeedFactor;
+                    if (posArray[i * 3 + 2] > 200) {
+                        posArray[i * 3 + 2] = -800;
+                        posArray[i * 3] = (Math.random() - 0.5) * 800;
+                        posArray[i * 3 + 1] = (Math.random() - 0.5) * 800;
+                    }
+                }
+                positionAttr.needsUpdate = true;
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initThreeJSBackground();
+            
+            // Live Local Time Updater
+            function updateLocalTime() {
+                const timeEl = document.getElementById('local-time');
+                if(timeEl) {
+                    const now = new Date();
+                    const timeString = now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute:'2-digit' });
+                    timeEl.innerHTML = `Agartala, India <br> <span class="text-brand-cyan font-semibold mt-1 block">${timeString}</span>`;
+                }
+            }
+            setInterval(updateLocalTime, 1000);
+            updateLocalTime();
+
+            // Back to Top Button Logic
+            const backToTopBtn = document.getElementById('backToTop');
+            if(backToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                        backToTopBtn.classList.add('opacity-100');
+                    } else {
+                        backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                        backToTopBtn.classList.remove('opacity-100');
+                    }
+                });
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Typewriter Effect Logic
+            const textArray = ["Crafting digital experiences.", "Building with Node & React.", "Designing scalable systems."];
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typeDelay = 80;
+            const eraseDelay = 40;
+            const newTextDelay = 2000;
+            const typewriterEl = document.getElementById('typewriter');
+            function type() {
+                if(!typewriterEl) return;
+                const currentText = textArray[textIndex];
+                if(isDeleting) {
+                    typewriterEl.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typewriterEl.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                if(!isDeleting && charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(type, newTextDelay);
+                } else if(isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % textArray.length;
+                    setTimeout(type, typeDelay);
+                } else {
+                    setTimeout(type, isDeleting ? eraseDelay : typeDelay);
+                }
+            }
+            if(typewriterEl) setTimeout(type, 1000);
+
+            // Terminal Logic
+            const termInput = document.getElementById('terminal-input');
+            const termHistory = document.getElementById('terminal-history');
+            const termBody = document.getElementById('terminal-body');
+            const commands = {
+                'help': "Available commands: <br> - <span class='text-brand-cyan'>whoami</span>: Learn about me <br> - <span class='text-brand-cyan'>skills</span>: List my tech stack <br> - <span class='text-brand-cyan'>projects</span>: View featured work <br> - <span class='text-brand-cyan'>clear</span>: Clear terminal screen <br> - <span class='text-brand-cyan'>sudo</span>: ???",
+                'whoami': "Nilay Ghosh. Full Stack Developer. Master of Web & Architect of APIs.",
+                'skills': "Languages: Python, JavaScript, SQL <br> Frameworks: React.js, Node.js, Express.js <br> CMS: Drupal <br> Tools: Git, REST APIs",
+                'projects': "1. GenFolio (AI Portfolio) <br> 2. Disease Prediction (ML) <br> 3. Chatbot Application <br> 4. ExamAI Portal",
+                'sudo': "<span class='text-red-500'>Nice try! You do not have root privileges on this server.</span>"
+            };
+            if(termInput) {
+                termInput.addEventListener('keypress', function(e) {
+                    if(e.key === 'Enter') {
+                        const val = this.value.trim().toLowerCase();
+                        this.value = '';
+                        const echo = document.createElement('div');
+                        echo.className = 'mt-3 mb-1';
+                        echo.innerHTML = "<span class='text-brand-cyan font-bold'>➜</span> <span class='text-brand-purple font-bold'>~</span> <span class='text-white'>" + val + "</span>";
+                        termHistory.appendChild(echo);
+                        const response = document.createElement('div');
+                        response.className = 'text-slate-300 ml-4';
+                        if(val === 'clear') {
+                            termHistory.innerHTML = '';
+                        } else if(val === '') {
+                        } else if(commands[val]) {
+                            response.innerHTML = commands[val];
+                            termHistory.appendChild(response);
+                        } else {
+                            response.innerHTML = "zsh: command not found: " + val + ". Type 'help' for options.";
+                            termHistory.appendChild(response);
+                        }
+                        termBody.scrollTop = termBody.scrollHeight;
+                    }
+                });
+                termBody.addEventListener('click', () => { termInput.focus(); });
+            }
+
+            // Chatbot Toggle Logic
+            const chatbotBtn = document.getElementById('chatbotToggleBtn');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const chatbotCloseBtn = document.getElementById('chatbotCloseBtn');
+            if(chatbotBtn && chatbotWindow && chatbotCloseBtn) {
+                const toggleChat = () => {
+                    const isHidden = chatbotWindow.classList.contains('opacity-0');
+                    if(isHidden) {
+                        chatbotWindow.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+                        chatbotWindow.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+                    } else {
+                        chatbotWindow.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
+                        chatbotWindow.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+                    }
+                };
+                chatbotBtn.addEventListener('click', toggleChat);
+                chatbotCloseBtn.addEventListener('click', toggleChat);
+            }
+
+            // Magnetic Hover Effect Logic
+            const magneticEls = document.querySelectorAll('.magnetic');
+            magneticEls.forEach((el) => {
+                el.addEventListener('mousemove', function(e) {
+                    const position = el.getBoundingClientRect();
+                    const x = e.clientX - position.left - position.width / 2;
+                    const y = e.clientY - position.top - position.height / 2;
+                    el.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px) scale(1.05)`;
+                    el.style.transition = 'transform 0.1s ease-out';
+                });
+                el.addEventListener('mouseout', function() {
+                    el.style.transform = 'translate(0px, 0px) scale(1)';
+                    el.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

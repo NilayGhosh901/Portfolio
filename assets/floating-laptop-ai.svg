@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="100%" height="100%">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="laptopBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0"/>
+      <stop offset="50%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+
+    <linearGradient id="laptopScreenBezel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+
+    <linearGradient id="screenDisplay" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B132B"/>
+      <stop offset="50%" stop-color="#1C2541"/>
+      <stop offset="100%" stop-color="#0B132B"/>
+    </linearGradient>
+
+    <linearGradient id="neonGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D6FF00"/>
+      <stop offset="50%" stop-color="#00F0FF"/>
+      <stop offset="100%" stop-color="#7000FF"/>
+    </linearGradient>
+
+    <linearGradient id="aiChipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D6FF00"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+
+    <filter id="shadowFilter" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="15" dy="25" stdDeviation="18" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+
+    <filter id="glowFilter" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- BACKGROUND FLOATING AI TECH PARTICLES -->
+  <g opacity="0.6">
+    <!-- Floating Orbit Ring 1 -->
+    <ellipse cx="400" cy="480" rx="340" ry="160" fill="none" stroke="#D6FF00" stroke-width="2" stroke-dasharray="12 16" transform="rotate(-22 400 480)" opacity="0.5"/>
+    <!-- Floating Orbit Ring 2 -->
+    <ellipse cx="400" cy="480" rx="280" ry="120" fill="none" stroke="#00F0FF" stroke-width="1.5" stroke-dasharray="8 12" transform="rotate(18 400 480)" opacity="0.6"/>
+
+    <!-- Neural Circuit Nodes -->
+    <circle cx="160" cy="320" r="5" fill="#D6FF00" filter="url(#glowFilter)"/>
+    <circle cx="640" cy="280" r="6" fill="#00F0FF" filter="url(#glowFilter)"/>
+    <circle cx="680" cy="620" r="5" fill="#D6FF00" filter="url(#glowFilter)"/>
+    <circle cx="180" cy="680" r="7" fill="#00F0FF" filter="url(#glowFilter)"/>
+    <path d="M160 320 L260 380 L320 340" fill="none" stroke="#D6FF00" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.4"/>
+    <path d="M640 280 L560 350 L520 310" fill="none" stroke="#00F0FF" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.4"/>
+  </g>
+
+  <!-- FLOATING FLOATING 3D LAPTOP (ISOMETRIC PERSPECTIVE) -->
+  <g filter="url(#shadowFilter)">
+    
+    <!-- LAPTOP BASE / KEYBOARD SECTION -->
+    <!-- Base Bottom Edge (Thickness) -->
+    <path d="M150 630 L400 750 L650 630 L650 655 L400 775 L150 655 Z" fill="#64748B"/>
+    <!-- Base Top Surface -->
+    <path d="M150 630 L400 750 L650 630 L400 535 Z" fill="url(#laptopBody)" stroke="#0F172A" stroke-width="2.5"/>
+
+    <!-- Trackpad -->
+    <polygon points="340,685 400,714 460,685 400,660" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.5"/>
+
+    <!-- Keyboard Area (Dark Inset) -->
+    <polygon points="210,595 400,682 590,595 400,538" fill="#1E293B" stroke="#0F172A" stroke-width="1.5"/>
+
+    <!-- Individual Glowing Key Rows (Isometric) -->
+    <g stroke="#334155" stroke-width="1" fill="#0F172A" opacity="0.9">
+      <!-- Key strips with subtle glow -->
+      <polygon points="230,590 400,665 570,590 400,545" fill="none" stroke="#D6FF00" stroke-width="0.8" opacity="0.3"/>
+      <!-- Glowing Power Accent -->
+      <circle cx="400" cy="548" r="3" fill="#D6FF00" filter="url(#glowFilter)"/>
+    </g>
+
+    <!-- LAPTOP SCREEN / DISPLAY (OPEN AT ~110 DEG ANGLE) -->
+    <!-- Screen Outer Bezel Backing -->
+    <polygon points="150,630 400,535 400,165 150,260" fill="#334155" stroke="#0F172A" stroke-width="2.5"/>
+    <polygon points="400,535 650,630 650,260 400,165" fill="url(#laptopScreenBezel)" stroke="#0F172A" stroke-width="2.5"/>
+
+    <!-- Main Screen Display Glass (Isometric Right-Facing View) -->
+    <polygon points="415,518 635,608 635,282 415,192" fill="url(#screenDisplay)" stroke="#00F0FF" stroke-width="1.5"/>
+
+    <!-- SCREEN CONTENTS: AI NEURAL NETWORK & CODE WORKSPACE -->
+    <g>
+      <!-- IDE Window Header -->
+      <polygon points="415,225 635,315 635,282 415,192" fill="#0F172A"/>
+      <!-- Mac-style dots on screen -->
+      <circle cx="435" cy="217" r="3.5" fill="#EF4444"/>
+      <circle cx="448" cy="222" r="3.5" fill="#F59E0B"/>
+      <circle cx="461" cy="227" r="3.5" fill="#10B981"/>
+
+      <!-- Terminal / Code text on screen -->
+      <path d="M435 255 L510 285" stroke="#64748B" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M435 270 L550 316" stroke="#D6FF00" stroke-width="2" stroke-linecap="round"/>
+      <path d="M450 288 L580 340" stroke="#00F0FF" stroke-width="2" stroke-linecap="round"/>
+      <path d="M450 305 L530 337" stroke="#A855F7" stroke-width="2" stroke-linecap="round"/>
+      <path d="M435 322 L490 344" stroke="#64748B" stroke-width="2.5" stroke-linecap="round"/>
+
+      <!-- Central Hologram AI Neural Core on Display -->
+      <g filter="url(#glowFilter)">
+        <!-- Neural Nodes -->
+        <circle cx="530" cy="420" r="14" fill="#0F172A" stroke="#D6FF00" stroke-width="3"/>
+        <text x="530" y="425" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="900" fill="#D6FF00" text-anchor="middle">AI</text>
+
+        <!-- Connected Nodes -->
+        <circle cx="470" cy="380" r="6" fill="#00F0FF"/>
+        <circle cx="475" cy="460" r="5" fill="#D6FF00"/>
+        <circle cx="590" cy="400" r="7" fill="#A855F7"/>
+        <circle cx="585" cy="480" r="6" fill="#00F0FF"/>
+
+        <!-- Connecting Neural Synapses -->
+        <line x1="530" y1="420" x2="470" y2="380" stroke="#00F0FF" stroke-width="1.8"/>
+        <line x1="530" y1="420" x2="475" y2="460" stroke="#D6FF00" stroke-width="1.8"/>
+        <line x1="530" y1="420" x2="590" y2="400" stroke="#A855F7" stroke-width="1.8"/>
+        <line x1="530" y1="420" x2="585" y2="480" stroke="#00F0FF" stroke-width="1.8"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- FLOATING HOLOGRAPHIC AI ELEMENTS AROUND THE LAPTOP -->
+  <!-- 1. Floating AI Brain Chip Badge (Top Right) -->
+  <g transform="translate(560, 140)" filter="url(#shadowFilter)">
+    <rect x="0" y="0" width="130" height="70" rx="8" fill="#FFFFFF" stroke="#000000" stroke-width="2.5"/>
+    <rect x="-4" y="-4" width="130" height="70" rx="8" fill="none" stroke="#000000" stroke-width="2" opacity="0.3"/>
+    <rect x="12" y="14" width="38" height="42" rx="4" fill="url(#aiChipGrad)" stroke="#000000" stroke-width="1.5"/>
+    <!-- Chip Pins -->
+    <path d="M12 24 L6 24 M12 34 L6 34 M12 44 L6 44 M50 24 L56 24 M50 34 L56 34 M50 44 L56 44" stroke="#000000" stroke-width="1.5"/>
+    <text x="31" y="39" font-family="'Space Mono', monospace" font-size="12" font-weight="900" fill="#000000" text-anchor="middle">AI</text>
+    <text x="58" y="32" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="900" fill="#000000">GEMINI</text>
+    <text x="58" y="47" font-family="'Space Mono', monospace" font-size="8" font-weight="700" fill="#64748B">LLM CORE</text>
+  </g>
+
+  <!-- 2. Floating Code Pill Tag (Bottom Left) -->
+  <g transform="translate(80, 520)" filter="url(#shadowFilter)">
+    <rect x="0" y="0" width="140" height="52" rx="6" fill="#D6FF00" stroke="#000000" stroke-width="2.5"/>
+    <text x="20" y="32" font-family="'Space Mono', monospace" font-size="16" font-weight="900" fill="#000000">&lt;React /&gt;</text>
+    <!-- Little status indicator -->
+    <circle cx="120" cy="26" r="4" fill="#000000"/>
+  </g>
+
+  <!-- 3. Floating Python & Data Science Pill Tag (Bottom Right) -->
+  <g transform="translate(560, 720)" filter="url(#shadowFilter)">
+    <rect x="0" y="0" width="150" height="52" rx="6" fill="#FFFFFF" stroke="#000000" stroke-width="2.5"/>
+    <circle cx="30" cy="26" r="12" fill="#3B82F6"/>
+    <text x="30" y="31" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">Py</text>
+    <text x="52" y="32" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="900" fill="#000000">ML MODELS</text>
+  </g>
+
+  <!-- 4. Floating Holographic Database Cylinder (Top Left) -->
+  <g transform="translate(140, 180)" filter="url(#shadowFilter)">
+    <ellipse cx="40" cy="20" rx="35" ry="12" fill="#00F0FF" stroke="#000000" stroke-width="2"/>
+    <path d="M5 20 L5 55 A35 12 0 0 0 75 55 L75 20 Z" fill="#E0F2FE" stroke="#000000" stroke-width="2"/>
+    <ellipse cx="40" cy="38" rx="35" ry="12" fill="none" stroke="#000000" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <ellipse cx="40" cy="55" rx="35" ry="12" fill="none" stroke="#000000" stroke-width="2"/>
+    <text x="40" y="46" font-family="'Space Mono', monospace" font-size="8" font-weight="800" fill="#000000" text-anchor="middle">POSTGRES</text>
+  </g>
+
+  <!-- Floating Dynamic Tech Sparkles -->
+  <path d="M680 490 L686 505 L701 511 L686 517 L680 532 L674 517 L659 511 L674 505 Z" fill="#D6FF00" stroke="#000000" stroke-width="1.5"/>
+  <path d="M120 420 L124 430 L134 434 L124 438 L120 448 L116 438 L106 434 L116 430 Z" fill="#00F0FF" stroke="#000000" stroke-width="1.5"/>
+</svg>
+

@@ -1,738 +1,1103 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nilay Ghosh | Full Stack Developer</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            cyan: '#06b6d4',
-                            purple: '#a855f7',
-                            dark: '#050505',
-                            glass: 'rgba(255, 255, 255, 0.03)',
-                            glassBorder: 'rgba(255, 255, 255, 0.08)'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Outfit', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <style>
-        body { background-color: #050505; color: #f8fafc; overflow-x: hidden; }
-        #canvas-3d { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
-        .bento-card {
-            background: var(--tw-colors-brand-glass, rgba(255, 255, 255, 0.03));
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--tw-colors-brand-glassBorder, rgba(255, 255, 255, 0.08));
-            border-radius: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        .bento-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(6, 182, 212, 0.3);
-            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.1);
-        }
-        .text-glow { text-shadow: 0 0 20px rgba(6, 182, 212, 0.5); }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-marquee { animation: marquee 20s linear infinite; display: flex; }
-        .pause { animation-play-state: paused; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nilay Ghosh — Full Stack Developer &amp; Developer @ Govt. of Tripura</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Phenomenon Studio Brutalist Master Stylesheet -->
+  <link rel="stylesheet" href="portfolio-brutalist.css">
 </head>
-<body class="antialiased selection:bg-brand-cyan selection:text-black relative">
+<body>
 
-    <div id="canvas-3d"></div>
-    <div class="fixed inset-0 bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505] z-0 pointer-events-none"></div>
+  <!-- ==========================================
+       BRIGHT SKY BACKGROUND & 3D FLOATING CHROME CHAIN
+       ========================================== -->
+  <div class="sky-stage">
+    <div class="clouds-container">
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+    </div>
+  </div>
 
-    <div class="relative z-10 max-w-6xl mx-auto px-6 sm:px-12 pt-12 pb-24">
+  <!-- Floating 3D Laptop & AI Neural Matrix Layer -->
+  <div class="floating-tech-layer">
+    <img src="assets/floating-laptop-ai.svg" alt="3D Laptop &amp; AI Neural System" class="laptop-ai-canvas" id="laptopAiCanvas">
+  </div>
 
-        <nav class="flex justify-between items-center mb-16 sm:mb-20" data-aos="fade-down">
-            <div class="text-2xl font-heading font-bold tracking-widest text-white">NG<span class="text-brand-cyan">.</span></div>
-            <div class="flex items-center gap-4 sm:gap-6">
-                <a href="Nilay_Ghosh_Resume.pdf" download class="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 hover:border-brand-cyan hover:text-brand-cyan transition-all text-sm font-semibold bg-white/5 backdrop-blur-md">
-                    <i class="fas fa-download"></i> Resume
-                </a>
-                <a href="#contact" class="px-5 py-2 rounded-full bg-gradient-to-r from-brand-cyan to-brand-purple text-white font-bold hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all hover:scale-105 text-sm">
-                    Let's Talk
-                </a>
-            </div>
-        </nav>
+  <!-- Floating AI Chatbot Widget -->
+  <button id="chatbotToggleBtn" class="floating-chatbot-toggle" title="Chat with Nilay's AI">
+    <i class="fas fa-robot"></i>
+  </button>
 
-        <header class="mb-16 sm:mb-20 text-center sm:text-left flex flex-col sm:flex-row items-center gap-8 sm:gap-12" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="flex-1">
-                <p class="text-brand-cyan font-bold tracking-widest uppercase mb-4 text-xs sm:text-sm"><i class="fas fa-map-marker-alt mr-2"></i>Agartala, Tripura, India</p>
-                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-heading font-black mb-4 sm:mb-6 leading-tight text-glow text-white">
-                    Nilay<br>Ghosh.
-                </h1>
-                <p class="text-lg sm:text-xl md:text-2xl text-slate-300 font-light mb-8 max-w-2xl leading-relaxed h-16 sm:h-20">
-                    Content Developer @ <span class="text-white font-medium">Govt. of Tripura</span>. <br>
-                    <span id="typewriter" class="text-brand-cyan font-semibold"></span><span class="animate-pulse text-brand-cyan">|</span>
-                </p>
-                <div class="flex flex-wrap justify-center sm:justify-start gap-4">
-                    <a href="https://github.com/NilayGhosh901" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bento-card flex items-center justify-center hover:text-brand-cyan text-lg sm:text-xl"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bento-card flex items-center justify-center hover:text-brand-cyan text-lg sm:text-xl"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://x.com/nilayghosh901?s=21" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bento-card flex items-center justify-center hover:text-brand-cyan text-lg sm:text-xl"><i class="fa-brands fa-x-twitter"></i></a>
-                </div>
-            </div>
-            
-            <div class="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 relative shrink-0">
-                <div class="absolute inset-0 bg-brand-cyan/20 blur-[50px] rounded-full"></div>
-                <img src="NILAY GHOSH.PNG" alt="Nilay Ghosh" class="w-full h-full object-cover rounded-full border-2 border-white/10 relative z-10 shadow-2xl">
-            </div>
-        </header>
+  <!-- Back to Top Floating Button -->
+  <button id="backToTopBtn" class="btn-back-to-top" title="Back to Top" aria-label="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
-        <button id="backToTop" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-12 h-12 bg-brand-cyan/10 border border-brand-cyan/50 text-brand-cyan rounded-full flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-brand-cyan hover:text-white shadow-[0_0_15px_rgba(6,182,212,0.3)] z-50">
-            <i class="fas fa-arrow-up"></i>
-        </button>
+  <div id="chatbotWindow" class="floating-chatbot-window">
+    <div style="background:var(--neon-lime); border-bottom:2px solid #000; padding:0.75rem 1rem; display:flex; justify-content:space-between; align-items:center; font-family:var(--font-tech); font-weight:800;">
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <i class="fas fa-robot"></i>
+        <span>NILAY'S AI ASSISTANT</span>
+      </div>
+      <button id="chatbotCloseBtn" style="background:none; border:none; font-size:1.25rem; cursor:pointer; font-weight:bold;">&times;</button>
+    </div>
+    <div style="flex:1; width:100%; background:#050505;">
+      <iframe src="https://chatbot-ai-grsg.onrender.com/" style="width:100%; height:100%; border:none;" title="Nilay's AI Chatbot"></iframe>
+    </div>
+  </div>
 
-        <!-- Floating Chatbot Widget -->
-        <button id="chatbotToggleBtn" class="fixed bottom-[85px] right-6 sm:bottom-[100px] sm:right-8 w-14 h-14 bg-gradient-to-r from-brand-purple to-brand-cyan text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-[0_0_20px_rgba(168,85,247,0.4)] z-[60] group cursor-pointer">
-            <i class="fas fa-comment-dots text-2xl group-hover:hidden"></i>
-            <i class="fas fa-robot text-2xl hidden group-hover:block"></i>
-        </button>
-        <div id="chatbotWindow" class="fixed bottom-[150px] right-6 sm:bottom-[170px] sm:right-8 w-[90vw] sm:w-[400px] h-[550px] max-h-[70vh] bento-card p-0 flex flex-col z-[60] transition-all duration-300 transform translate-y-10 opacity-0 pointer-events-none shadow-[0_0_40px_rgba(0,0,0,0.8)] border-brand-purple/40">
-            <div class="bg-[#050505] border-b border-white/10 p-4 flex justify-between items-center rounded-t-2xl z-10">
-                <h3 class="text-white font-bold flex items-center gap-2"><i class="fas fa-robot text-brand-purple"></i> Nilay's AI</h3>
-                <button id="chatbotCloseBtn" class="text-slate-400 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="flex-1 w-full bg-[#050505] relative -mt-4 pt-4 rounded-b-2xl overflow-hidden">
-                <iframe src="https://chatbot-ai-grsg.onrender.com/" class="w-full h-full border-none" title="Nilay's AI Chatbot"></iframe>
-            </div>
+  <!-- ==========================================
+       PAGE MASTER FRAME (SIDE VERTICAL BANNERS)
+       ========================================== -->
+  <div class="master-frame">
+    
+    <!-- Left Vertical Typography -->
+    <aside class="side-gutter-left">
+      <div class="side-vertical-title">NILAY GHOSH</div>
+    </aside>
+
+    <!-- Right Vertical Neon Banner -->
+    <aside class="side-gutter-right">
+      <div class="side-marquee-track">
+        <span>• FULL STACK DEVELOPER • GOVT. OF TRIPURA • AIML ENGINEER • REACT &amp; PYTHON • KAGGLE &amp; HACKERRANK CERTIFIED • OPEN FOR WORK •</span>
+        <span>• FULL STACK DEVELOPER • GOVT. OF TRIPURA • AIML ENGINEER • REACT &amp; PYTHON • KAGGLE &amp; HACKERRANK CERTIFIED • OPEN FOR WORK •</span>
+      </div>
+    </aside>
+
+    <!-- Main Content Stage -->
+    <main class="main-stage-wrapper">
+
+      <!-- Top Running Ticker (Phenomenon Studio Acid Lime Bar) -->
+      <div class="top-ticker">
+        <div class="ticker-track">
+          <div class="ticker-item">+++ DEVELOPER @ DIRECTORATE OF IT, GOVT. OF TRIPURA +++ NILAY GHOSH • B.TECH CSE (AIML) CGPA 8.28 +++ REACT • NODE.JS • PYTHON • POSTGRESQL • GEMINI AI +++ AVAILABLE FOR FULL-TIME ROLES +++</div>
+          <div class="ticker-item">+++ DEVELOPER @ DIRECTORATE OF IT, GOVT. OF TRIPURA +++ NILAY GHOSH • B.TECH CSE (AIML) CGPA 8.28 +++ REACT • NODE.JS • PYTHON • POSTGRESQL • GEMINI AI +++ AVAILABLE FOR FULL-TIME ROLES +++</div>
+        </div>
+      </div>
+
+      <!-- Navigation Header -->
+      <header class="site-nav">
+        <a href="#hero" class="brand-identity">
+          <div class="brand-gem"></div>
+          <span class="brand-name">NILAY GHOSH</span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link">HOME</a></li>
+          <li><a href="#about" class="nav-link">ABOUT</a></li>
+          <li><a href="#experience" class="nav-link">EXPERIENCE</a></li>
+          <li><a href="#projects" class="nav-link">PROJECTS</a></li>
+          <li><a href="#competencies" class="nav-link">SERVICES</a></li>
+          <li><a href="#terminal" class="nav-link">TERMINAL</a></li>
+          <li><a href="#certifications" class="nav-link">CERTIFICATES</a></li>
+          <li><a href="#contact" class="nav-link">CONTACT</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="Nilay_Ghosh_Resume.pdf" download class="btn-resume">
+            <i class="fas fa-file-download"></i> RESUME (PDF)
+          </a>
+          <a href="#contact" class="btn-hire-me">LET'S TALK</a>
         </div>
 
-        <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Mobile Nav Toggle Button -->
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">
+          <i class="fas fa-bars"></i>
+        </button>
 
-            <div class="bento-card p-8 md:col-span-2" data-aos="fade-up">
-                <h3 class="text-2xl font-heading font-bold mb-4 text-white flex items-center gap-3">
-                    <i class="fas fa-terminal text-brand-purple"></i> About Me
-                </h3>
-                <p class="text-slate-400 leading-relaxed text-lg">
-                    I am a Full Stack Web Developer specializing in modern JavaScript frameworks (React.js, Node.js) and Python. I thrive on building scalable, maintainable systems and integrating powerful APIs to solve real-world problems. Currently managing content and digital solutions at the Directorate of Information Technology.
-                </p>
-            </div>
-
-            <div class="bento-card p-8 bg-gradient-to-br from-brand-glass to-brand-cyan/5 md:row-span-2" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="text-2xl font-heading font-bold mb-6 text-white flex items-center gap-3">
-                    <i class="fas fa-briefcase text-brand-cyan"></i> Experience
-                </h3>
-                <div class="border-l-2 border-brand-cyan/30 pl-5 space-y-8 relative">
-                    <div class="relative">
-                        <div class="absolute -left-[27px] top-1 w-4 h-4 bg-brand-cyan rounded-full shadow-[0_0_10px_#06b6d4]"></div>
-                        <h4 class="font-bold text-white text-lg">Content Developer</h4>
-                        <p class="text-sm text-brand-cyan font-semibold">Govt. of Tripura</p>
-                        <p class="text-xs text-slate-400 mt-1 mb-2">Jan 2026 - Present</p>
-                        <ul class="text-sm text-slate-400 list-disc pl-4 space-y-1">
-                            <li>Developed a full-stack web application using React.js, Node.js, and PostgreSQL.</li>
-                            <li>Created REST APIs for data handling and document generation.</li>
-                        </ul>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute -left-[27px] top-1 w-4 h-4 bg-brand-purple rounded-full shadow-[0_0_10px_#a855f7]"></div>
-                        <h4 class="font-bold text-white text-lg">Intern</h4>
-                        <p class="text-sm text-brand-purple font-semibold">Webguru Infosystems</p>
-                        <p class="text-xs text-slate-400 mt-1 mb-2">Aug 2024 - Oct 2024</p>
-                        <ul class="text-sm text-slate-400 list-disc pl-4 space-y-1">
-                            <li>Built backend services using Node.js and Express.js to process requests.</li>
-                            <li>Integrated GPT-based APIs to generate context-aware responses.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card p-8 md:col-span-2" data-aos="fade-up">
-                <h3 class="text-2xl font-heading font-bold mb-6 text-white flex items-center gap-3">
-                    <i class="fas fa-graduation-cap text-yellow-500"></i> Education
-                </h3>
-                <div class="space-y-6">
-                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-white/5 pb-4">
-                        <div>
-                            <h4 class="font-bold text-white text-lg">B.Tech in CSE (AIML)</h4>
-                            <p class="text-sm text-slate-400">Brainware University, Kolkata</p>
-                        </div>
-                        <div class="text-left sm:text-right">
-                            <span class="inline-block px-3 py-1 bg-white/5 rounded-md text-brand-cyan text-sm font-semibold border border-white/10">CGPA: 8.28</span>
-                            <p class="text-xs text-slate-500 mt-1">2022 - 2025</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                        <div>
-                            <h4 class="font-bold text-white text-lg">Diploma in Electrical Engineering</h4>
-                            <p class="text-sm text-slate-400">Gomati District Polytechnic, Tripura</p>
-                        </div>
-                        <div class="text-left sm:text-right">
-                            <span class="inline-block px-3 py-1 bg-white/5 rounded-md text-slate-300 text-sm font-semibold border border-white/10">CGPA: 7.06</span>
-                            <p class="text-xs text-slate-500 mt-1">2019 - 2022</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-card p-6 flex flex-col justify-center items-center text-center group" data-aos="fade-up">
-                <div class="relative mb-4 flex items-center justify-center">
-                    <div class="w-5 h-5 bg-brand-cyan rounded-full animate-ping absolute opacity-75"></div>
-                    <div class="w-5 h-5 bg-brand-cyan rounded-full relative shadow-[0_0_15px_#06b6d4]"></div>
-                </div>
-                <h4 class="text-white font-bold tracking-wide">Status</h4>
-                <p class="text-sm text-brand-cyan mt-1 font-semibold">Innovating Daily</p>
-            </div>
-
-            <div class="bento-card p-6 flex flex-col justify-center items-center text-center group" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-globe-asia text-4xl text-brand-cyan mb-3 group-hover:rotate-[360deg] transition-transform duration-1000 shadow-brand-cyan"></i>
-                <h4 class="text-white font-bold tracking-wide">Location</h4>
-                <p class="text-sm text-slate-400 mt-1 leading-tight" id="local-time">Agartala, India</p>
-            </div>
-
-            <a href="https://github.com/NilayGhosh901" target="_blank" class="magnetic bento-card p-6 flex flex-col justify-center items-center text-center group hover:bg-white/5" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-code-branch text-4xl text-brand-purple mb-3 group-hover:-translate-y-2 transition-transform duration-300"></i>
-                <h4 class="text-white font-bold tracking-wide">GitHub</h4>
-                <p class="text-sm text-brand-purple mt-1 font-semibold">Active Contributor</p>
+        <!-- Mobile Nav Dropdown Drawer -->
+        <div class="mobile-nav-drawer" id="mobileNavDrawer">
+          <ul class="mobile-nav-list">
+            <li><a href="#hero" class="mobile-nav-link">HOME</a></li>
+            <li><a href="#about" class="mobile-nav-link">ABOUT</a></li>
+            <li><a href="#experience" class="mobile-nav-link">EXPERIENCE</a></li>
+            <li><a href="#projects" class="mobile-nav-link">PROJECTS</a></li>
+            <li><a href="#competencies" class="mobile-nav-link">SERVICES</a></li>
+            <li><a href="#terminal" class="mobile-nav-link">TERMINAL</a></li>
+            <li><a href="#certifications" class="mobile-nav-link">CERTIFICATES</a></li>
+            <li><a href="#contact" class="mobile-nav-link">CONTACT</a></li>
+          </ul>
+          <div style="margin-top:1.25rem; display:flex; gap:0.75rem;">
+            <a href="Nilay_Ghosh_Resume.pdf" download class="btn-resume" style="flex:1; justify-content:center;">
+              <i class="fas fa-file-download"></i> RESUME (PDF)
             </a>
+            <a href="#contact" class="btn-hire-me" style="flex:1; text-align:center;">LET'S TALK</a>
+          </div>
+        </div>
+      </header>
 
-            <!-- Core Competencies (Replaced GitHub Graph) -->
-            <div class="bento-card p-6 md:col-span-2 flex flex-col justify-center group" data-aos="fade-up">
-                <div class="flex justify-between items-center mb-5">
-                    <h4 class="text-white font-bold tracking-wide flex items-center gap-2"><i class="fas fa-bolt text-yellow-500"></i> Core Competencies</h4>
-                    <span class="text-xs text-yellow-500 px-2 py-1 bg-yellow-500/10 rounded border border-yellow-500/20 font-semibold tracking-wider uppercase">Proficiency</span>
-                </div>
-                
-                <div class="space-y-5">
-                    <div class="group/bar cursor-pointer">
-                        <div class="flex justify-between text-xs mb-1.5 px-1">
-                            <span class="text-slate-300 font-semibold group-hover/bar:text-white transition-colors">Full Stack Architecture</span>
-                            <span class="text-brand-cyan font-bold">95%</span>
-                        </div>
-                        <div class="w-full bg-[#050505] rounded-full h-2.5 border border-white/5">
-                            <div class="bg-gradient-to-r from-brand-purple to-brand-cyan h-2.5 rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)] group-hover/bar:brightness-125 transition-all" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <div class="group/bar cursor-pointer">
-                        <div class="flex justify-between text-xs mb-1.5 px-1">
-                            <span class="text-slate-300 font-semibold group-hover/bar:text-white transition-colors">API & AI Integrations</span>
-                            <span class="text-brand-purple font-bold">88%</span>
-                        </div>
-                        <div class="w-full bg-[#050505] rounded-full h-2.5 border border-white/5">
-                            <div class="bg-gradient-to-r from-brand-cyan to-brand-purple h-2.5 rounded-full shadow-[0_0_10px_rgba(168,85,247,0.5)] group-hover/bar:brightness-125 transition-all" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    <div class="group/bar cursor-pointer">
-                        <div class="flex justify-between text-xs mb-1.5 px-1">
-                            <span class="text-slate-300 font-semibold group-hover/bar:text-white transition-colors">Database Management (SQL)</span>
-                            <span class="text-green-400 font-bold">85%</span>
-                        </div>
-                        <div class="w-full bg-[#050505] rounded-full h-2.5 border border-white/5">
-                            <div class="bg-gradient-to-r from-brand-cyan to-green-400 h-2.5 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)] group-hover/bar:brightness-125 transition-all" style="width: 85%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Spotify Player -->
-            <div class="bento-card p-0 md:col-span-1 flex flex-col justify-center overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                <div class="bg-[#050505] p-3 border-b border-white/10 flex items-center gap-2 z-10 relative">
-                    <i class="fab fa-spotify text-[#1DB954] text-xl animate-pulse"></i>
-                    <span class="text-white font-bold text-sm tracking-wide">Vibes: Resonance</span>
-                </div>
-                <iframe style="border-radius:0; margin-top:-10px;" src="https://open.spotify.com/embed/track/1TuopWDIuDi1553081zvuU?theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="w-full h-full bg-[#050505] relative z-0"></iframe>
-            </div>
-
-            <!-- Services Section -->
-            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up">
-                <h2 class="text-4xl font-heading font-bold text-white flex items-center gap-3">
-                    <i class="fas fa-layer-group text-brand-purple"></i> What I Do
-                </h2>
-            </div>
-            <div class="bento-card p-8 group" data-aos="fade-up">
-                <i class="fas fa-server text-4xl text-brand-cyan mb-6 group-hover:scale-110 transition-transform"></i>
-                <h3 class="text-xl font-bold text-white mb-3">Backend Architecture</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Designing robust, scalable backend systems using Node.js, Express, and PostgreSQL. Focusing on secure data handling and high-performance APIs for enterprise applications.</p>
-            </div>
-            <div class="bento-card p-8 group" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-laptop-code text-4xl text-brand-purple mb-6 group-hover:scale-110 transition-transform"></i>
-                <h3 class="text-xl font-bold text-white mb-3">Frontend Engineering</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Crafting beautiful, responsive, and highly interactive user interfaces using React.js and Tailwind CSS. Obsessed with pixel-perfect designs and smooth animations.</p>
-            </div>
-            <div class="bento-card p-8 group" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-robot text-4xl text-yellow-500 mb-6 group-hover:scale-110 transition-transform"></i>
-                <h3 class="text-xl font-bold text-white mb-3">AI & API Integration</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Leveraging the power of modern LLMs like Google Gemini and OpenAI to build smart features, context-aware chatbots, and automated workflows.</p>
-            </div>
-
-            <!-- Terminal Section -->
-            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up">
-                <h2 class="text-4xl font-heading font-bold text-white flex items-center gap-3">
-                    <i class="fas fa-terminal text-green-400"></i> Terminal
-                </h2>
-                <p class="text-slate-400 mt-2">Type <code class="text-brand-cyan bg-white/10 px-2 py-1 rounded">help</code> to interact with my virtual environment.</p>
-            </div>
-            <div class="bento-card md:col-span-3 p-0 overflow-hidden font-mono text-sm border-white/20 shadow-[0_0_30px_rgba(0,0,0,0.5)]" data-aos="fade-up">
-                <div class="bg-[#1a1b26] p-4 flex gap-2 border-b border-white/10 items-center">
-                    <div class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.5)]"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.5)]"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.5)]"></div>
-                    <div class="text-slate-400 text-xs ml-4 font-semibold tracking-widest">nilay@portfolio ~ zsh</div>
-                </div>
-                <div class="p-6 h-80 overflow-y-auto bg-[#0f111a]" id="terminal-body">
-                    <div class="text-green-400 mb-4">
-                        [ SYSTEM READY ] <br>
-                        Welcome to Nilay Ghosh's Interactive Terminal v2.0.<br>
-                        Type 'help' to see available commands.
-                    </div>
-                    <div id="terminal-history"></div>
-                    <div class="flex items-center mt-2">
-                        <span class="text-brand-cyan mr-2 font-bold">➜</span>
-                        <span class="text-brand-purple mr-2 font-bold">~</span>
-                        <input type="text" id="terminal-input" class="bg-transparent border-none outline-none text-white flex-1 font-mono text-sm caret-brand-cyan" autocomplete="off">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Skills Marquee -->
-            <div class="bento-card py-8 px-0 md:col-span-3 mt-12 overflow-hidden" data-aos="fade-up">
-                <h3 class="text-2xl font-heading font-bold mb-8 text-white text-center flex justify-center items-center gap-3">
-                    <i class="fas fa-layer-group text-brand-cyan"></i> Technical Arsenal
-                </h3>
-                <div class="relative flex overflow-x-hidden group max-w-full">
-                    <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none"></div>
-                    <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none"></div>
-                    
-                    <div class="animate-marquee group-hover:pause gap-12 items-center w-max px-6 flex-nowrap">
-                        <div class="flex items-center gap-3 text-brand-purple text-xl font-bold"><i class="fab fa-python"></i> Python</div>
-                        <div class="flex items-center gap-3 text-yellow-500 text-xl font-bold"><i class="fab fa-js"></i> JavaScript</div>
-                        <div class="flex items-center gap-3 text-orange-500 text-xl font-bold"><i class="fab fa-html5"></i> HTML/CSS</div>
-                        <div class="flex items-center gap-3 text-brand-cyan text-xl font-bold"><i class="fab fa-react"></i> React.js</div>
-                        <div class="flex items-center gap-3 text-green-400 text-xl font-bold"><i class="fab fa-node-js"></i> Node.js</div>
-                        <div class="flex items-center gap-3 text-blue-400 text-xl font-bold"><i class="fas fa-database"></i> PostgreSQL</div>
-                        <div class="flex items-center gap-3 text-[#0a66c2] text-xl font-bold"><i class="fab fa-drupal"></i> Drupal</div>
-                        
-                        <div class="flex items-center gap-3 text-brand-purple text-xl font-bold ml-12"><i class="fab fa-python"></i> Python</div>
-                        <div class="flex items-center gap-3 text-yellow-500 text-xl font-bold"><i class="fab fa-js"></i> JavaScript</div>
-                        <div class="flex items-center gap-3 text-orange-500 text-xl font-bold"><i class="fab fa-html5"></i> HTML/CSS</div>
-                        <div class="flex items-center gap-3 text-brand-cyan text-xl font-bold"><i class="fab fa-react"></i> React.js</div>
-                        <div class="flex items-center gap-3 text-green-400 text-xl font-bold"><i class="fab fa-node-js"></i> Node.js</div>
-                        <div class="flex items-center gap-3 text-blue-400 text-xl font-bold"><i class="fas fa-database"></i> PostgreSQL</div>
-                        <div class="flex items-center gap-3 text-[#0a66c2] text-xl font-bold"><i class="fab fa-drupal"></i> Drupal</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projects -->
-            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up">
-                <h2 class="text-4xl font-heading font-bold text-white flex items-center gap-3">
-                    <i class="fas fa-rocket text-brand-cyan"></i> Featured Projects
-                </h2>
-            </div>
-            <div class="bento-card p-8 md:col-span-2 group" data-aos="fade-up">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-2xl font-bold text-white group-hover:text-brand-cyan transition-colors">GenFolio</h3>
-                    <a href="#" class="text-slate-400 hover:text-white text-xl"><i class="fab fa-github"></i></a>
-                </div>
-                <p class="text-brand-purple text-sm font-semibold mb-4">React, Node.js, Tailwind CSS</p>
-                <ul class="text-slate-400 text-sm list-disc pl-4 space-y-2">
-                    <li>Developed an AI-powered tool that generates complete portfolio websites using user inputs.</li>
-                    <li>Built backend logic to dynamically generate HTML, CSS, and deliver downloadable ZIPs.</li>
-                </ul>
-            </div>
-            <div class="bento-card p-8 group" data-aos="fade-up" data-aos-delay="100">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-white group-hover:text-brand-cyan transition-colors">Disease Prediction</h3>
-                    <a href="#" class="text-slate-400 hover:text-white"><i class="fab fa-github"></i></a>
-                </div>
-                <p class="text-brand-cyan text-sm font-semibold mb-4">ML | Python, Scikit-learn</p>
-                <ul class="text-slate-400 text-sm list-disc pl-4 space-y-2">
-                    <li>Implemented Decision Tree, Random Forest, & Naïve Bayes to predict diseases.</li>
-                    <li>Performed data preprocessing and built an interactive UI.</li>
-                </ul>
-            </div>
-            <div class="bento-card p-8 group" data-aos="fade-up">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-white group-hover:text-brand-cyan transition-colors">Chatbot App</h3>
-                    <a href="https://chatbot-ai-grsg.onrender.com/" target="_blank" class="text-slate-400 hover:text-brand-cyan text-xl"><i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <p class="text-brand-cyan text-sm font-semibold mb-4">JavaScript, Gemini AI</p>
-                <ul class="text-slate-400 text-sm list-disc pl-4 space-y-2">
-                    <li>Created a conversational AI chatbot integrating Google Gemini for intelligent responses.</li>
-                    <li>Designed minimal UI with real-time tracking.</li>
-                </ul>
-            </div>
-            <div class="bento-card p-8 md:col-span-2 group" data-aos="fade-up" data-aos-delay="100">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-2xl font-bold text-white group-hover:text-brand-cyan transition-colors">ExamAI Portal</h3>
-                    <a href="https://examaiportal.netlify.app/" target="_blank" class="text-slate-400 hover:text-brand-cyan text-xl"><i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <p class="text-brand-purple text-sm font-semibold mb-4">HTML, CSS, JavaScript</p>
-                <ul class="text-slate-400 text-sm list-disc pl-4 space-y-2">
-                    <li>Built a study assistance portal offering dynamic daily learning plans for competitive exam aspirants.</li>
-                    <li>Integrated an AI-based study helper to give quick guidance and personalized suggestions.</li>
-                </ul>
-            </div>
-
-
-
-            <!-- Certifications -->
-            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up">
-                <h2 class="text-3xl font-heading font-bold text-white flex items-center gap-3">
-                    <i class="fas fa-certificate text-yellow-500"></i> Certifications
-                </h2>
-            </div>
-            <div class="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up">
-                <a href="https://www.kaggle.com/learn/certification/nilayghosh901/machine-learning-explainability" target="_blank" class="bento-card p-6 text-center hover:bg-white/5 transition-colors group">
-                    <i class="fas fa-brain text-3xl text-brand-purple mb-3 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="font-bold text-white text-sm">ML Explainability</h4>
-                    <p class="text-xs text-brand-cyan mt-1">Kaggle</p>
-                </a>
-                <a href="https://skillshop.credential.net/c45a387f-a6c2-4b3d-b643-66fac814025f" target="_blank" class="bento-card p-6 text-center hover:bg-white/5 transition-colors group">
-                    <i class="fas fa-chart-line text-3xl text-blue-400 mb-3 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="font-bold text-white text-sm">Google Analytics</h4>
-                    <p class="text-xs text-brand-cyan mt-1">Google Skillshop</p>
-                </a>
-                <a href="https://drive.google.com/file/d/10td5rHHnwXB4dEKjn8fJzhPpDks-UhT3/view" target="_blank" class="bento-card p-6 text-center hover:bg-white/5 transition-colors group">
-                    <i class="fas fa-database text-3xl text-green-400 mb-3 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="font-bold text-white text-sm">Data Science & ML</h4>
-                    <p class="text-xs text-brand-cyan mt-1">Geeks for Geeks</p>
-                </a>
-                <a href="https://www.hackerrank.com/certificates/1aa85c9ae7e1" target="_blank" class="bento-card p-6 text-center hover:bg-white/5 transition-colors group">
-                    <i class="fab fa-python text-3xl text-yellow-500 mb-3 group-hover:scale-110 transition-transform"></i>
-                    <h4 class="font-bold text-white text-sm">Python</h4>
-                    <p class="text-xs text-brand-cyan mt-1">HackerRank</p>
-                </a>
-            </div>
-
-            <!-- Custom LinkedIn Profile Card Section -->
-            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up">
-                <h2 class="text-3xl font-heading font-bold text-white flex items-center gap-3">
-                    <i class="fab fa-linkedin text-[#0a66c2] bg-white rounded-sm"></i> Professional Network
-                </h2>
-            </div>
-            <div class="bento-card p-8 md:col-span-3 hover:border-[#0a66c2]/50 transition-colors group" data-aos="fade-up">
-                <div class="flex flex-col sm:flex-row items-center gap-8">
-                    <div class="w-28 h-28 sm:w-36 sm:h-36 shrink-0 relative">
-                        <div class="absolute inset-0 bg-[#0a66c2]/30 rounded-full blur-xl group-hover:bg-[#0a66c2]/50 transition-all duration-500"></div>
-                        <img src="NILAY GHOSH.PNG" alt="Nilay Ghosh" class="w-full h-full object-cover rounded-full border-4 border-[#0a66c2] relative z-10 shadow-[0_0_20px_rgba(10,102,194,0.3)]">
-                        <div class="absolute bottom-2 right-0 bg-[#0a66c2] w-10 h-10 rounded-full flex items-center justify-center border-4 border-[#050505] z-20">
-                            <i class="fab fa-linkedin-in text-white text-lg"></i>
-                        </div>
-                    </div>
-                    <div class="flex-1 text-center sm:text-left">
-                        <h3 class="text-3xl font-bold text-white flex items-center justify-center sm:justify-start gap-3">
-                            Nilay Ghosh <i class="fas fa-certificate text-[#0a66c2] text-lg" title="Verified Profile"></i>
-                        </h3>
-                        <p class="text-brand-cyan font-semibold text-base mt-2">Content Developer @ Directorate of IT, Govt. of Tripura | Full Stack CMS | React • Node.js • PostgreSQL</p>
-                        <p class="text-slate-400 text-sm mt-3 max-w-2xl leading-relaxed">Passionate about building scalable systems, integrating powerful APIs, and crafting intuitive user interfaces. Always eager to connect and collaborate!</p>
-                        
-                        <div class="mt-6 flex flex-wrap justify-center sm:justify-start gap-4">
-                            <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="px-8 py-3 bg-[#0a66c2] hover:bg-[#004182] text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(10,102,194,0.4)] flex items-center gap-2 hover:scale-105">
-                                <i class="fas fa-user-plus"></i> Connect
-                            </a>
-                            <a href="https://www.linkedin.com/in/nilay-ghosh-30719a235" target="_blank" class="px-8 py-3 border border-white/20 hover:border-white/50 hover:bg-white/5 text-white font-semibold rounded-full transition-all flex items-center gap-2">
-                                <i class="fas fa-paper-plane"></i> Message
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Get In Touch Form -->
-            <div class="md:col-span-3 mt-12 mb-2" data-aos="fade-up" id="contact">
-                <h2 class="text-4xl font-heading font-bold text-white flex items-center gap-3">
-                    <i class="fas fa-paper-plane text-brand-cyan"></i> Get In Touch
-                </h2>
-            </div>
-            <div class="bento-card p-8 md:col-span-3" data-aos="fade-up">
-                <form class="grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="event.preventDefault(); alert('This is a demo form! Please email me directly at nilayghosh901@gmail.com');">
-                    <div class="space-y-2">
-                        <label class="text-slate-300 text-sm font-semibold">Your Name</label>
-                        <input type="text" placeholder="John Doe" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all" required>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-slate-300 text-sm font-semibold">Email Address</label>
-                        <input type="email" placeholder="john@example.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-all" required>
-                    </div>
-                    <div class="space-y-2 md:col-span-2">
-                        <label class="text-slate-300 text-sm font-semibold">Message</label>
-                        <textarea placeholder="How can we collaborate?" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all resize-none" required></textarea>
-                    </div>
-                    <div class="md:col-span-2">
-                        <button type="submit" class="w-full bg-gradient-to-r from-brand-cyan to-brand-purple text-white font-bold text-lg py-4 rounded-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all hover:scale-[1.02]">
-                            Send Message <i class="fas fa-paper-plane ml-2"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-        </main>
+      <!-- ==========================================
+           HERO SECTION: SPLIT FORM + PHOTO AT TOP WITH HOTSPOTS
+           ========================================== -->
+      <section class="hero-section" id="hero">
         
-        <footer class="mt-24 border-t border-white/10 pt-16 text-center pb-8" data-aos="fade-in">
-            <h2 class="text-4xl font-heading font-bold mb-8 text-white">Let's Connect.</h2>
-            <div class="flex flex-col sm:flex-row justify-center items-center flex-wrap gap-6 mb-8">
-                <a href="mailto:nilayghosh901@gmail.com" class="magnetic bento-card px-8 py-4 flex items-center gap-3 hover:text-brand-cyan hover:border-brand-cyan transition-colors">
-                    <i class="fas fa-envelope text-xl"></i> nilayghosh901@gmail.com
-                </a>
-                <a href="tel:9366449167" class="magnetic bento-card px-8 py-4 flex items-center gap-3 hover:text-brand-purple hover:border-brand-purple transition-colors">
-                    <i class="fas fa-phone-alt text-xl"></i> +91 9366449167
-                </a>
-                <a href="#" onclick="alert('Please link your actual PDF resume here later!'); event.preventDefault();" class="magnetic bento-card px-8 py-4 flex items-center gap-3 hover:text-green-400 hover:border-green-400 transition-colors">
-                    <i class="fas fa-file-pdf text-xl"></i> Download CV
-                </a>
+        <!-- Left Hero Column: Quick Inquiry / Hire Form -->
+        <div class="hero-form-panel">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+            <div class="tag-label" style="background:var(--neon-lime); padding:0.2rem 0.6rem; border:1.5px solid var(--black); width:fit-content; font-size:0.72rem; margin:0;">
+              <i class="fas fa-map-marker-alt"></i> AGARTALA, TRIPURA, INDIA
             </div>
-            
+            <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:800; background:var(--white); border:1.5px solid var(--black); padding:0.2rem 0.5rem;" id="live-ist-clock">
+              00:00 IST
+            </div>
+          </div>
 
+          <h1 class="hero-main-title">Build your next<br>digital experience</h1>
 
-            <p class="text-slate-600 text-sm">© 2026 Nilay Ghosh. Powered by Code & Coffee.</p>
-        </footer>
+          <!-- Typewriter Subtitle -->
+          <div style="font-family: var(--font-tech); font-size: 0.95rem; font-weight: 700; color: var(--black); margin-bottom: 1.25rem; min-height: 24px;">
+            <span id="typewriter-text">Developer @ Govt. of Tripura.</span>
+            <span style="display:inline-block; width:2px; height:14px; background:var(--black); margin-left:3px; animation:blink 0.8s infinite;"></span>
+          </div>
 
-    </div>
+          <!-- Quick Contact Form -->
+          <form class="hero-form" id="hero-inquiry-form">
+            <div class="form-row-2col">
+              <div class="form-group">
+                <label class="form-label" for="inq-name">YOUR NAME</label>
+                <input type="text" id="inq-name" class="form-input" placeholder="YOUR NAME" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="inq-email">YOUR EMAIL</label>
+                <input type="email" id="inq-email" class="form-input" placeholder="YOUR EMAIL" required>
+              </div>
+            </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <script>
-        AOS.init({ once: true, offset: 50 });
+            <div class="form-group">
+              <label class="form-label" for="inq-details">TELL ME ABOUT YOUR WISHES &amp; PROJECT</label>
+              <textarea id="inq-details" class="form-textarea" placeholder="DESCRIBE YOUR VISION, STACK, OR JOB OPPORTUNITY..." required></textarea>
+            </div>
 
-        function initThreeJSBackground() {
-            const container = document.getElementById('canvas-3d');
-            if (!container || typeof THREE === 'undefined') return;
-            const scene = new THREE.Scene();
-            scene.fog = new THREE.FogExp2(0x050505, 0.002);
-            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 200;
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            container.appendChild(renderer.domElement);
-            const mainGroup = new THREE.Group();
-            scene.add(mainGroup);
-            const colors = [new THREE.Color(0x06b6d4), new THREE.Color(0xa855f7), new THREE.Color(0xffffff)];
-            const particlesCount = 400;
-            const geometry = new THREE.BufferGeometry();
-            const positions = new Float32Array(particlesCount * 3);
-            const velocities = new Float32Array(particlesCount);
-            const particleColors = new Float32Array(particlesCount * 3);
-            for (let i = 0; i < particlesCount; i++) {
-                positions[i * 3] = (Math.random() - 0.5) * 800;
-                positions[i * 3 + 1] = (Math.random() - 0.5) * 800;
-                positions[i * 3 + 2] = (Math.random() - 0.5) * 1200;
-                velocities[i] = 1.5 + Math.random() * 3; 
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                particleColors[i * 3] = color.r;
-                particleColors[i * 3 + 1] = color.g;
-                particleColors[i * 3 + 2] = color.b;
-            }
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            geometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
-            function createCircleTexture() {
-                const matCanvas = document.createElement('canvas');
-                matCanvas.width = 32; matCanvas.height = 32;
-                const matContext = matCanvas.getContext('2d');
-                const gradient = matContext.createRadialGradient(16, 16, 0, 16, 16, 16);
-                gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-                gradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
-                gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.2)');
-                gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-                matContext.fillStyle = gradient; matContext.fillRect(0, 0, 32, 32);
-                const texture = new THREE.Texture(matCanvas);
-                texture.needsUpdate = true; return texture;
-            }
-            const material = new THREE.PointsMaterial({
-                size: 2.0, vertexColors: true, transparent: true, opacity: 0.8,
-                map: createCircleTexture(), blending: THREE.AdditiveBlending, depthWrite: false
-            });
-            const starField = new THREE.Points(geometry, material);
-            mainGroup.add(starField);
-            const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-            window.addEventListener('mousemove', (e) => {
-                mouse.targetX = (e.clientX / window.innerWidth) * 2 - 1;
-                mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
-            });
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-            function animate() {
-                requestAnimationFrame(animate);
-                mouse.x += (mouse.targetX - mouse.x) * 0.05;
-                mouse.y += (mouse.targetY - mouse.y) * 0.05;
-                camera.rotation.x = mouse.y * 0.15;
-                camera.rotation.y = -mouse.x * 0.15;
-                const positionAttr = geometry.attributes.position;
-                const posArray = positionAttr.array;
-                const mouseSpeedFactor = 1 + (Math.abs(mouse.x) + Math.abs(mouse.y)) * 2;
-                for (let i = 0; i < particlesCount; i++) {
-                    posArray[i * 3 + 2] += velocities[i] * mouseSpeedFactor;
-                    if (posArray[i * 3 + 2] > 200) {
-                        posArray[i * 3 + 2] = -800;
-                        posArray[i * 3] = (Math.random() - 0.5) * 800;
-                        posArray[i * 3 + 1] = (Math.random() - 0.5) * 800;
-                    }
-                }
-                positionAttr.needsUpdate = true;
-                renderer.render(scene, camera);
-            }
-            animate();
+            <button type="submit" class="btn-send-message">
+              <span>SEND MESSAGE</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <!-- Interactive Specialty Selector -->
+          <div class="tech-selector-widget">
+            <div class="selector-header">
+              <span>SPECIALTY DOMAINS</span>
+              <span id="active-specialty-label" style="font-family: var(--font-mono); color: var(--black); font-weight: 800;">FULL STACK</span>
+            </div>
+
+            <div class="specialty-pills-list">
+              <button type="button" class="specialty-pill active" data-specialty="fullstack">⚡ Full Stack</button>
+              <button type="button" class="specialty-pill" data-specialty="ai">🤖 AI &amp; ML</button>
+              <button type="button" class="specialty-pill" data-specialty="frontend">⚛️ Frontend</button>
+              <button type="button" class="specialty-pill" data-specialty="backend">🐍 Backend</button>
+              <button type="button" class="specialty-pill" data-specialty="all">🌐 All Skills</button>
+            </div>
+
+            <div class="skills-interactive-tray">
+              <span class="skill-tag" style="background:#D6FF00;">React.js</span>
+              <span class="skill-tag" style="background:#D6FF00;">Node.js</span>
+              <span class="skill-tag" style="background:#D6FF00;">Python</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">Scikit-Learn</span>
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">Gemini AI</span>
+              <span class="skill-tag">Git</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center/Right Hero Showcase Panel: NILAY'S REAL PHOTO AT TOP WITH HOTSPOTS -->
+        <div class="hero-showcase-panel">
+          
+          <!-- Giant 3D Warped Background Lettering -->
+          <div class="warped-backdrop-text">DEVELOPER</div>
+
+          <!-- Central Interactive Developer Photo Frame -->
+          <div class="hero-portrait-frame">
+            <div class="card-top-macbar">
+              <div class="mac-dots">
+                <span class="mac-dot" style="background:#FF5F56;"></span>
+                <span class="mac-dot" style="background:#FFBD2E;"></span>
+                <span class="mac-dot" style="background:#27C93F;"></span>
+              </div>
+              <span class="mac-title">nilay-ghosh.dev — zsh</span>
+              <span style="font-size:0.7rem; font-weight:bold; background:var(--black); color:var(--white); padding:0.1rem 0.4rem;">OFFICIAL</span>
+            </div>
+
+            <!-- Nilay's Real Photo Displayed Prominently at the Top -->
+            <div class="portrait-photo-container">
+              <img src="nilay-hero.jpg" alt="Nilay Ghosh — Full Stack Developer" class="portrait-main-img" onerror="this.src='My.png'">
+            </div>
+
+            <div class="portrait-caption-strip">
+              <div style="display:flex; align-items:center; gap:0.45rem;">
+                <span style="display:inline-block; width:8px; height:8px; background:#10B981; border-radius:50%;"></span>
+                <span>GOVT. OF TRIPURA (IT)</span>
+              </div>
+              <span style="font-family: var(--font-mono); font-size:0.75rem; font-weight:800;">AIML CGPA: 8.28</span>
+            </div>
+
+            <!-- HOTSPOT 1: Govt Role & Key Achievements -->
+            <div class="hotspot-badge hotspot-1" title="Govt. of Tripura Role">
+              <div class="badge-pin-circle">1</div>
+              <div class="callout-bubble-card card-callout-1">
+                <span class="callout-tag">GOVT. OF TRIPURA</span>
+                <strong>Developer:</strong> Delivered 12+ Websites &amp; 2 React.js Projects. Managed content &amp; backend operations.
+              </div>
+            </div>
+
+            <!-- HOTSPOT 2: Production Stack & Skills -->
+            <div class="hotspot-badge hotspot-2" title="Tech Stack & Skills">
+              <div class="badge-pin-circle">2</div>
+              <div class="callout-bubble-card card-callout-2">
+                <span class="callout-tag">CORE STACK</span>
+                React.js, Node.js, Python, PostgreSQL, MongoDB, TypeScript &amp; RESTful APIs.
+              </div>
+            </div>
+
+            <!-- HOTSPOT 3: AI/ML & B.Tech Degrees -->
+            <div class="hotspot-badge hotspot-3" title="B.Tech in CSE (AIML)">
+              <div class="badge-pin-circle">3</div>
+              <div class="callout-bubble-card card-callout-3">
+                <span class="callout-tag">AIML &amp; B.TECH</span>
+                Brainware University (CGPA 8.28), Kaggle ML Explainability &amp; Scikit-learn disease prediction.
+              </div>
+            </div>
+
+            <!-- HOTSPOT 4: Verified Certifications -->
+            <div class="hotspot-badge hotspot-4" title="Certified Expert">
+              <div class="badge-pin-circle">4</div>
+              <div class="callout-bubble-card card-callout-4">
+                <span class="callout-tag">CERTIFIED DEV</span>
+                Walmart USA Advanced Software Engg, HackerRank Python &amp; Google Analytics.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==========================================
+           MIDDLE SPLIT BANNER: MARQUEE
+           ========================================== -->
+      <section class="middle-split-banner">
+        <div class="banner-marquee-track">
+          <div class="banner-marquee-item">
+            <span class="text-lime">NILAY GHOSH</span>
+            <span class="text-outline">DEVELOPER</span>
+            <span class="text-white">FULL-STACK &amp; AI</span>
+          </div>
+          <div class="banner-marquee-item">
+            <span class="text-lime">NILAY GHOSH</span>
+            <span class="text-outline">DEVELOPER</span>
+            <span class="text-white">FULL-STACK &amp; AI</span>
+          </div>
+          <div class="banner-marquee-item">
+            <span class="text-lime">NILAY GHOSH</span>
+            <span class="text-outline">DEVELOPER</span>
+            <span class="text-white">FULL-STACK &amp; AI</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           PHILOSOPHY / ABOUT ME SECTION (ACID LIME BLOCK + POLAROIDS)
+           ========================================== -->
+      <section class="lower-showcase-section" id="about">
+        
+        <!-- Left: Acid Lime Philosophy Block with Cutout Photo -->
+        <div class="acid-drops-block">
+          <span class="tag-label">ABOUT NILAY GHOSH</span>
+          <h2 class="drops-headline">CRAFTING HIGH-PERFORMANCE CODE &amp; SCALABLE SYSTEMS</h2>
+          <p class="drops-paragraph">
+            I am a Full Stack Web Developer specializing in modern JavaScript frameworks (React.js, Node.js) and Python. I thrive on building scalable, maintainable architectures and integrating intelligent AI APIs to solve real-world problems. Currently managing content and digital solutions at the Directorate of Information Technology, Govt. of Tripura.
+          </p>
+
+          <!-- Fast Stats Bento with Key Achievements & Complete Skills -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:1.5rem; max-width:480px; z-index:10; position:relative;">
+            <div style="background:var(--white); border:2px solid var(--black); padding:0.85rem; box-shadow:2px 2px 0px var(--black);">
+              <div style="font-family:var(--font-display); font-size:2.3rem; line-height:1; color:#059669;">25+</div>
+              <div style="font-family:var(--font-tech); font-size:0.74rem; font-weight:800; text-transform:uppercase;">WEBSITES &amp; APPS DELIVERED</div>
+            </div>
+            <div style="background:var(--white); border:2px solid var(--black); padding:0.85rem; box-shadow:2px 2px 0px var(--black);">
+              <div style="font-family:var(--font-display); font-size:2.3rem; line-height:1; color:#2563EB;">10+</div>
+              <div style="font-family:var(--font-tech); font-size:0.74rem; font-weight:800; text-transform:uppercase;">REACT &amp; FULL-STACK PROJECTS</div>
+            </div>
+            <div style="background:var(--white); border:2px solid var(--black); padding:0.85rem; box-shadow:2px 2px 0px var(--black);">
+              <div style="font-family:var(--font-display); font-size:2.3rem; line-height:1; color:#D97706;">8.28</div>
+              <div style="font-family:var(--font-tech); font-size:0.74rem; font-weight:800; text-transform:uppercase;">CGPA B.TECH CSE (AIML)</div>
+            </div>
+            <div style="background:var(--white); border:2px solid var(--black); padding:0.85rem; box-shadow:2px 2px 0px var(--black); display:flex; flex-direction:column; justify-content:center;">
+              <div style="font-family:var(--font-tech); font-size:0.75rem; font-weight:900; text-transform:uppercase; margin-bottom:0.35rem; color:#7C3AED;">
+                <i class="fas fa-layer-group"></i> CORE SKILLS
+              </div>
+              <div style="font-family:var(--font-mono); font-size:0.68rem; font-weight:700; line-height:1.4; color:var(--black);">
+                React.js • Node.js • Python • PostgreSQL • MongoDB • TypeScript • FastAPI • Gemini AI
+              </div>
+            </div>
+          </div>
+
+          <div class="action-buttons-group">
+            <a href="Nilay_Ghosh_Resume.pdf" download class="btn-get-in-touch">
+              <i class="fas fa-file-download"></i> DOWNLOAD CV (PDF)
+            </a>
+            <a href="#contact" class="btn-get-in-touch" style="background:var(--black); color:var(--white);">
+              LET'S TALK
+            </a>
+          </div>
+
+          <!-- Cutout Photo on the Corner Matching Dribbble Style -->
+          <div class="streetwear-model-container">
+            <img src="nilay-hero.jpg" alt="Nilay Ghosh" class="streetwear-model-cutout" onerror="this.src='My.png'">
+          </div>
+        </div>
+
+        <!-- Right: Editorial Polaroid Project Highlights -->
+        <div class="editorial-gallery-panel">
+          
+          <!-- Card 1: Chatbot AI on Render -->
+          <a href="https://chatbot-ai-grsg.onrender.com/" target="_blank" class="editorial-card">
+            <div class="card-header-bar">
+              <span>NILAY GHOSH</span>
+              <span>LIVE AI DEMO</span>
+            </div>
+            <div class="card-photo-wrapper">
+              <img src="assets/project-chatbot-ai.svg" alt="Chatbot AI" class="card-photo">
+            </div>
+            <div class="card-caption-meta">
+              <span class="card-project-title">GEMINI CHATBOT AI</span>
+              <span class="card-tech-badge">RENDER LIVE <i class="fas fa-external-link-alt"></i></span>
+            </div>
+          </a>
+
+          <!-- Card 2: ExamAI Portal on Netlify -->
+          <a href="https://examaiportal.netlify.app/" target="_blank" class="editorial-card">
+            <div class="card-header-bar">
+              <span>NILAY GHOSH</span>
+              <span>STUDY PLATFORM</span>
+            </div>
+            <div class="card-photo-wrapper">
+              <img src="assets/project-exam-ai.svg" alt="ExamAI Portal" class="card-photo">
+            </div>
+            <div class="card-caption-meta">
+              <span class="card-project-title">EXAMAI PORTAL</span>
+              <span class="card-tech-badge">NETLIFY LIVE <i class="fas fa-external-link-alt"></i></span>
+            </div>
+          </a>
+
+          <!-- Card 3: Disease Prediction ML -->
+          <a href="https://github.com/NilayGhosh901" target="_blank" class="editorial-card">
+            <div class="card-header-bar">
+              <span>NILAY GHOSH</span>
+              <span>PYTHON ML</span>
+            </div>
+            <div class="card-photo-wrapper">
+              <img src="assets/project-disease-ml.svg" alt="Disease Prediction" class="card-photo">
+            </div>
+            <div class="card-caption-meta">
+              <span class="card-project-title">DISEASE PREDICTION</span>
+              <span class="card-tech-badge">SCIKIT-LEARN <i class="fas fa-external-link-alt"></i></span>
+            </div>
+          </a>
+
+          <!-- Card 4: GenFolio -->
+          <a href="https://github.com/NilayGhosh901" target="_blank" class="editorial-card">
+            <div class="card-header-bar">
+              <span>NILAY GHOSH</span>
+              <span>AI GENERATOR</span>
+            </div>
+            <div class="card-photo-wrapper">
+              <img src="assets/project-genfolio.svg" alt="GenFolio" class="card-photo">
+            </div>
+            <div class="card-caption-meta">
+              <span class="card-project-title">GENFOLIO GENERATOR</span>
+              <span class="card-tech-badge">REACT / NODE <i class="fas fa-external-link-alt"></i></span>
+            </div>
+          </a>
+
+        </div>
+
+      </section>
+
+      <!-- ==========================================
+           PROFESSIONAL EXPERIENCE & EDUCATION SECTION
+           ========================================== -->
+      <section class="brutalist-section" id="experience" style="background:#FFF;">
+        <span class="section-tag">CAREER &amp; ACADEMICS</span>
+        <h2 class="section-heading-big">EXPERIENCE &amp; EDUCATION</h2>
+
+        <div class="exp-edu-grid">
+          
+          <!-- Experience Column -->
+          <div>
+            <h3 style="font-family: var(--font-tech); font-size: 1.4rem; font-weight: 900; margin-bottom: 1.25rem;">
+              <i class="fas fa-briefcase"></i> WORK EXPERIENCE
+            </h3>
+
+            <!-- Role 1: Govt of Tripura -->
+            <div class="timeline-card">
+              <span class="timeline-badge">PRESENT (CURRENT ROLE)</span>
+              <h4 class="timeline-role">Developer</h4>
+              <div class="timeline-org">Directorate of Information Technology, Government of Tripura <span style="font-weight:normal; color:#4B5563;">• Agartala, India</span></div>
+              
+              <!-- Key Achievements -->
+              <div style="margin: 0.85rem 0 0.5rem 0; font-family: var(--font-tech); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; color: var(--black);">
+                <i class="fas fa-trophy" style="color: #EAB308;"></i> Key Achievements:
+              </div>
+              <ul class="timeline-bullets" style="margin-bottom:0.75rem;">
+                <li><strong>Delivered 25+ Websites:</strong> Successfully launched public-facing &amp; internal governmental web applications.</li>
+                <li><strong>Developed 10+ React &amp; Full-Stack Projects:</strong> Built dynamic user interfaces with real-time state management.</li>
+                <li><strong>Core Tech Arsenal:</strong> Built scalable web services using React.js, Node.js, Python &amp; PostgreSQL.</li>
+                <li><strong>Content &amp; Operations:</strong> Managed continuous content updates, database operations &amp; backend services.</li>
+              </ul>
+            </div>
+
+            <!-- Role 2: Webguru Infosystems -->
+            <div class="timeline-card">
+              <span class="timeline-badge">AUG 2024 – OCT 2024</span>
+              <h4 class="timeline-role">Software Development Intern – Backend &amp; LLM Integration</h4>
+              <div class="timeline-org">Webguru Infosystems Pvt. Ltd. <span style="font-weight:normal; color:#4B5563;">• Kolkata, India</span></div>
+              <ul class="timeline-bullets">
+                <li>Built backend services using Node.js and Express.js to process application requests.</li>
+                <li>Integrated GPT-based APIs to generate automated context-aware responses.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Education Column -->
+          <div id="education">
+            <h3 style="font-family: var(--font-tech); font-size: 1.4rem; font-weight: 900; margin-bottom: 1.25rem;">
+              <i class="fas fa-graduation-cap"></i> EDUCATION JOURNEY
+            </h3>
+
+            <!-- Degree 1 -->
+            <div class="timeline-card">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <h4 class="timeline-role" style="font-size:1.15rem;">B.Tech in Computer Science &amp; Engineering (AIML)</h4>
+                  <div class="timeline-org">Brainware University, Barasat, Kolkata, West Bengal</div>
+                </div>
+                <span class="timeline-badge" style="background:#FFF;">CGPA: 8.28</span>
+              </div>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; color:#4B5563;">2022 – 2025 • Specialization in Artificial Intelligence &amp; Machine Learning</p>
+            </div>
+
+            <!-- Degree 2 -->
+            <div class="timeline-card">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div>
+                  <h4 class="timeline-role" style="font-size:1.15rem;">Diploma in Electrical Engineering</h4>
+                  <div class="timeline-org">Gomati District Polytechnic, Fulkumari, Udaipur, Gomati, Tripura</div>
+                </div>
+                <span class="timeline-badge" style="background:#FFF;">CGPA: 7.06</span>
+              </div>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; color:#4B5563;">2019 – 2022 • Core Electrical &amp; Circuit Systems</p>
+            </div>
+
+            <!-- Quick Profile Badge -->
+            <div style="background:var(--neon-lime); border:var(--border-thick); padding:1.5rem; box-shadow:var(--shadow-brutal);">
+              <div style="font-family:var(--font-mono); font-size:0.72rem; font-weight:800;">VERIFIED CANDIDATE</div>
+              <h4 style="font-family:var(--font-tech); font-size:1.25rem; font-weight:900; margin:0.3rem 0;">NILAY GHOSH</h4>
+              <p style="font-size:0.85rem; margin-bottom:1rem;">Ready for impactful full-time software engineering roles &amp; enterprise collaborations.</p>
+              <a href="https://www.linkedin.com/in/er-nilay-ghosh-30719a235" target="_blank" class="btn-proj-link" style="padding:0.6rem 1.25rem;">
+                <i class="fab fa-linkedin"></i> CONNECT ON LINKEDIN
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================
+           CORE COMPETENCIES & SERVICES & SPOTIFY
+           ========================================== -->
+      <section class="brutalist-section" id="competencies" style="background:#F3F4F6;">
+        <span class="section-tag">PROFICIENCY &amp; VIBES</span>
+        <h2 class="section-heading-big">CORE COMPETENCIES &amp; SERVICES</h2>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
+          
+          <!-- Competencies Progress Bars -->
+          <div class="brutalist-card">
+            <h3 style="font-family:var(--font-tech); font-size:1.3rem; font-weight:900; margin-bottom:1.5rem;">
+              <i class="fas fa-bolt" style="color:#EAB308;"></i> TECHNICAL PROFICIENCY
+            </h3>
+
+            <div class="comp-bar-item">
+              <div class="comp-bar-meta">
+                <span>Full Stack Architecture</span>
+                <span style="font-family:var(--font-mono); font-weight:bold;">95%</span>
+              </div>
+              <div class="comp-track">
+                <div class="comp-fill" style="width: 95%;"></div>
+              </div>
+            </div>
+
+            <div class="comp-bar-item">
+              <div class="comp-bar-meta">
+                <span>API &amp; AI Integrations</span>
+                <span style="font-family:var(--font-mono); font-weight:bold;">88%</span>
+              </div>
+              <div class="comp-track">
+                <div class="comp-fill" style="width: 88%;"></div>
+              </div>
+            </div>
+
+            <div class="comp-bar-item">
+              <div class="comp-bar-meta">
+                <span>Database Management (SQL/PostgreSQL)</span>
+                <span style="font-family:var(--font-mono); font-weight:bold;">85%</span>
+              </div>
+              <div class="comp-track">
+                <div class="comp-fill" style="width: 85%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Spotify Player -->
+          <div class="brutalist-card" style="padding:0; overflow:hidden; display:flex; flex-direction:column;">
+            <div style="background:var(--black); color:var(--white); padding:0.75rem 1.25rem; font-family:var(--font-mono); font-size:0.78rem; font-weight:700; display:flex; align-items:center; gap:0.6rem;">
+              <i class="fab fa-spotify" style="color:#1DB954; font-size:1.2rem;"></i>
+              <span>VIBES: RESONANCE (PLAYLIST)</span>
+            </div>
+            <iframe style="border:none; width:100%; height:160px; background:#000;" src="https://open.spotify.com/embed/track/1TuopWDIuDi1553081zvuU?theme=0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <div style="padding:1rem 1.25rem; background:var(--white); border-top:2px solid #000; font-family:var(--font-mono); font-size:0.75rem; display:flex; justify-content:space-between;">
+              <span>STATUS: CODING DAILY</span>
+              <span style="color:#10B981; font-weight:bold;">● ACTIVE NOW</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Services 3-Grid -->
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem;">
+          <div class="brutalist-card">
+            <i class="fas fa-server" style="font-size:2rem; margin-bottom:1rem; display:block;"></i>
+            <h3 style="font-family:var(--font-tech); font-size:1.25rem; font-weight:900; margin-bottom:0.5rem;">Backend Architecture</h3>
+            <p style="font-size:0.88rem; line-height:1.55; color:#374151;">
+              Designing robust, scalable backend systems using Node.js, Express, and PostgreSQL. Focusing on secure data handling, microservices, and high-performance APIs for enterprise applications.
+            </p>
+          </div>
+
+          <div class="brutalist-card">
+            <i class="fas fa-laptop-code" style="font-size:2rem; margin-bottom:1rem; display:block;"></i>
+            <h3 style="font-family:var(--font-tech); font-size:1.25rem; font-weight:900; margin-bottom:0.5rem;">Frontend Engineering</h3>
+            <p style="font-size:0.88rem; line-height:1.55; color:#374151;">
+              Crafting beautiful, responsive, and highly interactive user interfaces using React.js and Tailwind CSS. Obsessed with pixel-perfect layouts, snappy state management, and smooth animations.
+            </p>
+          </div>
+
+          <div class="brutalist-card">
+            <i class="fas fa-robot" style="font-size:2rem; margin-bottom:1rem; display:block;"></i>
+            <h3 style="font-family:var(--font-tech); font-size:1.25rem; font-weight:900; margin-bottom:0.5rem;">AI &amp; API Integration</h3>
+            <p style="font-size:0.88rem; line-height:1.55; color:#374151;">
+              Leveraging modern LLMs like Google Gemini and OpenAI to build intelligent features, context-aware chatbots, RAG pipelines, and automated business workflows.
+            </p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==========================================
+           ALL FEATURED PROJECTS GALLERY
+           ========================================== -->
+      <section class="brutalist-section" id="projects" style="background:#FFF;">
+        <span class="section-tag">PROJECT PORTFOLIO</span>
+        <h2 class="section-heading-big">FEATURED SOFTWARE PROJECTS</h2>
+
+        <div class="projects-brutalist-grid">
+          
+          <!-- GenFolio -->
+          <div class="project-box">
+            <div class="project-box-header">
+              <span>PROJECT #01</span>
+              <span>FULL STACK AI</span>
+            </div>
+            <div class="project-box-body">
+              <h3 class="project-box-title">GenFolio – AI Portfolio Generator</h3>
+              <div class="project-box-stack">React • Node.js • Tailwind CSS • AI Integration</div>
+              <p class="project-box-desc">
+                Developed an AI-powered tool that generates complete portfolio websites using user inputs such as skills, projects, and themes. Built backend logic to dynamically generate HTML, CSS, and JS files and deliver downloadable ZIP packages.
+              </p>
+              <div class="project-box-links">
+                <a href="https://github.com/NilayGhosh901" target="_blank" class="btn-proj-link">
+                  <i class="fab fa-github"></i> GITHUB REPO
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Disease Prediction -->
+          <div class="project-box">
+            <div class="project-box-header">
+              <span>PROJECT #02</span>
+              <span>MACHINE LEARNING</span>
+            </div>
+            <div class="project-box-body">
+              <h3 class="project-box-title">Disease Prediction Using ML</h3>
+              <div class="project-box-stack">Python • Scikit-learn • Random Forest</div>
+              <p class="project-box-desc">
+                Implemented machine learning models including Decision Tree, Random Forest, and Naïve Bayes for predicting diseases from symptoms. Performed data preprocessing, feature selection, and built a simple interactive UI for real-time predictions.
+              </p>
+              <div class="project-box-links">
+                <a href="https://github.com/NilayGhosh901" target="_blank" class="btn-proj-link">
+                  <i class="fab fa-github"></i> GITHUB REPO
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chatbot App -->
+          <div class="project-box">
+            <div class="project-box-header">
+              <span>PROJECT #03</span>
+              <span>LIVE ON RENDER</span>
+            </div>
+            <div class="project-box-body">
+              <h3 class="project-box-title">Chatbot Application</h3>
+              <div class="project-box-stack">JavaScript • Gemini AI • Render</div>
+              <p class="project-box-desc">
+                Created a conversational AI chatbot integrating Google Gemini for intelligent, contextual responses. Designed a clean and minimal UI with real-time conversation tracking and smooth message flow.
+              </p>
+              <div class="project-box-links">
+                <a href="https://chatbot-ai-grsg.onrender.com/" target="_blank" class="btn-proj-link">
+                  <i class="fas fa-play"></i> LIVE DEMO
+                </a>
+                <a href="https://github.com/NilayGhosh901" target="_blank" class="btn-proj-link secondary">
+                  <i class="fab fa-github"></i> GITHUB
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ExamAI Portal -->
+          <div class="project-box">
+            <div class="project-box-header">
+              <span>PROJECT #04</span>
+              <span>LIVE ON NETLIFY</span>
+            </div>
+            <div class="project-box-body">
+              <h3 class="project-box-title">ExamAI Portal</h3>
+              <div class="project-box-stack">HTML • CSS • JavaScript • Netlify</div>
+              <p class="project-box-desc">
+                Built a study assistance portal offering dynamic daily learning plans for competitive exam aspirants. Integrated an AI-based study helper to give quick guidance and personalized suggestions.
+              </p>
+              <div class="project-box-links">
+                <a href="https://examaiportal.netlify.app/" target="_blank" class="btn-proj-link">
+                  <i class="fas fa-play"></i> LIVE DEMO
+                </a>
+                <a href="https://github.com/NilayGhosh901" target="_blank" class="btn-proj-link secondary">
+                  <i class="fab fa-github"></i> GITHUB
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================
+           INTERACTIVE TERMINAL SECTION
+           ========================================== -->
+      <section class="brutalist-section" id="terminal" style="background:#F9FAFB;">
+        <span class="section-tag">COMMAND LINE</span>
+        <h2 class="section-heading-big">INTERACTIVE TERMINAL</h2>
+
+        <div class="terminal-embed-box">
+          <div class="terminal-embed-header">
+            <div class="mac-dots">
+              <span class="mac-dot" style="background:#FF5F56;"></span>
+              <span class="mac-dot" style="background:#FFBD2E;"></span>
+              <span class="mac-dot" style="background:#27C93F;"></span>
+            </div>
+            <span style="font-size:0.75rem; font-weight:700; color:#8B949E;">nilay@portfolio ~ zsh (type 'help', 'whoami', 'skills', 'projects')</span>
+            <span style="font-size:0.7rem; color:#10B981;">● ONLINE</span>
+          </div>
+          <div class="terminal-embed-body" id="term-logs">
+            <div style="color:#D6FF00; margin-bottom:0.5rem;">[ SYSTEM READY ]</div>
+            <div>Welcome to Nilay Ghosh's Interactive Terminal v2.6.</div>
+            <div>Type <span style="color:var(--neon-lime); font-weight:bold;">'help'</span> to explore available commands.</div>
+          </div>
+          <div class="terminal-embed-input-row">
+            <span style="color:var(--neon-lime); font-weight:bold;">➜ ~</span>
+            <input type="text" id="term-cmd" class="terminal-embed-input" placeholder="type 'help', 'whoami', 'skills', 'projects'..." autocomplete="off">
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           INDUSTRY CERTIFICATIONS
+           ========================================== -->
+      <section class="brutalist-section" id="certifications" style="background:#FFF;">
+        <span class="section-tag">VERIFIED CREDENTIALS</span>
+        <h2 class="section-heading-big">INDUSTRY CERTIFICATIONS</h2>
+
+        <div class="certs-brutalist-grid">
+          
+          <a href="https://www.kaggle.com/learn/certification/nilayghosh901/machine-learning-explainability" target="_blank" class="cert-brutal-box">
+            <div>
+              <div class="cert-issuer-text">KAGGLE LEARN</div>
+              <h3 class="cert-name-text">Machine Learning Explainability</h3>
+              <p style="font-size:0.82rem; line-height:1.45; color:#374151;">Permutation importance, SHAP values, partial dependence plots, and model transparency.</p>
+            </div>
+            <div style="margin-top:1rem; font-family:var(--font-mono); font-size:0.75rem; font-weight:800;"><i class="fas fa-external-link-alt"></i> VERIFIED LINK</div>
+          </a>
+
+          <a href="https://skillshop.exceedlms.com/" target="_blank" class="cert-brutal-box">
+            <div>
+              <div class="cert-issuer-text">GOOGLE SKILLSHOP</div>
+              <h3 class="cert-name-text">Google Analytics Certification</h3>
+              <p style="font-size:0.82rem; line-height:1.45; color:#374151;">Web measurement, event tracking, user journey analysis, and conversion optimization.</p>
+            </div>
+            <div style="margin-top:1rem; font-family:var(--font-mono); font-size:0.75rem; font-weight:800;"><i class="fas fa-external-link-alt"></i> GOOGLE CERTIFIED</div>
+          </a>
+
+          <a href="https://www.geeksforgeeks.org/" target="_blank" class="cert-brutal-box">
+            <div>
+              <div class="cert-issuer-text">GEEKSFORGEEKS</div>
+              <h3 class="cert-name-text">Data Science &amp; Machine Learning</h3>
+              <p style="font-size:0.82rem; line-height:1.45; color:#374151;">Python data science stack, supervised/unsupervised learning, and neural network fundamentals.</p>
+            </div>
+            <div style="margin-top:1rem; font-family:var(--font-mono); font-size:0.75rem; font-weight:800;"><i class="fas fa-external-link-alt"></i> GFG CERTIFIED</div>
+          </a>
+
+          <a href="https://www.hackerrank.com/certificates/1aa85c9ae7e1" target="_blank" class="cert-brutal-box">
+            <div>
+              <div class="cert-issuer-text">HACKERRANK</div>
+              <h3 class="cert-name-text">Python (Basic) Certification</h3>
+              <p style="font-size:0.82rem; line-height:1.45; color:#374151;">Validated proficiency in core Python programming, data structures, and algorithms.</p>
+            </div>
+            <div style="margin-top:1rem; font-family:var(--font-mono); font-size:0.75rem; font-weight:800;"><i class="fas fa-external-link-alt"></i> VERIFIED LINK</div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- ==========================================
+           LINKEDIN PROFESSIONAL NETWORK CARD
+           ========================================== -->
+      <section class="brutalist-section" style="background:#F9FAFB;">
+        <div class="linkedin-banner-card">
+          <div class="linkedin-pic-wrap">
+            <img src="nilay-hero.jpg" alt="Nilay Ghosh" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='My.png'">
+          </div>
+          <div style="flex:1;">
+            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem;">
+              <h3 style="font-family:var(--font-display); font-size:1.9rem; letter-spacing:0.04em;">Nilay Ghosh</h3>
+              <i class="fas fa-certificate" style="color:#0A66C2; font-size:1.25rem;" title="Verified Profile"></i>
+            </div>
+            <p style="font-family:var(--font-tech); font-size:0.95rem; font-weight:800; color:#0A66C2; margin-bottom:0.5rem;">
+              Developer @ Directorate of IT, Govt. of Tripura | Full Stack Web &amp; AI | React • Node.js • PostgreSQL
+            </p>
+            <p style="font-size:0.88rem; line-height:1.55; color:#374151; margin-bottom:1.25rem;">
+              Passionate about building scalable systems, integrating powerful APIs, and crafting intuitive user interfaces. Always eager to connect and collaborate!
+            </p>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+              <a href="https://www.linkedin.com/in/er-nilay-ghosh-30719a235" target="_blank" class="btn-proj-link" style="background:#0A66C2; color:#FFF;">
+                <i class="fas fa-user-plus"></i> Connect on LinkedIn
+              </a>
+              <a href="https://www.linkedin.com/in/er-nilay-ghosh-30719a235" target="_blank" class="btn-proj-link secondary">
+                <i class="fas fa-paper-plane"></i> Send Direct Message
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           GET IN TOUCH FULL FORM
+           ========================================== -->
+      <section class="brutalist-section" id="contact" style="background:#FFF;">
+        <span class="section-tag">LET'S CONNECT</span>
+        <h2 class="section-heading-big">GET IN TOUCH</h2>
+
+        <div class="brutalist-card" style="max-width:880px; margin:0 auto;">
+          <form id="full-contact-form" class="contact-form-grid" onsubmit="event.preventDefault(); alert('Thank you! Your message was sent to nilayghosh901@gmail.com'); this.reset();">
+            <div class="form-group">
+              <label class="form-label" for="c-name">YOUR NAME</label>
+              <input type="text" id="c-name" class="form-input" placeholder="JOHN DOE" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-email">EMAIL ADDRESS</label>
+              <input type="email" id="c-email" class="form-input" placeholder="JOHN@EXAMPLE.COM" required>
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label class="form-label" for="c-msg">HOW CAN WE COLLABORATE?</label>
+              <textarea id="c-msg" class="form-textarea" placeholder="TELL ME ABOUT YOUR PROJECT REQUIREMENTS OR HIRING INQUIRY..." required></textarea>
+            </div>
+            <div style="grid-column: 1 / -1;">
+              <button type="submit" class="btn-send-message" style="padding:1rem; font-size:0.9rem;">
+                <span>SEND DIRECT MESSAGE</span>
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           FOOTER
+           ========================================== -->
+      <footer class="brutalist-footer">
+        <h2 class="footer-heading">LET'S BUILD SOMETHING EXTRAORDINARY</h2>
+        
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:1.25rem; margin:0.5rem 0;">
+          <a href="mailto:nilayghosh901@gmail.com" class="social-pill">
+            <i class="fas fa-envelope"></i> nilayghosh901@gmail.com
+          </a>
+          <a href="tel:9366449167" class="social-pill">
+            <i class="fas fa-phone-alt"></i> +91 9366449167
+          </a>
+          <a href="Nilay_Ghosh_Resume.pdf" download class="social-pill" style="background:var(--neon-lime); color:var(--black); border-color:var(--black);">
+            <i class="fas fa-file-download"></i> DOWNLOAD CV (PDF)
+          </a>
+        </div>
+
+        <div style="display:flex; gap:1rem;">
+          <a href="https://github.com/NilayGhosh901" target="_blank" class="social-pill">
+            <i class="fab fa-github"></i> GITHUB
+          </a>
+          <a href="https://www.linkedin.com/in/er-nilay-ghosh-30719a235" target="_blank" class="social-pill">
+            <i class="fab fa-linkedin"></i> LINKEDIN
+          </a>
+          <a href="https://x.com/nilayghosh901?s=21" target="_blank" class="social-pill">
+            <i class="fa-brands fa-x-twitter"></i> TWITTER / X
+          </a>
+        </div>
+
+        <p style="font-family:var(--font-mono); font-size:0.75rem; color:#9CA3AF; margin-top:1rem;">
+          © NILAY GHOSH. ALL RIGHTS RESERVED. CRAFTED WITH HTML, CSS &amp; JAVASCRIPT.
+        </p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Live IST Clock
+      function updateClock() {
+        const clockEl = document.getElementById('live-ist-clock');
+        if (clockEl) {
+          const now = new Date();
+          clockEl.textContent = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }) + ' IST';
         }
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
 
-        document.addEventListener('DOMContentLoaded', () => {
-            initThreeJSBackground();
-            
-            // Live Local Time Updater
-            function updateLocalTime() {
-                const timeEl = document.getElementById('local-time');
-                if(timeEl) {
-                    const now = new Date();
-                    const timeString = now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute:'2-digit' });
-                    timeEl.innerHTML = `Agartala, India <br> <span class="text-brand-cyan font-semibold mt-1 block">${timeString}</span>`;
-                }
-            }
-            setInterval(updateLocalTime, 1000);
-            updateLocalTime();
-
-            // Back to Top Button Logic
-            const backToTopBtn = document.getElementById('backToTop');
-            if(backToTopBtn) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) {
-                        backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
-                        backToTopBtn.classList.add('opacity-100');
-                    } else {
-                        backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
-                        backToTopBtn.classList.remove('opacity-100');
-                    }
-                });
-                backToTopBtn.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-
-            // Typewriter Effect Logic
-            const textArray = ["Crafting digital experiences.", "Building with Node & React.", "Designing scalable systems."];
-            let textIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            const typeDelay = 80;
-            const eraseDelay = 40;
-            const newTextDelay = 2000;
-            const typewriterEl = document.getElementById('typewriter');
-            function type() {
-                if(!typewriterEl) return;
-                const currentText = textArray[textIndex];
-                if(isDeleting) {
-                    typewriterEl.textContent = currentText.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    typewriterEl.textContent = currentText.substring(0, charIndex + 1);
-                    charIndex++;
-                }
-                if(!isDeleting && charIndex === currentText.length) {
-                    isDeleting = true;
-                    setTimeout(type, newTextDelay);
-                } else if(isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    textIndex = (textIndex + 1) % textArray.length;
-                    setTimeout(type, typeDelay);
-                } else {
-                    setTimeout(type, isDeleting ? eraseDelay : typeDelay);
-                }
-            }
-            if(typewriterEl) setTimeout(type, 1000);
-
-            // Terminal Logic
-            const termInput = document.getElementById('terminal-input');
-            const termHistory = document.getElementById('terminal-history');
-            const termBody = document.getElementById('terminal-body');
-            const commands = {
-                'help': "Available commands: <br> - <span class='text-brand-cyan'>whoami</span>: Learn about me <br> - <span class='text-brand-cyan'>skills</span>: List my tech stack <br> - <span class='text-brand-cyan'>projects</span>: View featured work <br> - <span class='text-brand-cyan'>clear</span>: Clear terminal screen <br> - <span class='text-brand-cyan'>sudo</span>: ???",
-                'whoami': "Nilay Ghosh. Full Stack Developer. Master of Web & Architect of APIs.",
-                'skills': "Languages: Python, JavaScript, SQL <br> Frameworks: React.js, Node.js, Express.js <br> CMS: Drupal <br> Tools: Git, REST APIs",
-                'projects': "1. GenFolio (AI Portfolio) <br> 2. Disease Prediction (ML) <br> 3. Chatbot Application <br> 4. ExamAI Portal",
-                'sudo': "<span class='text-red-500'>Nice try! You do not have root privileges on this server.</span>"
-            };
-            if(termInput) {
-                termInput.addEventListener('keypress', function(e) {
-                    if(e.key === 'Enter') {
-                        const val = this.value.trim().toLowerCase();
-                        this.value = '';
-                        const echo = document.createElement('div');
-                        echo.className = 'mt-3 mb-1';
-                        echo.innerHTML = "<span class='text-brand-cyan font-bold'>➜</span> <span class='text-brand-purple font-bold'>~</span> <span class='text-white'>" + val + "</span>";
-                        termHistory.appendChild(echo);
-                        const response = document.createElement('div');
-                        response.className = 'text-slate-300 ml-4';
-                        if(val === 'clear') {
-                            termHistory.innerHTML = '';
-                        } else if(val === '') {
-                        } else if(commands[val]) {
-                            response.innerHTML = commands[val];
-                            termHistory.appendChild(response);
-                        } else {
-                            response.innerHTML = "zsh: command not found: " + val + ". Type 'help' for options.";
-                            termHistory.appendChild(response);
-                        }
-                        termBody.scrollTop = termBody.scrollHeight;
-                    }
-                });
-                termBody.addEventListener('click', () => { termInput.focus(); });
-            }
-
-            // Chatbot Toggle Logic
-            const chatbotBtn = document.getElementById('chatbotToggleBtn');
-            const chatbotWindow = document.getElementById('chatbotWindow');
-            const chatbotCloseBtn = document.getElementById('chatbotCloseBtn');
-            if(chatbotBtn && chatbotWindow && chatbotCloseBtn) {
-                const toggleChat = () => {
-                    const isHidden = chatbotWindow.classList.contains('opacity-0');
-                    if(isHidden) {
-                        chatbotWindow.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
-                        chatbotWindow.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-                    } else {
-                        chatbotWindow.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
-                        chatbotWindow.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
-                    }
-                };
-                chatbotBtn.addEventListener('click', toggleChat);
-                chatbotCloseBtn.addEventListener('click', toggleChat);
-            }
-
-            // Magnetic Hover Effect Logic
-            const magneticEls = document.querySelectorAll('.magnetic');
-            magneticEls.forEach((el) => {
-                el.addEventListener('mousemove', function(e) {
-                    const position = el.getBoundingClientRect();
-                    const x = e.clientX - position.left - position.width / 2;
-                    const y = e.clientY - position.top - position.height / 2;
-                    el.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px) scale(1.05)`;
-                    el.style.transition = 'transform 0.1s ease-out';
-                });
-                el.addEventListener('mouseout', function() {
-                    el.style.transform = 'translate(0px, 0px) scale(1)';
-                    el.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                });
-            });
+      // 2. Parallax on 3D Floating Tech Canvas
+      const techCanvas = document.getElementById('laptopAiCanvas') || document.getElementById('chainCanvas');
+      if (techCanvas) {
+        window.addEventListener('mousemove', (e) => {
+          const moveX = (e.clientX - window.innerWidth / 2) * 0.025;
+          const moveY = (e.clientY - window.innerHeight / 2) * 0.025;
+          techCanvas.style.transform = `rotate(-8deg) translate(${moveX}px, ${moveY}px)`;
         });
-    </script>
+      }
+
+      // 3. Typewriter Effect
+      const typewriterEl = document.getElementById('typewriter-text');
+      if (typewriterEl) {
+        const phrases = [
+          "Developer @ Govt. of Tripura.",
+          "Crafting high-scale digital experiences.",
+          "Building with React, Node.js & PostgreSQL.",
+          "Engineering AI & Machine Learning pipelines."
+        ];
+        let pIdx = 0, cIdx = 0, isDel = false;
+        function typeStep() {
+          const phrase = phrases[pIdx];
+          if (isDel) {
+            typewriterEl.textContent = phrase.substring(0, cIdx - 1);
+            cIdx--;
+          } else {
+            typewriterEl.textContent = phrase.substring(0, cIdx + 1);
+            cIdx++;
+          }
+          let speed = isDel ? 35 : 75;
+          if (!isDel && cIdx === phrase.length) {
+            speed = 2000;
+            isDel = true;
+          } else if (isDel && cIdx === 0) {
+            isDel = false;
+            pIdx = (pIdx + 1) % phrases.length;
+            speed = 400;
+          }
+          setTimeout(typeStep, speed);
+        }
+        typeStep();
+      }
+
+      // 4. Specialty Domain Filter
+      const pills = document.querySelectorAll('.specialty-pill');
+      const tags = document.querySelectorAll('.skill-tag');
+      const activeLabel = document.getElementById('active-specialty-label');
+      const profiles = {
+        'all': ['React.js', 'Node.js', 'Python', 'TypeScript', 'PostgreSQL', 'MongoDB', 'Scikit-Learn', 'FastAPI', 'Gemini AI', 'Git'],
+        'fullstack': ['React.js', 'Node.js', 'Python', 'PostgreSQL', 'TypeScript', 'Git'],
+        'ai': ['Python', 'Scikit-Learn', 'Gemini AI', 'FastAPI'],
+        'frontend': ['React.js', 'TypeScript', 'Git'],
+        'backend': ['Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'FastAPI']
+      };
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          pills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          const domain = pill.dataset.specialty;
+          if (activeLabel) activeLabel.textContent = pill.textContent.replace(/[^a-zA-Z &]/g, '').trim();
+          const target = profiles[domain] || profiles['all'];
+          tags.forEach(t => {
+            if (target.includes(t.textContent.trim())) {
+              t.style.background = '#D6FF00';
+            } else {
+              t.style.background = '#FFFFFF';
+            }
+          });
+        });
+      });
+
+      // 5. Hotspot click toggles
+      const hotspots = document.querySelectorAll('.hotspot-badge');
+      hotspots.forEach(spot => {
+        spot.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const bubble = spot.querySelector('.callout-bubble-card');
+          if (bubble) {
+            bubble.style.display = (bubble.style.display === 'none') ? 'block' : 'block';
+          }
+        });
+      });
+
+      // 6. Interactive Terminal Engine
+      const cmdInput = document.getElementById('term-cmd');
+      const termLogs = document.getElementById('term-logs');
+      const commands = {
+        help: `Available commands:<br>
+          - <span style="color:#D6FF00">whoami</span>: About Nilay Ghosh<br>
+          - <span style="color:#D6FF00">skills</span>: List technical stack<br>
+          - <span style="color:#D6FF00">projects</span>: Highlighted software projects<br>
+          - <span style="color:#D6FF00">exp</span>: Work experience timeline<br>
+          - <span style="color:#D6FF00">edu</span>: Academic credentials &amp; CGPA<br>
+          - <span style="color:#D6FF00">contact</span>: Email, phone &amp; socials<br>
+          - <span style="color:#D6FF00">clear</span>: Clear terminal window<br>
+          - <span style="color:#D6FF00">sudo</span>: Superuser status check`,
+        whoami: `Nilay Ghosh. Full Stack Web Developer &amp; Developer @ Directorate of IT, Govt. of Tripura.<br>B.Tech CSE (AIML) graduate, Brainware University (CGPA 8.28).`,
+        skills: `Frontend: React.js, Tailwind CSS, HTML5, CSS3, JavaScript (ES6+)<br>Backend: Node.js, Express.js, Python, REST APIs<br>Databases: PostgreSQL, MongoDB, MySQL<br>AI/ML: Scikit-learn, Google Gemini API, ML Explainability`,
+        projects: `1. GenFolio — AI-powered portfolio generator<br>2. Disease Prediction — Python &amp; Scikit-Learn ML<br>3. Chatbot App — JavaScript &amp; Gemini AI on Render<br>4. ExamAI Portal — Study assistance platform on Netlify`,
+        exp: `1. Developer @ Directorate of IT, Govt. of Tripura (Present)<br>2. Software Development Intern @ Webguru Infosystems (Aug 2024 – Oct 2024)`,
+        edu: `1. B.Tech in CSE (AIML) — Brainware University Kolkata [CGPA: 8.28]<br>2. Diploma in Electrical Engineering — Gomati District Polytechnic [CGPA: 7.06]`,
+        contact: `Phone: +91 9366449167<br>Email: nilayghosh901@gmail.com<br>LinkedIn: https://www.linkedin.com/in/er-nilay-ghosh-30719a235`,
+        sudo: `Access granted: User is Nilay Ghosh [Lead Developer].`
+      };
+
+      if (cmdInput && termLogs) {
+        cmdInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const input = cmdInput.value.trim().toLowerCase();
+            cmdInput.value = '';
+            if (input === 'clear') {
+              termLogs.innerHTML = '';
+              return;
+            }
+            const log = document.createElement('div');
+            log.style.marginBottom = '0.5rem';
+            if (commands[input]) {
+              log.innerHTML = `<span style="color:#D6FF00">nilay@portfolio:~$</span> ${input}<br>${commands[input]}`;
+            } else if (input === '') {
+              return;
+            } else {
+              log.innerHTML = `<span style="color:#D6FF00">nilay@portfolio:~$</span> ${input}<br><span style="color:#FF5E5E">Command not recognized. Type 'help' to see all commands.</span>`;
+            }
+            termLogs.appendChild(log);
+            termLogs.scrollTop = termLogs.scrollHeight;
+          }
+        });
+      }
+
+      // 7. Floating Chatbot Toggle
+      const chatBtn = document.getElementById('chatbotToggleBtn');
+      const chatWin = document.getElementById('chatbotWindow');
+      const chatClose = document.getElementById('chatbotCloseBtn');
+      if (chatBtn && chatWin) {
+        chatBtn.addEventListener('click', () => {
+          chatWin.classList.toggle('open');
+        });
+      }
+      if (chatClose && chatWin) {
+        chatClose.addEventListener('click', () => {
+          chatWin.classList.remove('open');
+        });
+      }
+
+      // 8. Hero Inquiry Form Submit
+      const heroForm = document.getElementById('hero-inquiry-form');
+      if (heroForm) {
+        heroForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('inq-name').value || 'Friend';
+          alert(`Thank you, ${name}! Your message has been sent directly to Nilay Ghosh.`);
+          heroForm.reset();
+        });
+      }
+
+      // 9. Mobile Nav Drawer Toggle
+      const navToggleBtn = document.getElementById('mobileNavToggle');
+      const navDrawer = document.getElementById('mobileNavDrawer');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+      if (navToggleBtn && navDrawer) {
+        navToggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navDrawer.classList.toggle('open');
+          const icon = navToggleBtn.querySelector('i');
+          if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+          }
+        });
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            navDrawer.classList.remove('open');
+            const icon = navToggleBtn.querySelector('i');
+            if (icon) {
+              icon.classList.add('fa-bars');
+              icon.classList.remove('fa-times');
+            }
+          });
+        });
+        document.addEventListener('click', (e) => {
+          if (!navDrawer.contains(e.target) && !navToggleBtn.contains(e.target)) {
+            navDrawer.classList.remove('open');
+            const icon = navToggleBtn.querySelector('i');
+            if (icon) {
+              icon.classList.add('fa-bars');
+              icon.classList.remove('fa-times');
+            }
+          }
+        });
+      }
+
+      // 10. Back to Top Button
+      const backTopBtn = document.getElementById('backToTopBtn');
+      if (backTopBtn) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) {
+            backTopBtn.classList.add('show');
+          } else {
+            backTopBtn.classList.remove('show');
+          }
+        });
+        backTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    });
+  </script>
 </body>
 </html>
